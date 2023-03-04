@@ -7,16 +7,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'inicio',
-    loadChildren: () => import('./inicio/inicio-module.module').then(m => m.InicioModuleModule)
-  },
-  {
-    path:'agregado',
-    loadChildren: () => import('./agregado/agregado-module.module').then(m => m.AgregadoModuleModule)
-  },
-  {
-    path:'*',
-    redirectTo: 'inicio'
+    path: '',
+    children: [
+      {
+        path: 'inicio',
+        loadChildren: () => import('./inicio/inicio-module.module').then(m => m.InicioModuleModule)
+      },
+      {
+        path: 'agregar',
+        loadChildren: () => import('./agregado/agregado-module.module').then(m => m.AgregadoModuleModule)
+      }
+    ]
   }
 ];
 

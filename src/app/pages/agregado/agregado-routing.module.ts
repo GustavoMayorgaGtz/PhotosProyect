@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { AgregadoComponent } from './agregado.component';
 
 
 const routes: Routes = [
   {
     path:'',
-    loadChildren: () => import('./agregado-module.module').then(m => m.AgregadoModuleModule)
+    component: AgregadoComponent
   }
 ];
 

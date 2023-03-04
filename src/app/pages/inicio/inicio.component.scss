@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+/*font-family: 'PT Sans', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap');
+/*font-family: 'Mukta', sans-serif;*/
+//Fuente de texto normal 16px 
+//Subtitulos 18px
+//Titulos 20px
+//Entradas 16px bold de preferencia
+//miniInformacion 14px
+
+* {
+    font-family: 'Mukta', sans-serif;
+    font-size: 14px;
+
+}
+
+@mixin centerH() {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.normal {
+    font-size: 16px;
+    color: black;
+    margin: 0px 10px;
+    @include centerH()
+}
+
+.subtitle {
+    font-family: 'Mukta', 'sans-serif';
+    color: black;
+    margin: 0px 20px;
+    font-weight: bold;
+    font-size: 18px;
+    @include centerH()
+}
+
+.body {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(248, 248, 248);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav {
+    width: 100vw;
+    height: 60px;
+    background-color: white;
+    border-bottom: 1px solid rgb(185, 185, 185);
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.068);
+}
+
+
+.container-informacion {
+    width: 60%;
+    max-width: 500px;
+    min-width: 200px;
+    height: auto;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: white;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.075);
+    border: 1px solid rgb(158, 158, 158);
+    border-radius: 3px;
+}
+
+.container-entradas {
+    width: 60%;
+    max-width: 500px;
+    min-width: 200px;
+    height: auto;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: white;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.075);
+    border: 1px solid rgb(158, 158, 158);
+    border-radius: 3px;
+}
+
+.informacion {
+    width: 25px;
+    height: 25px;
+    filter: invert(0.4)
+}
+
+.container-agroup{
+    width: 100%;
+    display: flex;
+}
+.inputText{
+    width: 70%;
+    padding: 3px 0px;
+    border: 2px solid rgba(0, 0, 0, 0.137);
+    border-radius: 3px;
+    cursor: text;
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 10px;
+    font-size: 14px; 
+    &:hover{
+      
+    }
+    &::placeholder{
+       
+        font-size: 14px; 
+      
+    }
+    &:focus{
+        border: 2px solid rgb(65, 131, 207);
+        outline: none;
+    }
+}
+
+
+.container-icon{
+    @include centerH()
+}
+
+.btn-entrar{
+    margin: 20px auto 0px auto;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    background-color: rgb(54, 86, 145);
+    color:white;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+    transition: all 0.3s;
+    &:hover{
+        background-color: rgb(89, 118, 172);
+    }
+}
