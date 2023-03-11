@@ -18,4 +18,4 @@ import { ControlUploadComponent } from './control-upload/control-upload.componen
     ControlUploadComponent
   ]
 })
-export class ModuleModule { }
+export class ComponentsModuleModule { }

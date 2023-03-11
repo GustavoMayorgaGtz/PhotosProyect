@@ -13,6 +13,7 @@
     font-family: 'Mukta', sans-serif;
 }
 .body {
+    display: flex;
     width: 100vw;
     height: 100vh;
     background-color: rgb(243, 243, 243);
@@ -68,4 +69,11 @@ nav {
     background-color: rgb(142, 170, 202);
     color: black;
     font-weight: bold;
+}
+
+.container-data{
+    width:100%;
+    min-width: 200px;
+    min-height: 200px;
+    height: 100%;
 }
