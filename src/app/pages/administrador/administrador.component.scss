@@ -27,6 +27,7 @@ nav {
     background-color: rgb(255, 255, 255);
     border-right: 2px solid rgb(161, 161, 161);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.116);
+   
     
 }
 .container-icon{
@@ -55,13 +56,12 @@ nav {
     justify-content: center;
     align-items: center;
     font-size: 18px;
-    width: 100%;
+    width: 95%;
     height: 60px;
-    margin: 5px 0px;
+    margin: 5px auto;
     font-family: 'Mukta', sans-serif;
     color: rgb(71, 71, 71);
-    border-top:1px solid black;
-    border-bottom:1px solid black;
+    border:1px solid black;
     border-radius: 5px;
 }
 
