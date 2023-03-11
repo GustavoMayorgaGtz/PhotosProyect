@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+/*font-family: 'PT Sans', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap');
+/*font-family: 'Mukta', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+/*font-family: 'Satisfy', cursive;*/
+//Fuente de texto normal 16px 
+//Subtitulos 18px
+//Titulos 20px
+//Entradas 16px bold de preferencia
+//miniInformacion 14px
+*{
+    font-family: 'Mukta', sans-serif;
+}
+.body {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(243, 243, 243);
+}
+
+nav {
+    min-width: 200px;
+    width: 40%;
+    max-width: 300px;
+    height: 100vw;
+    background-color: rgb(255, 255, 255);
+    border-right: 2px solid rgb(161, 161, 161);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.116);
+    
+}
+.container-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    overflow: hidden;
+    width: 100%;
+    height: 60px; 
+    font-family: 'Satisfy', cursive;
+    font-size: 24px;
+    background-color: rgb(34, 34, 34);
+    color: white;
+    border-bottom: 2px solid rgb(126, 126, 126);
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.055);
+}
+
+.icon-perfil{
+    width:100%;
+    height: auto;
+}
+
+.option{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    width: 100%;
+    height: 60px;
+    margin: 5px 0px;
+    font-family: 'Mukta', sans-serif;
+    color: rgb(71, 71, 71);
+    border-top:1px solid black;
+    border-bottom:1px solid black;
+    border-radius: 5px;
+}
+
+.option:hover{
+    background-color: rgb(142, 170, 202);
+    color: black;
+    font-weight: bold;
+}

@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: 'agregar',
         loadChildren: () => import('./agregado/agregado-module.module').then(m => m.AgregadoModuleModule)
+      },
+      {
+        path: 'administrador',
+        loadChildren: () => import('./administrador/administrador.module.module').then(m => m.ModuleModule)
       }
     ]
   }
