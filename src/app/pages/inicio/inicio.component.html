@@ -13,9 +13,9 @@
         <span class="normal">
           ID de usuario
         </span>
-        <input type="text" class="inputText" placeholder="4567-2344-2345">
+        <input type="text" class="inputText" #idInput placeholder="4567-2344-2345">
     </div>
       
-      <div class="btn-entrar" (click)="logIn()">Entrar</div>
+      <div class="btn-entrar" (click)="logIn(idInput.value)">Entrar</div>
    </div>
 </div>

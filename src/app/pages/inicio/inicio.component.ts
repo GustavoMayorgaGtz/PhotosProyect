@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AllService } from 'src/servicios/all.service';
 
 @Component({
   selector: 'app-inicio',
@@ -7,15 +9,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
-   constructor( private router: Router){
+  constructor(
+    private router: Router,
+    private servicios: AllService,
+  ) { }
 
-   }
   ngOnInit(): void {
-    
   }
 
-  logIn(){
-     console.log("Entramos a la funcion")
-     this.router.navigate(['/agregar'])
+  logIn(value: string) {
+    this.servicios.login(value).subscribe((user) => {
+      if (user.status) {
+        //Usuario logeado
+        if(user.type == 1)
+        {
+          //Usuario normal
+          sessionStorage.setItem("id", user.id)
+          this.router.navigate(['/agregar'])
+        }else{
+          //Usuario administrador
+          sessionStorage.setItem("id", user.id)
+          this.router.navigate(['/administrador'])
+        }
+        
+      } else {
+        alert("ID incorrecto")
+      }
+    }, (err: HttpErrorResponse) => {
+      alert("Hubo un problema para iniciar sesion");
+      console.log("Error de entrada: ", err);
+    });
+
+
   }
 }
