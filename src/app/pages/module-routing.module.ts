@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'inicio',
+        path: '',
         loadChildren: () => import('./inicio/inicio-module.module').then(m => m.InicioModuleModule)
       },
       {
