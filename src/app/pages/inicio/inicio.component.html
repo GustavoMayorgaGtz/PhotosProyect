@@ -1,21 +1,24 @@
 <div class="body">
-   <div class="nav">
-    <span class="subtitle">Ingresa tus credenciales</span>
-   </div>
-   <div class="container-informacion">
+  <div class="nav">
     <div class="container-icon">
-        <img src="./assets/informacion.png" alt="informacion" class="informacion">
+      Photo Republic
+    </div>
+    <span class="subtitle">Ingresa tus credenciales</span>
+  </div>
+  <div class="container-informacion">
+    <div class="container-info">
+      <img src="./assets/informacion.png" alt="informacion" class="informacion">
     </div>
     <span class="normal">Ingresa tu id para acceder a las imagenes😍</span>
-   </div>
-   <div class="container-entradas">
+  </div>
+  <div class="container-entradas">
     <div class="container-agroup">
-        <span class="normal">
-          ID de usuario
-        </span>
-        <input type="text" class="inputText" #idInput placeholder="4567-2344-2345">
+      <span class="normal">
+        ID de usuario
+      </span>
+      <input type="text" class="inputText" #idInput placeholder="4567-2344-2345">
     </div>
-      
-      <div class="btn-entrar" (click)="logIn(idInput.value)">Entrar</div>
-   </div>
+
+    <div class="btn-entrar" (click)="logIn(idInput.value)">Entrar</div>
+  </div>
 </div>
