@@ -10,7 +10,7 @@ import { User } from './user/entities/user.entity';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 80,
+      port: 8080,
       username: 'root',
       password: '',
       database: 'photorepublic',
