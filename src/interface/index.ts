@@ -1,4 +1,4 @@
-export interface login_in {
+export interface user{
     id: string,
     status: boolean,
     type: number

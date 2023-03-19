@@ -1,3 +1,11 @@
+<div class="message" *ngIf="showMessage">
+    <div class="text_message">
+        ¿Desea eliminar el usuario?
+    </div>
+    <div class="space"></div>
+    <div class="btn_yes" (click)="message_click_event(true)">Si</div>
+    <div class="btn_no" (click)="message_click_event(false)">Cancelar</div>
+</div>
 <div class="body">
     <nav>
         Administrar cuentas
@@ -21,16 +29,67 @@
             <div class="bloque-usuario">
                 <span class="nombre">Gustavo Mayorga</span>
                 <div class="container-drop">
-                    <img src="./assets/remove.png" alt="remove" class="drop-icon">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
                 </div>
             </div>
             <div class="bloque-usuario">
                 <span class="nombre">Gustavo Mayorga</span>
                 <div class="container-drop">
-                    <img src="./assets/remove.png" alt="remove" class="drop-icon">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
                 </div>
             </div>
         </div>
+        <div class="agroup-user">
+            <div class="bloque-usuario">
+                <span class="nombre">Gustavo Mayorga</span>
+                <div class="container-drop">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
+                </div>
+            </div>
+            <div class="bloque-usuario">
+                <span class="nombre">Gustavo Mayorga</span>
+                <div class="container-drop">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
+                </div>
+            </div>
+            <div class="bloque-usuario">
+                <span class="nombre">Gustavo Mayorga</span>
+                <div class="container-drop">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
+                </div>
+            </div>
+            <div class="bloque-usuario">
+                <span class="nombre">Gustavo Mayorga</span>
+                <div class="container-drop">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
+                </div>
+            </div>
+            <div class="bloque-usuario">
+                <span class="nombre">Gustavo Mayorga</span>
+                <div class="container-drop">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
+                </div>
+            </div>
+            <div class="bloque-usuario">
+                <span class="nombre">Gustavo Mayorga</span>
+                <div class="container-drop">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
+                </div>
+            </div>
+            <div class="bloque-usuario">
+                <span class="nombre">Gustavo Mayorga</span>
+                <div class="container-drop">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
+                </div>
+            </div>
+            <div class="bloque-usuario">
+                <span class="nombre">Gustavo Mayorga</span>
+                <div class="container-drop">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(1)">
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
 89

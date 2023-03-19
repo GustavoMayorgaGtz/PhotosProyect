@@ -52,9 +52,9 @@ export class UserService {
     }
   }
 
-  // findAll() {
-  //   return `This action returns all user`;
-  // }
+  async findAll() {
+    return await this.user.find();
+  }
 
   // findOne(id: number) {
   //   return `This action returns a #${id} user`;
