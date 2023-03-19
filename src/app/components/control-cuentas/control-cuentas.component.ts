@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { compileDeclareInjectableFromMetadata } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { user } from 'src/interface';
@@ -38,7 +39,21 @@ export class ControlCuentasComponent implements OnInit {
 
   message_click_event(option: boolean) {
     if (option) {
-      alert("Usuario eliminado")
+      this.servicios.deleteUser(this.id_userToDrop).subscribe((data) => {
+      console.log(data)
+      }, (err: HttpErrorResponse) => {
+        switch(err.status)
+        {
+          case 0:{
+            alert("No se puede conectar al servidor, intentalo mas tarde.")
+            break;
+          }
+          case 500:{
+            alert("Error en el servidor, la operacion no se pudo realizar")
+            break;
+          }
+        }
+      })
       this.showMessage = false;
       this.getUsers();
      } else {

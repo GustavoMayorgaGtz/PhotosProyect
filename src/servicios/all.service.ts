@@ -24,4 +24,9 @@ export class AllService {
     return this.http.get<user[]>(varglobal.server+"/user/");
   }
 
+  //Peticion para eliminar usuario
+  deleteUser(id:number){
+    return this.http.delete(varglobal.server+"/user/"+id)
+  }
+
 }
