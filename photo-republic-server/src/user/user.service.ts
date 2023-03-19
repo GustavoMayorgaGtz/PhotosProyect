@@ -53,6 +53,7 @@ export class UserService {
   }
 
   async findAll() {
+    console.log('--> Peticion para encontrar los usuarios');
     return await this.user.find();
   }
 
@@ -64,7 +65,10 @@ export class UserService {
   //   return `This action updates a #${id} user`;
   // }
 
-  remove(id: number) {
-    return this.user.delete({ idUser: id });
+  async remove(id: string) {
+    console.log('--> Peticion para eliminar usuario');
+    const deleteUserInf = await this.user.delete({ id: id });
+    console.log(deleteUserInf + '| ID:' + id);
+    return deleteUserInf;
   }
 }

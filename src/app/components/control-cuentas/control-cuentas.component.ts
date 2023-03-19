@@ -41,6 +41,7 @@ export class ControlCuentasComponent implements OnInit {
     if (option) {
       this.servicios.deleteUser(this.id_userToDrop).subscribe((data) => {
       console.log(data)
+      alert("Usuario Eliminado.")
       }, (err: HttpErrorResponse) => {
         switch(err.status)
         {
