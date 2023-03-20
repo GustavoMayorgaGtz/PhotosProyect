@@ -11,6 +11,7 @@ import { AllService } from 'src/servicios/all.service';
 })
 export class ControlCuentasComponent implements OnInit {
 
+  public isCreateUser: boolean = false;
   constructor(private servicios: AllService) {
 
   }
@@ -25,13 +26,24 @@ export class ControlCuentasComponent implements OnInit {
     this.users = [];
     this.servicios.getUsers().subscribe((users) => {
       this.users = users;
+      
     })
+  }
+
+  public message: string = "Crear usuario";
+  createUser_Event(){
+    this.isCreateUser = !this.isCreateUser;
+    if(this.isCreateUser){
+      this.message = "Administrar usuarios";
+    }else{
+      this.message = "Crear usuario";
+    }
   }
 
 
   public showMessage: boolean = false;
-  public id_userToDrop !: number;
-  drop_user(id: number) {
+  public id_userToDrop !: string;
+  drop_user(id: string) {
     this.id_userToDrop = id;
    
     this.showMessage = !this.showMessage;

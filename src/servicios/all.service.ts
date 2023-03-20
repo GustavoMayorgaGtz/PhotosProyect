@@ -25,7 +25,7 @@ export class AllService {
   }
 
   //Peticion para eliminar usuario
-  deleteUser(id:number){
+  deleteUser(id:string){
     return this.http.delete(varglobal.server+"/user/"+id)
   }
 

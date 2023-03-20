@@ -2,7 +2,7 @@ POST http://localhost:3000/User/create
 Content-Type:  application/json
 
 {
-    "id": "117",
-    "name": "Sofia Mayorga",
+    "id": "122",
+    "name": "Mayte Caldera",
     "type": 1
 }
