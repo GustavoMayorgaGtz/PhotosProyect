@@ -32,7 +32,22 @@
                 <hr class="line">
             </div>
             <div class="container_createUser">
-                
+                <div class="container_entrada">
+                    <div class="title">ID del usuario</div>
+                    <div class="center">
+                        <input type="text" class="inputTxt" #idInput>
+                    </div>
+                </div>
+           
+                <hr class="line">
+           
+                <div class="container_entrada">
+                    <div class="title">Nombre del usuario</div>
+                    <div class="center">
+                        <input type="text" class="inputTxt" #nameInput>
+                    </div>
+                </div>
+                <div class="btn-guardar" (click)="guardarUsuario_Event(idInput.value, nameInput.value)">Guardar Usuario</div>
             </div>
 
         </div>
@@ -44,10 +59,12 @@
             </div>
             <div class="bloque-usuario" *ngFor="let user of users; let i = index">
                 <span class="nombre">{{user.name}}</span>
+                <span class="id">{{user.id}}</span>
                 <div class="container-drop">
                     <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(user.id)">
                 </div>
             </div>
+           
 
         </div>
 

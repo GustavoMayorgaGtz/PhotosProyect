@@ -29,4 +29,9 @@ export class AllService {
     return this.http.delete(varglobal.server+"/user/"+id)
   }
 
+  //Peticion para crear un usuario
+  createUser(id: string, name: string){
+    return this.http.post(varglobal.server+"/user/create", {id , name})
+  }
+
 }
