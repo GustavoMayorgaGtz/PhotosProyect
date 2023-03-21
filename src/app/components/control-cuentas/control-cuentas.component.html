@@ -18,8 +18,8 @@
             <img src="./assets/maceta.png" alt="" class="maceta">
         </div>
         <div class="agroup">
-            <div class="informacion">En esta opcion puedes gestion y administrar los usuarios de la plataforma. Puedes
-                obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.
+            <div class="informacion">
+                {{info}}
             </div>
             <div class="btn-crear">
                 <div class="shadow-container" (click)="createUser_Event()">{{message}}</div>
@@ -61,7 +61,12 @@
                 <span class="nombre">{{user.name}}</span>
                 <span class="id">{{user.id}}</span>
                 <div class="container-drop">
+                    <img src="./assets/upload.png" alt="remove" class="drop-icon" (click)="drop_user(user.id)">
+                    <div class="message_hover">Subir imagenes</div>
+                </div>
+                <div class="container-drop">
                     <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(user.id)">
+                    <div class="message_hover">Eliminar usuario</div>
                 </div>
             </div>
            

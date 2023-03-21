@@ -3,15 +3,14 @@
     <div class="container-icon">
         Photo Republic
     </div>
-    <div class="option">
+    <div class="option" (click)="Menu = 0">
         Administrar usuarios
     </div>
-    <div class="option">
-        Subir imagenes
+    <div class="option" (click)="Menu = 1">
+        Cerrar sesion
     </div>
 </nav>
 <div class="container-data">
-<app-control-cuentas></app-control-cuentas>
-<app-control-upload></app-control-upload>
+<app-control-cuentas *ngIf="Menu == 0"></app-control-cuentas>
 </div>
 </div>

@@ -83,7 +83,7 @@ nav {
     justify-content: center;
     align-items: center;
     width: 40%;
-    height: 200px;
+    height: 150px;
     background-color: rgb(29, 29, 29);
     border: 1px solid black;
     border-radius: 5px;
@@ -146,7 +146,7 @@ nav {
     min-height: 50px;
     height: 50px;
     display:grid;
-    grid-template-columns: 1fr 1fr 0.25fr;
+    grid-template-columns: 1fr 1fr 0.25fr 0.25fr;
     background-color: white;
     border: 1px solid black;
     border-radius: 5px;
@@ -179,11 +179,42 @@ nav {
     flex-direction: column;
 }
 .container-drop{
+    position: relative;
     grid-column: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    &:hover{
+       .message_hover{
+        padding: 5px 10px;
+        border-radius: 3px;
+        border: 1px solid black;
+        color:white;
+        background-color: rgb(54, 74, 120);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+        position: absolute;
+        left: 50%;
+        width:120px;
+        z-index: 1000;
+        font-weight: bold;
+        letter-spacing:0.1ch;
+        font-size: 14px;
+        bottom: -35px;
+        transform: translateX(-50%);
+     } 
+
+    }
 }
+
+.message_hover{
+    position: absolute;
+   width: 0;
+   opacity: 0;
+}
+
 .drop-icon{
 
     width: 35px;
