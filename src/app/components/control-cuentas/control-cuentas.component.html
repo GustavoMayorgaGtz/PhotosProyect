@@ -6,7 +6,36 @@
     <div class="btn_yes" (click)="message_click_event(true)">Si</div>
     <div class="btn_no" (click)="message_click_event(false)">Cancelar</div>
 </div>
-<div class="body">
+<div class="body" *ngIf="isUploadImage === 1">
+    <nav>
+        Cargar Imagenes
+    </nav>
+    <div class="container-primary">
+        <div class="maceta1">
+            <img src="./assets/maceta.png" alt="" class="maceta">
+        </div>
+        <div class="maceta2">
+            <img src="./assets/maceta.png" alt="" class="maceta">
+        </div>
+        <div class="agroup">
+            <div class="informacion">
+                {{info}}
+            </div>
+            <div class="container-right">
+                <div class="btn-crear">
+                    <div class="shadow-container" (click)="reset()">Regresar</div>
+                </div>
+                <div class="usuario-select-container"><b>Configurando al usuario:</b> <span class="green" >{{userSelected.name}}</span></div>
+            </div>
+        </div>
+        <hr class="line">
+        <div class="subirImages-container">
+            <span class="subirtxt">Suelta Imagenes</span>
+            <input type="file" class="imagesInput" accept="image/png, image/gif, image/jpeg" multiple>
+        </div>
+    </div>
+</div>
+<div class="body" *ngIf="isUploadImage === 0">
     <nav>
         Administrar cuentas
     </nav>
@@ -38,16 +67,17 @@
                         <input type="text" class="inputTxt" #idInput>
                     </div>
                 </div>
-           
+
                 <hr class="line">
-           
+
                 <div class="container_entrada">
                     <div class="title">Nombre del usuario</div>
                     <div class="center">
                         <input type="text" class="inputTxt" #nameInput>
                     </div>
                 </div>
-                <div class="btn-guardar" (click)="guardarUsuario_Event(idInput.value, nameInput.value)">Guardar Usuario</div>
+                <div class="btn-guardar" (click)="guardarUsuario_Event(idInput.value, nameInput.value)">Guardar Usuario
+                </div>
             </div>
 
         </div>
@@ -61,7 +91,7 @@
                 <span class="nombre">{{user.name}}</span>
                 <span class="id">{{user.id}}</span>
                 <div class="container-drop">
-                    <img src="./assets/upload.png" alt="remove" class="drop-icon" (click)="drop_user(user.id)">
+                    <img src="./assets/upload.png" alt="remove" class="drop-icon" (click)="uploadImages_Event(user)">
                     <div class="message_hover">Subir imagenes</div>
                 </div>
                 <div class="container-drop">
@@ -69,10 +99,9 @@
                     <div class="message_hover">Eliminar usuario</div>
                 </div>
             </div>
-           
+
 
         </div>
 
     </div>
 </div>
-89

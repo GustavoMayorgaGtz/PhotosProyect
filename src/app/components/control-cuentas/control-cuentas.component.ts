@@ -1,5 +1,4 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { compileDeclareInjectableFromMetadata } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { user } from 'src/interface';
 import { AllService } from 'src/servicios/all.service';
@@ -9,14 +8,13 @@ import { AllService } from 'src/servicios/all.service';
   templateUrl: './control-cuentas.component.html',
   styleUrls: ['./control-cuentas.component.scss']
 })
+
 export class ControlCuentasComponent implements OnInit {
 
   public isCreateUser: boolean = false;
   constructor(private servicios: AllService) {
-
   }
-
-
+  
   ngOnInit(): void {
     this.getUsers();
   }
@@ -26,7 +24,6 @@ export class ControlCuentasComponent implements OnInit {
     this.users = [];
     this.servicios.getUsers().subscribe((users) => {
       this.users = users;
-
     })
   }
 
@@ -53,28 +50,42 @@ export class ControlCuentasComponent implements OnInit {
   }
 
   public message: string = "Crear usuario";
-  public info: string = `En esta opcion puedes gestion y administrar los usuarios de la plataforma. Puedes
+  public info: string = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
   obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`
   createUser_Event() {
     this.isCreateUser = !this.isCreateUser;
     if (this.isCreateUser) {
       this.message = "Administrar usuarios";
-      this.info = `Registra un nuevo usuario, recuerda que un ID complejo ayuda a la seguridad del usuario (trata de evitar numero simples).`;
+      this.info = `Registra un nuevo usuario, recuerda que un ID complejo ayuda a la seguridad del usuario ( trata de evitar numero o palabras simples ).`;
 
     } else {
       this.message = "Crear usuario";
-      this.info = `En esta opcion puedes gestion y administrar los usuarios de la plataforma. Puedes
+      this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
       obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`;
     }
   }
-
 
   public showMessage: boolean = false;
   public id_userToDrop !: string;
   drop_user(id: string) {
     this.id_userToDrop = id;
-
     this.showMessage = !this.showMessage;
+  }
+
+  public isUploadImage: number = 0;
+  public userSelected!: user;
+  uploadImages_Event(user: user){
+    this.userSelected = user;
+    this.isUploadImage = 1;
+    this.info = "Carga las imagenes y define los atributos de como se visualizaran las imagenes.";
+
+  }
+
+  reset(){
+    this.isUploadImage = 0;
+    this.message = "Crear usuario";
+      this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
+      obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`;
   }
 
   message_click_event(option: boolean) {
