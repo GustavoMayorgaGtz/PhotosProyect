@@ -29,9 +29,14 @@
             </div>
         </div>
         <hr class="line">
+        <span class="uploadImagesTitle_shadow">
+            <span class="uploadImagesTitle">Sube las imagenes del cliente.</span>
+        </span>
+        
         <div class="subirImages-container">
-            <span class="subirtxt">Suelta Imagenes</span>
-            <input type="file" class="imagesInput" accept="image/png, image/gif, image/jpeg" multiple>
+            <span class="subirtxt">{{images_status}}</span>
+            <div class="seleccion" *ngIf="viewImages">Ver seleccion</div>
+            <input type="file" class="imagesInput" #images (change)="getLocalImages(images)" accept="image/png, image/gif, image/jpeg" multiple>
         </div>
     </div>
 </div>

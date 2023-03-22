@@ -111,4 +111,20 @@ export class ControlCuentasComponent implements OnInit {
       this.showMessage = false;
     }
   }
+
+  //UPLOAD IMAGES
+  public images_status: string = "Haz click para subir imagenes";
+  public viewImages: boolean = false;
+
+  getLocalImages(images: HTMLInputElement){
+    let auxName:string = "";
+    if(images.files)
+    {
+      const files = images.files;
+      const size = files.length;
+      auxName = files[0].name;
+      this.images_status = auxName + "... y "+(size-1)+' imagenes mas.';
+      this.viewImages = true;
+    }
+  }
 }
