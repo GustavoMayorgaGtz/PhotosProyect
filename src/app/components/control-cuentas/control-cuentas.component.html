@@ -18,25 +18,40 @@
             <img src="./assets/maceta.png" alt="" class="maceta">
         </div>
         <div class="agroup">
-            <div class="informacion">
-                {{info}}
+            <div class="informacion">                {{info}}
             </div>
             <div class="container-right">
                 <div class="btn-crear">
                     <div class="shadow-container" (click)="reset()">Regresar</div>
                 </div>
-                <div class="usuario-select-container"><b>Configurando al usuario:</b> <span class="green" >{{userSelected.name}}</span></div>
+                <div class="usuario-select-container"><b>Configurando al usuario:</b> <span
+                        class="green">{{userSelected.name}}</span></div>
             </div>
         </div>
         <hr class="line">
-        <span class="uploadImagesTitle_shadow">
-            <span class="uploadImagesTitle">Sube las imagenes del cliente.</span>
-        </span>
-        
-        <div class="subirImages-container">
-            <span class="subirtxt">{{images_status}}</span>
-            <div class="seleccion" *ngIf="viewImages">Ver seleccion</div>
-            <input type="file" class="imagesInput" #images (change)="getLocalImages(images)" accept="image/png, image/gif, image/jpeg" multiple>
+        <div *ngIf="editImages === false">
+            <span class="uploadImagesTitle_shadow">
+                <span class="uploadImagesTitle">Sube las imagenes del cliente.</span>
+            </span>
+
+            <div class="subirImages-container">
+                <span class="subirtxt">{{images_status}}</span>
+                <div class="seleccion" *ngIf="viewImages" (click)="verImagenes()">Ver seleccion</div>
+                <input type="file" class="imagesInput" #images (change)="getLocalImages(images)"
+                    accept="image/png, image/gif, image/jpeg" multiple>
+            </div>
+        </div>
+        <div *ngIf="editImages === true" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="imagen"  *ngFor="let name of imagesNames">
+                <img src={{name}} alt="" class="prueba">
+                <select name="" id="" class="borde">
+                    <option>Sin borde</option>
+                    <option>Doble</option>
+                    <option>Solido</option>
+                    <option>Separado</option>
+                </select>
+                <div class="guardarEI">Guardar</div>
+            </div>
         </div>
     </div>
 </div>

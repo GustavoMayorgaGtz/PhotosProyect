@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { user } from 'src/interface';
 import { AllService } from 'src/servicios/all.service';
 
@@ -115,16 +116,37 @@ export class ControlCuentasComponent implements OnInit {
   //UPLOAD IMAGES
   public images_status: string = "Haz click para subir imagenes";
   public viewImages: boolean = false;
-
+  public images !: FileList;
+  public imagesNames : string[] = [];
+  public image!: string;
+  public soruceImages!: HTMLInputElement;
   getLocalImages(images: HTMLInputElement){
+    
+    this.soruceImages = images;
     let auxName:string = "";
+    
     if(images.files)
-    {
+    { 
       const files = images.files;
       const size = files.length;
       auxName = files[0].name;
       this.images_status = auxName + "... y "+(size-1)+' imagenes mas.';
       this.viewImages = true;
+    }
+  }
+
+  public editImages : boolean = false;
+  verImagenes(){
+   this.editImages = !this.editImages;
+   this.imagesNames = [];
+   if(this.soruceImages.files)
+   { 
+     const files = this.soruceImages.files;
+     const size = files.length;
+     for(let i = 0; i < size; i++){
+       const url = URL.createObjectURL(files[i])
+       this.imagesNames.push(url);
+     }
     }
   }
 }
