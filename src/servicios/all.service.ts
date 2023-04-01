@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EnvironmentInjector, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { varglobal } from 'src/var-global/var-global';
 import { user } from 'src/interface';
@@ -32,6 +32,11 @@ export class AllService {
   //Peticion para crear un usuario
   createUser(id: string, name: string){
     return this.http.post(varglobal.server+"/user/create", {id , name})
+  }
+  
+  //Peticion para subir imagenes
+  uploadImageUser(Files: FileList){
+    return this.http.post(varglobal.server+"", Files);
   }
 
 }

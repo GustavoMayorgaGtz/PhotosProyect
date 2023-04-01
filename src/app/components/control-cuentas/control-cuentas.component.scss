@@ -155,6 +155,8 @@ nav {
     min-height: 50px;
     height: 50px;
     display: grid;
+    padding-left: 10px;
+    box-sizing: border-box;
     grid-template-columns: 1fr 1fr 0.25fr 0.25fr;
     background-color: white;
     border: 1px solid black;
@@ -359,6 +361,29 @@ nav {
     background-color: rgb(216, 216, 216);
 }
 
+.prueba{
+    grid-row: 1;
+    width:100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+.prueba2{
+   width: 60%;
+   height: 60%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.img-style{
+    width: 100%;
+    height: auto;
+    
+}
+
 .name {
     font-weight: bold;
     color: black;
@@ -488,11 +513,13 @@ nav {
     opacity: 0;
     cursor: pointer;
     background-color: white;
-    &:hover{
+
+    &:hover {
         background-color: rgb(208, 208, 208);
     }
 }
-.seleccion{
+
+.seleccion {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -505,33 +532,92 @@ nav {
     padding: 10px 35px;
     border-radius: 3px;
     transition: all 0.3s;
-    color:white;
+    color: white;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
         background-color: rgb(85, 126, 188);
         transition: all 0.3s;
     }
 }
 
-.imagen{
-    width:250px;
-    height: 300px;
+.imagen {
+    width: 300px;
+    overflow: hidden;
+    height: 350px;
     background-color: white;
     border-radius: 3px;
     border: 1px solid black;
     display: grid;
-    grid-template-rows: 2.5fr 0.5fr 0.5fr;
+    margin: 10px;
+    grid-template-rows: 2.5fr 0.5fr;
 }
-.guardarEI{
+
+.guardarEI {
     display: flex;
     justify-content: center;
     align-items: center;
-    color:white;
+    color: white;
     font-weight: bold;
     background-color: rgb(86, 135, 190);
     font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        transition: all 0.2s;
+        background-color: rgb(107, 152, 203);
+    }
 }
 
+.container_images {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.guardar_todo{
+    cursor: pointer;
+        width: 300px;
+        margin-left:50px;
+        min-height: 50px;
+        height: 50px;
+        border-radius: 3px;
+        border:1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        background-color: rgb(221, 221, 221) ;
+
+        &:hover{
+            background-color: white ;
+            .up{
+                transition: all 1s;
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .up{
+            transition: all 1s;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top:-1px;
+            border: 1px solid black;
+            font-weight: bold;
+            right: -10px;
+            background-color: rgb(121, 146, 111);
+            color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+}
 @keyframes planta {
     0% {
         scale: (1);

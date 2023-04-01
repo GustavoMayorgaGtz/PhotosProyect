@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
+import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
 import { user } from 'src/interface';
 import { AllService } from 'src/servicios/all.service';
 
@@ -12,10 +13,12 @@ import { AllService } from 'src/servicios/all.service';
 
 export class ControlCuentasComponent implements OnInit {
 
+
   public isCreateUser: boolean = false;
-  constructor(private servicios: AllService) {
+  constructor(private servicios: AllService,
+    private sanitazer: DomSanitizer) {
   }
-  
+
   ngOnInit(): void {
     this.getUsers();
   }
@@ -75,17 +78,17 @@ export class ControlCuentasComponent implements OnInit {
 
   public isUploadImage: number = 0;
   public userSelected!: user;
-  uploadImages_Event(user: user){
+  uploadImages_Event(user: user) {
     this.userSelected = user;
     this.isUploadImage = 1;
     this.info = "Carga las imagenes y define los atributos de como se visualizaran las imagenes.";
 
   }
 
-  reset(){
+  reset() {
     this.isUploadImage = 0;
     this.message = "Crear usuario";
-      this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
+    this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
       obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`;
   }
 
@@ -117,36 +120,43 @@ export class ControlCuentasComponent implements OnInit {
   public images_status: string = "Haz click para subir imagenes";
   public viewImages: boolean = false;
   public images !: FileList;
-  public imagesNames : string[] = [];
+  
   public image!: string;
   public soruceImages!: HTMLInputElement;
-  getLocalImages(images: HTMLInputElement){
-    
+  getLocalImages(images: HTMLInputElement) {
+
     this.soruceImages = images;
-    let auxName:string = "";
-    
-    if(images.files)
-    { 
+    let auxName: string = "";
+
+    if (images.files) {
       const files = images.files;
       const size = files.length;
       auxName = files[0].name;
-      this.images_status = auxName + "... y "+(size-1)+' imagenes mas.';
+      this.images_status = auxName + "... y " + (size - 1) + ' imagenes mas.';
       this.viewImages = true;
     }
   }
 
-  public editImages : boolean = false;
-  verImagenes(){
-   this.editImages = !this.editImages;
-   this.imagesNames = [];
-   if(this.soruceImages.files)
-   { 
-     const files = this.soruceImages.files;
-     const size = files.length;
-     for(let i = 0; i < size; i++){
-       const url = URL.createObjectURL(files[i])
-       this.imagesNames.push(url);
-     }
+  public editImages: boolean = false;
+  public imagesNames: string[] = [];
+  public safeUrl: SafeUrl[] = [];
+  
+  verImagenes() {
+    this.editImages = !this.editImages;
+    this.imagesNames = [];
+    if (this.soruceImages.files) {
+      const files = this.soruceImages.files;
+      const size = files.length;
+      for (let i = 0; i < size; i++) {
+        const url = URL.createObjectURL(files[i])
+        this.imagesNames.push(url);
+        const newSafe = this.sanitazer.bypassSecurityTrustUrl(url);
+        this.safeUrl.push(newSafe);
+      }
     }
+  }
+
+  setBorder(type: string){
+
   }
 }

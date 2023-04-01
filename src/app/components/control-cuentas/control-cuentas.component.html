@@ -28,7 +28,12 @@
                         class="green">{{userSelected.name}}</span></div>
             </div>
         </div>
-        <hr class="line">
+        <div class="title-container">
+            <hr class="line">
+            <span class="name">Editar Imgs</span>
+            <hr class="line">
+        </div>
+    
         <div *ngIf="editImages === false">
             <span class="uploadImagesTitle_shadow">
                 <span class="uploadImagesTitle">Sube las imagenes del cliente.</span>
@@ -41,18 +46,27 @@
                     accept="image/png, image/gif, image/jpeg" multiple>
             </div>
         </div>
-        <div *ngIf="editImages === true" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="imagen"  *ngFor="let name of imagesNames">
-                <img src={{name}} alt="" class="prueba">
-                <select name="" id="" class="borde">
-                    <option>Sin borde</option>
-                    <option>Doble</option>
-                    <option>Solido</option>
-                    <option>Separado</option>
-                </select>
-                <div class="guardarEI">Guardar</div>
-            </div>
+        <div class="guardar_todo" *ngIf="editImages === true">
+            <span>Subir😁👍</span>
+            <div class="up">Guardar Todo</div>
+            <div class="focus"></div>
         </div>
+        <div class="container_images" *ngIf="editImages === true">
+                <div class="imagen"  *ngFor="let name of imagesNames; let i = index">
+                    <div class="prueba">
+                        <div class="prueba2">
+                            <img  [src]="name | safeUrl" class="img-style">
+                        </div>
+                    </div>
+                    <select name="" id="" class="borde" #borderType (change)="setBorder(borderType.value)">
+                        <option>Sin borde</option>
+                        <option>Doble</option>
+                        <option>Solido</option>
+                        <option>Separado</option>
+                    </select>
+                </div>
+        </div>
+     
     </div>
 </div>
 <div class="body" *ngIf="isUploadImage === 0">
