@@ -48,7 +48,7 @@
         </div>
         <div class="guardar_todo" *ngIf="editImages === true">
             <span>Subir😁👍</span>
-            <div class="up">Guardar Todo</div>
+            <div class="up" (click)="subirImagenes()">Guardar Todo</div>
             <div class="focus"></div>
         </div>
         <div class="container_images" *ngIf="editImages === true">
@@ -58,7 +58,7 @@
                             <img  [src]="name | safeUrl" class="img-style">
                         </div>
                     </div>
-                    <select name="" id="" class="borde" #borderType (change)="setBorder(borderType.value)">
+                    <select name="" id="" class="borde" #borderType (change)="setBorder(borderType.value, i)">
                         <option>Sin borde</option>
                         <option>Doble</option>
                         <option>Solido</option>

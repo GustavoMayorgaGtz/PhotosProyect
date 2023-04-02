@@ -116,18 +116,27 @@ export class ControlCuentasComponent implements OnInit {
     }
   }
 
-  //UPLOAD IMAGES
+  
   public images_status: string = "Haz click para subir imagenes";
   public viewImages: boolean = false;
-  public images !: FileList;
-  
+  public formdata : FormData = new FormData();
   public image!: string;
   public soruceImages!: HTMLInputElement;
   getLocalImages(images: HTMLInputElement) {
-
     this.soruceImages = images;
     let auxName: string = "";
-
+    if(this.soruceImages.files){
+      const files = this.soruceImages.files
+      const sizefiles= files.length;
+      for(let i = 0; i < sizefiles; i++){
+        this.borderType.push("Sin borde");
+        const thisFile = files.item(i);
+        if(thisFile){
+          this.formdata.append('images',thisFile);
+        }
+      }
+    }
+  
     if (images.files) {
       const files = images.files;
       const size = files.length;
@@ -140,7 +149,6 @@ export class ControlCuentasComponent implements OnInit {
   public editImages: boolean = false;
   public imagesNames: string[] = [];
   public safeUrl: SafeUrl[] = [];
-  
   verImagenes() {
     this.editImages = !this.editImages;
     this.imagesNames = [];
@@ -156,7 +164,20 @@ export class ControlCuentasComponent implements OnInit {
     }
   }
 
-  setBorder(type: string){
+  public borderType: string[] = [];
+  setBorder(type: string, id:number){
+     this.borderType[id] = type;
+  }
 
+
+ //UPLOAD IMAGES
+  subirImagenes(){
+
+    const json = JSON.stringify(this.borderType);
+    this.formdata.append("bordertype", json);
+    this.formdata.append("idUser", this.userSelected.id);
+    this.servicios.uploadImageUser(this.formdata).subscribe((data) => {
+      
+    })
   }
 }

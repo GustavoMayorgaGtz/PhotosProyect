@@ -1,7 +1,19 @@
-import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Delete,
+  Param,
+  UseInterceptors,
+  UploadedFile,
+  UploadedFiles,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
+import { AnyFilesInterceptor, FileInterceptor } from '@nestjs/platform-express';
+import { UploadImagesDto } from './dto/uploadImages.dto.';
 
 @Controller('user')
 export class UserController {
@@ -15,6 +27,14 @@ export class UserController {
   @Post('login')
   login(@Body() loginDto: LoginUserDto) {
     return this.userService.login(loginDto);
+  }
+  @Post('uploadFiles')
+  @UseInterceptors(AnyFilesInterceptor())
+  uploadFile(@UploadedFiles() images: Array<Express.Multer.File>,
+    @Body() informacion: UploadImagesDto,
+  ) {
+    console.log(informacion);
+    this.userService.uploadFiles(images);
   }
 
   @Get()

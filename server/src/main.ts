@@ -3,9 +3,10 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
-
+import * as bodyParser from 'body-parser';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.use(bodyParser.json({ limit: '50mb' })); // aumenta el límite de carga útil a 50 MB
   //Activar cors para recibir peticiones de otros servidores
   app.enableCors();
   app.useStaticAssets(join(__dirname, '..', 'public'));
