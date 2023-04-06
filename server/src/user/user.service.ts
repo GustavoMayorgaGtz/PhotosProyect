@@ -6,14 +6,16 @@ import { User } from './entities/user.entity';
 import { LoginUserDto } from './dto/login-user.dto';
 import * as sharp from 'sharp';
 import * as Jimp from 'jimp';
-import { dirname, join } from 'path';
+import { UploadImagesDto } from './dto/uploadImages.dto.';
+import * as fs from 'fs';
+import { createDirectoryUser } from 'src/Functions';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private user: Repository<User>,
-  ) { }
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     console.log('--> Peticion para crear usuario');
@@ -60,36 +62,58 @@ export class UserService {
     return await this.user.find();
   }
 
-  uploadFiles(files: Array<Express.Multer.File>) {
-    files.forEach((data) => {
+  async uploadFiles(
+    files: Array<Express.Multer.File>,
+    informacion: UploadImagesDto,
+  ) {
+    console.log("Guardando y comprimiendo imagenes: "+files.length);
+    const borderType = informacion.bordertype;
+    const findUser = await this.user.findOneBy({ id: informacion.idUser });
+    //Checamos si existe el directorio del usuario
+    if(!findUser){
+      throw new HttpException("User not found",404)
+    }
+    const id = findUser.idUser;
+    const directorio = await createDirectoryUser(id);
+    const names = [];
+    const size = files.length;
+    files.forEach((data, index) => {
       const time = new Date();
-      const name = './public/imagen' + time.getTime() + '.jpg';
-      const result = sharp(data.buffer)
+      const nameTime = time.getTime()+'.jpg';
+      const name = directorio + nameTime;
+      sharp(data.buffer)
         .resize(250, 250)
         .toFile(name, (err) => {
           if (err) {
             console.log(err);
+            throw new HttpException("Server Internal Error", 500);
           } else {
-            Jimp.read(name)
-              .then(async (image) => {
-                return image
-                  .resize(250, 250)
-                  .quality(90)
-                  .print(
-                    await Jimp.loadFont(Jimp.FONT_SANS_16_BLACK),
-                    10,
-                    100,
-                    'Photo Republic',
-                  )
-                  .write(name);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-            console.log('Image compressed successfully');
+             names.push(name);
+             console.log("Imagen comprimida: ", index);
           }
         });
     });
+    names.forEach((name) => {
+    //Marca de Agua
+    Jimp.read(name)
+    .then(async (image) => {
+      const compressImage = image
+        .resize(250, 250)
+        .quality(90)
+        .print(
+          await Jimp.loadFont(Jimp.FONT_SANS_16_BLACK),
+          10,
+          100,
+          'Photo Republic',
+        )
+        .write(name)
+        console.log("aplicando marca de agua")
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    })
+
   }
   // findOne(id: number) {
   //   return `This action returns a #${id} user`;

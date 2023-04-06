@@ -6,13 +6,13 @@ import {
   Delete,
   Param,
   UseInterceptors,
-  UploadedFile,
   UploadedFiles,
+  Res,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { AnyFilesInterceptor, FileInterceptor } from '@nestjs/platform-express';
+import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { UploadImagesDto } from './dto/uploadImages.dto.';
 
 @Controller('user')
@@ -30,11 +30,12 @@ export class UserController {
   }
   @Post('uploadFiles')
   @UseInterceptors(AnyFilesInterceptor())
-  uploadFile(@UploadedFiles() images: Array<Express.Multer.File>,
-    @Body() informacion: UploadImagesDto,
+  uploadFile(
+    @UploadedFiles() images: Array<Express.Multer.File>,
+    @Body() informacion: UploadImagesDto
   ) {
     console.log(informacion);
-    this.userService.uploadFiles(images);
+    this.userService.uploadFiles( images, informacion);
   }
 
   @Get()
