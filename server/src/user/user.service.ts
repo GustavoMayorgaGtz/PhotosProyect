@@ -4,18 +4,19 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { LoginUserDto } from './dto/login-user.dto';
-import * as sharp from 'sharp';
-import * as Jimp from 'jimp';
+
+
 import { UploadImagesDto } from './dto/uploadImages.dto.';
 import * as fs from 'fs';
-import { createDirectoryUser } from 'src/Functions';
+import { compress, createDirectoryUser, createName, waterMark } from 'src/Functions';
+import { dir } from 'console';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private user: Repository<User>,
-  ) {}
+  ) { }
 
   async create(createUserDto: CreateUserDto) {
     console.log('--> Peticion para crear usuario');
@@ -66,54 +67,22 @@ export class UserService {
     files: Array<Express.Multer.File>,
     informacion: UploadImagesDto,
   ) {
-    console.log("Guardando y comprimiendo imagenes: "+files.length);
+    console.log("Guardando y comprimiendo imagenes: " + files.length);
     const borderType = informacion.bordertype;
     const findUser = await this.user.findOneBy({ id: informacion.idUser });
     //Checamos si existe el directorio del usuario
-    if(!findUser){
-      throw new HttpException("User not found",404)
+    if (!findUser) {
+      throw new HttpException("User not found", 404)
     }
     const id = findUser.idUser;
     const directorio = await createDirectoryUser(id);
-    const names = [];
+    let names = [];
     const size = files.length;
-    files.forEach((data, index) => {
-      const time = new Date();
-      const nameTime = time.getTime()+'.jpg';
-      const name = directorio + nameTime;
-      sharp(data.buffer)
-        .resize(250, 250)
-        .toFile(name, (err) => {
-          if (err) {
-            console.log(err);
-            throw new HttpException("Server Internal Error", 500);
-          } else {
-             names.push(name);
-             console.log("Imagen comprimida: ", index);
-          }
-        });
-    });
-    names.forEach((name) => {
-    //Marca de Agua
-    Jimp.read(name)
-    .then(async (image) => {
-      const compressImage = image
-        .resize(250, 250)
-        .quality(90)
-        .print(
-          await Jimp.loadFont(Jimp.FONT_SANS_16_BLACK),
-          10,
-          100,
-          'Photo Republic',
-        )
-        .write(name)
-        console.log("aplicando marca de agua")
+    names = createName(size, directorio);
+    console.log(names);
+    files.forEach((data,i) => {
+      compress(data, names[i]);
     })
-    .catch((err) => {
-      console.log(err);
-    });
-    })
-
   }
   // findOne(id: number) {
   //   return `This action returns a #${id} user`;
