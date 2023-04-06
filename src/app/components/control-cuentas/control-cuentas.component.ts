@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
-import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
+import { Component, OnInit} from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { user } from 'src/interface';
 import { AllService } from 'src/servicios/all.service';
 
@@ -175,6 +174,7 @@ export class ControlCuentasComponent implements OnInit {
 
     const json = JSON.stringify(this.borderType);
     this.formdata.append("bordertype", json);
+    this.formdata.delete('idUser');
     this.formdata.append("idUser", this.userSelected.id);
     this.servicios.uploadImageUser(this.formdata).subscribe((data) => {
       
