@@ -1,10 +1,10 @@
 <div class="message" *ngIf="showMessage">
     <div class="text_message">
-        ¿Desea eliminar el usuario?
+       {{alert_message}}
     </div>
     <div class="space"></div>
-    <div class="btn_yes" (click)="message_click_event(true)">Si</div>
-    <div class="btn_no" (click)="message_click_event(false)">Cancelar</div>
+    <div class="btn_yes" (click)="message_click_event(true)" *ngIf="isConfirm">Si</div>
+    <div class="btn_no" (click)="message_click_event(false)" *ngIf="isConfirm">Cancelar</div>
 </div>
 <div class="body" *ngIf="isUploadImage === 1">
     <nav>
@@ -48,8 +48,8 @@
         </div>
         <div class="guardar_todo" *ngIf="editImages === true">
             <span>Subir😁👍</span>
-            <div class="up" (click)="subirImagenes()">Guardar Todo</div>
-            <div class="focus"></div>
+            <div class="up" >Guardar Todo</div>
+            <div class="focus" (click)="subirImagenes()"></div>
         </div>
         <div class="container_images" *ngIf="editImages === true">
                 <div class="imagen"  *ngFor="let name of imagesNames; let i = index">

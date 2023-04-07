@@ -1,4 +1,4 @@
 export class UploadImagesDto {
-  bordertype: [string];
+  bordertype: string;
   idUser: string;
 }

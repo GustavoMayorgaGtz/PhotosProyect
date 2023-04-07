@@ -1,16 +1,13 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { LoginUserDto } from './dto/login-user.dto';
-
-
 import { UploadImagesDto } from './dto/uploadImages.dto.';
-import * as fs from 'fs';
 import { compress, createDirectoryUser, createName, saveOriginalImage } from 'src/Functions';
 import { Image } from 'src/images/entities/image.entity';
-import { networkInterfaces } from 'os';
+import { Response } from 'express';
 
 @Injectable()
 export class UserService {
@@ -69,9 +66,16 @@ export class UserService {
   async uploadFiles(
     files: Array<Express.Multer.File>,
     informacion: UploadImagesDto,
+    res: Response
   ) {
-    console.log("Guardando y comprimiendo imagenes: " + files.length);
-    const borderType = informacion.bordertype;
+    let borderType = []; 
+    try{
+      borderType = JSON.parse(informacion.bordertype);
+      console.log(borderType);
+    }catch(e){
+       throw new HttpException("Server Internal Error", 500);
+    }
+    
     const findUser = await this.user.findOneBy({ id: informacion.idUser });
     //Checamos si existe el directorio del usuario
     if (!findUser) {
@@ -92,12 +96,12 @@ export class UserService {
       const newImage = await this.image.create({
         pathCompress: names[id],
         pathOriginal: namesOriginal[id],
-        border: thisBorder[id],
+        border: thisBorder,
         user: findUser
       })
       this.image.save(newImage);
     })
-    return true;
+    res.status(HttpStatus.OK).send({upload:true})
   }
 
 
