@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Image } from 'src/images/entities/image.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -12,4 +13,7 @@ export class User {
 
   @Column({ nullable: true, default: 1 })
   type: number;
+
+  @OneToMany(() => Image, images => images.user)
+  images: Image[]
 }

@@ -8,14 +8,17 @@ import { LoginUserDto } from './dto/login-user.dto';
 
 import { UploadImagesDto } from './dto/uploadImages.dto.';
 import * as fs from 'fs';
-import { compress, createDirectoryUser, createName, waterMark } from 'src/Functions';
-import { dir } from 'console';
+import { compress, createDirectoryUser, createName, saveOriginalImage } from 'src/Functions';
+import { Image } from 'src/images/entities/image.entity';
+import { networkInterfaces } from 'os';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private user: Repository<User>,
+    @InjectRepository(Image)
+    private image: Repository<Image>,
   ) { }
 
   async create(createUserDto: CreateUserDto) {
@@ -75,15 +78,32 @@ export class UserService {
       throw new HttpException("User not found", 404)
     }
     const id = findUser.idUser;
-    const directorio = await createDirectoryUser(id);
+    const {directorio, directorioOriginal} = await createDirectoryUser(id);
+  
     let names = [];
+    let namesOriginal = [];
     const size = files.length;
     names = createName(size, directorio);
-    console.log(names);
-    files.forEach((data,i) => {
-      compress(data, names[i]);
+    namesOriginal = createName(size, directorioOriginal);
+    files.forEach(async (data,id) => {
+      saveOriginalImage(data.buffer, namesOriginal[id]);
+      compress(data, names[id]);
+      const thisBorder = borderType[id];
+      const newImage = await this.image.create({
+        pathCompress: names[id],
+        pathOriginal: namesOriginal[id],
+        border: thisBorder[id],
+        user: findUser
+      })
+      this.image.save(newImage);
     })
+    return true;
   }
+
+
+
+
+   
   // findOne(id: number) {
   //   return `This action returns a #${id} user`;
   // }

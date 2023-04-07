@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
+import { ImagesModule } from './images/images.module';
+import { Image } from './images/entities/image.entity';
 @Module({
   imports: [
     UserModule,
@@ -14,9 +16,10 @@ import { User } from './user/entities/user.entity';
       username: 'root',
       password: '',
       database: 'photorepublic',
-      entities: [User],
+      entities: [User, Image],
       synchronize: true,
     }),
+    ImagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
