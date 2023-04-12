@@ -9,6 +9,7 @@ import { compress, createDirectoryUser, createName, saveOriginalImage } from 'sr
 import { Image } from 'src/images/entities/image.entity';
 import { Response } from 'express';
 
+
 @Injectable()
 export class UserService {
   constructor(
@@ -105,12 +106,20 @@ export class UserService {
   }
 
 
+  async findOne(id: string) {
+    const users = await this.user.find({
+      where:{
+        id:id
+      },
+      relations:{
+        images: true
+      }
+    })
+    if(!users) throw new HttpException("No User Found", 404);
+    console.log(users);
+    return users[0];
+  }
 
-
-   
-  // findOne(id: number) {
-  //   return `This action returns a #${id} user`;
-  // }
 
   // update(id: number, updateUserDto: UpdateUserDto) {
   //   return `This action updates a #${id} user`;

@@ -1,26 +1,43 @@
-import { Injectable } from '@nestjs/common';
-import { CreateImageDto } from './dto/create-image.dto';
-import { UpdateImageDto } from './dto/update-image.dto';
+import { HttpException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/user/entities/user.entity';
+import { Repository, TreeLevelColumn } from 'typeorm';
+import { Image } from './entities/image.entity';
+import { ImagesModule } from './images.module';
+
 
 @Injectable()
 export class ImagesService {
-  create(createImageDto: CreateImageDto) {
-    return 'This action adds a new image';
-  }
+  constructor(
+    @InjectRepository(User)
+    private user: Repository<User>,
+    @InjectRepository(Image)
+    private image: Repository<Image>,
+  ) { }
 
-  findAll() {
-    return `This action returns all images`;
-  }
 
-  findOne(id: number) {
-    return `This action returns a #${id} image`;
-  }
+  async getImagesCompress(idUser: string){
+    const findUser = await this.user.findOne({
+      where:{
+        id: idUser 
+      }
+    })
+    if(!findUser) throw new HttpException("No Images Found", 404);
 
-  update(id: number, updateImageDto: UpdateImageDto) {
-    return `This action updates a #${id} image`;
-  }
+    const images = this.image.find({
+      where:{
+        user:findUser
+      },
+      select:{
+        idImage: true,
+        pathCompress: true,
+        pathOriginal:false,
+        border: true
+      }
+    })
 
-  remove(id: number) {
-    return `This action removes a #${id} image`;
+    if(!images) throw new HttpException("No Images Found", 404);
+
+    return images;
   }
 }

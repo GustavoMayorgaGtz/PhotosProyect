@@ -15,12 +15,16 @@ const routes: Routes = [
       },
       {
         path: 'agregar',
-        loadChildren: () => import('./agregado/agregado-module.module').then(m => m.AgregadoModuleModule)
+        loadChildren: () => import('./agregado/agregado-module.module').then(m => m.AgregadoModule)
       },
       {
         path: 'administrador',
-        loadChildren: () => import('./administrador/administrador.module.module').then(m => m.ModuleModule)
-      }
+        loadChildren: () => import('./administrador/administrador.module.module').then(m => m.AdministradorModule)
+      },
+      {
+        path: 'inicio',
+        loadChildren: () => import('./inicio/inicio-module.module').then(m => m.InicioModuleModule)
+      },
     ]
   }
 ];

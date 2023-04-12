@@ -4,8 +4,6 @@ import { ControlCuentasComponent } from './control-cuentas/control-cuentas.compo
 import { SafeUrlPipe } from 'src/tuberia/safe-url.pipe';
 
 
-
-
 @NgModule({
   declarations: [
     ControlCuentasComponent,
@@ -15,7 +13,7 @@ import { SafeUrlPipe } from 'src/tuberia/safe-url.pipe';
     CommonModule
   ],
   exports:[
-    ControlCuentasComponent,
+    ControlCuentasComponent
   ]
 })
 export class ComponentsModuleModule { }

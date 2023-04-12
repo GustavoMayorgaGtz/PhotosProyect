@@ -4,3 +4,9 @@ export interface user{
     status: boolean,
     type: number
 }
+
+export interface ImagesCompress{
+    idImage: number,
+    pathCompress: string,
+    border: string
+}

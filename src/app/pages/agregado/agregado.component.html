@@ -11,11 +11,11 @@
      <span class="subtitle">Selecciona las imagenes de tu agrado </span>
     </div>
     <div class="container-images">
-        <div class="bloqueImage">
+        <div class="bloqueImage" *ngFor="let image of images">
             <input type="checkbox" class="chbx-image">
-           <img src="./assets/imagen1.jpg" alt="" class="image-generate">
+           <img [src]="image.pathCompress" alt="" class="image-generate">
         </div>
-        <div class="bloqueImage">
+        <!-- <div class="bloqueImage">
             <input type="checkbox" class="chbx-image">
             <img src="./assets/imagen2.jpg" alt="" class="image-generate">
          </div>
@@ -26,7 +26,7 @@
          <div class="bloqueImage">
             <input type="checkbox" class="chbx-image">
             <img src="./assets/imagen4.jpg " alt="" class="image-generate">
-         </div>
+         </div> -->
          <div class="margin-bottom"></div>
     </div>
 </div>
