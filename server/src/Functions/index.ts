@@ -43,35 +43,60 @@ export function saveOriginalImage(file, name){
 }
 
 export function compress(file, name) {
-    sharp(file.buffer)
-        .resize(250, 250)
-        .toFile(name, (err) => {
-            if (err) {
-                console.log(err);
-                throw new HttpException("Server internal err", 500)
-            } else {
-                waterMark(name);
+    fs.writeFile(name, file.buffer, (err) => {
+       if(err){
 
-            }
-        });
+       }else{
+        waterMark(name);
+       }
+    })
+    // sharp(file.buffer)
+    //     .resize()
+    //     .toFile(name, (err) => {
+    //         if (err) {
+    //             console.log(err);
+    //             throw new HttpException("Server internal err", 500)
+    //         } else {
+    //             waterMark(name);
+
+    //         }
+    //     });
 }
 
 export function waterMark(name) {
     Jimp.read(name)
         .then(async (image) => {
+                const w = image.getWidth()
+                const h =  image.getHeight()
+                let compressWidth;
+                let compressHeight;
+                if(h > w){
+                    compressWidth = 500;
+                    compressHeight = 800;
+                }
+                if(w > h){
+                    compressWidth = 800;
+                    compressHeight = 500;
+                }
                 image
-                .resize(250, 250)
-                .quality(90)
+                .quality(75)
+                .resize(compressWidth, compressHeight)
                 .print(
-        
-                    await Jimp.loadFont(Jimp.FONT_SANS_16_BLACK),
-                    10,
-                    100,
+                    await Jimp.loadFont(Jimp.FONT_SANS_32_WHITE),
+                    50,
+                    400,
+                    'Photo Republic',
+                )
+                .print(
+                    await Jimp.loadFont(Jimp.FONT_SANS_32_BLACK),
+                    50,
+                    350,
                     'Photo Republic',
                 )
                 .writeAsync(name).then(()=>{
                     console.log("---------------------------------------------------")
                     console.log("Imagen comprimida y con marca de agua");
+                
                 }).catch((err) => {
                     console.log("Error al aplicar marca de agua:", err)
                 })

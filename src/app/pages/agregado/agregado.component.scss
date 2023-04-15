@@ -11,7 +11,7 @@
 * {
     font-family: 'Mukta', sans-serif;
     font-size: 14px;
-
+    user-select: none;
 }
 
 @mixin centerH() {
@@ -71,23 +71,64 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    overflow-x: scroll ;
 }
 
 .bloqueImage {
     margin: 20px;
-    overflow: hidden;
-    min-width: 200px;
-    min-height: 200px;
-    max-height: 1000px;
-    width: 300px;
-    height: 300px;
+    min-width: auto;
+    min-height: 80%;
+    height: 80%;
+    width: auto;
     background-color: white;
     border-radius: 5px;
     border: 3px solid black;
     resize: both;
     position: relative;
     box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.171);
+    position: absolute;
+}
+
+.container-flecha-izq{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer
+    
+}
+
+.container-flecha-dere{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: -100px;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.icon-izq,
+.icon-dere{
+    width: 100%;
+    height: 100%;
+    filter:invert(0.2);
+    transition: 0.2s;
+    
+    &:hover{
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.026);
+        transition: 0.2s;
+        filter:invert(0);
+    }
+}
+
+.icon-dere{
+    transform: rotate(180deg);
 }
 
 .image-generate {
@@ -163,4 +204,90 @@
 
 .mini {
     color: white;
+}
+
+.container-checkbox{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.icon-corazon-desactive{
+    user-select: none;
+    opacity: 0;
+    width:60px;
+    height: 60px;
+}
+
+.icon-corazon-hide{
+    user-select: none;
+    width:60px;
+    height: 60px;
+    opacity: 1;
+    animation-iteration-count: 1;
+    animation: 0.3s pop-reversed;
+    animation-fill-mode: forwards;
+}
+
+.icon-corazon-active{
+    user-select: none;
+     width:60px;
+     height: 60px;
+     opacity: 1;
+     animation-iteration-count: 1;
+     animation: 0.3s pop;
+     animation-fill-mode: forwards;
+}
+
+@keyframes pop{
+    0%{
+        opacity: 0;
+        width: 0px;
+        height: 0px;
+    }
+    80%{
+        opacity: 1;
+        width: 70px;
+        height:70px;
+    }
+    81%{
+        opacity: 1;
+        width: 65px;
+        height:65px;
+    }
+    100%{
+        opacity: 1;
+        width: 60px;
+        height:60px;
+    }
+}
+
+@keyframes pop-reversed{
+    0%{
+        opacity: 1;
+        width: 60px;
+        height:60px;
+       
+    }
+    20%{
+        opacity: 1;
+        width: 65px;
+        height:65px;
+     
+    }
+    21%{
+        opacity: 1;
+        width: 70px;
+        height:70px;
+    }
+    100%{
+        opacity: 0;
+        width: 0px;
+        height: 0px;
+    }
 }

@@ -25,18 +25,41 @@ export class AgregadoComponent implements OnInit {
 
   ngOnInit(): void {
      this.getUser();
+     
+  }
+
+  changeImage(option: number){
+    if(option == 1){
+      if(this.position === 0){
+        this.position = this.images.length - 1;
+      }else{
+        this.position--;
+      }
+    }
+    if(option == 2){
+      if(this.position === this.images.length - 1){
+        this.position = 0;
+      }else{
+        this.position++;
+      }
+    }
   }
 
   public images: ImagesCompress[] = [];
+  public position: number = 0;
+  public classNames: string[] = [];
   getUser(){
     if(this.id)
     this.servicios.getImages({idUser: this.id}).subscribe((images) => {
       images.forEach((image) => {
-        const thispath = image.pathCompress.split("./public/")
-        console.log("Path: ",  varglobal.server+thispath[0]);
+        this.classNames.push("icon-corazon-desactive");
+        console.log(image.pathCompress)
+        const thispath = image.pathCompress.replace("./public/","");
+        console.log(thispath)
+        console.log("Path: ",  varglobal.server+"/"+thispath);
         this.images.push({
           idImage: image.idImage,
-          pathCompress:  varglobal.server+thispath[0],
+          pathCompress:  varglobal.server+"/"+thispath,
           border: image.border
         })
       })
@@ -57,5 +80,17 @@ export class AgregadoComponent implements OnInit {
         }
       }
     })
+  }
+
+
+  doubleClick(position: number){
+    if(this.classNames[position].match('icon-corazon-active'))
+    {
+      this.classNames[position] = "icon-corazon-hide";
+
+    }else{
+      this.classNames[position] = "icon-corazon-active";
+    }
+
   }
 }

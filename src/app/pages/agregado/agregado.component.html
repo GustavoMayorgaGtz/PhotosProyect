@@ -11,22 +11,20 @@
      <span class="subtitle">Selecciona las imagenes de tu agrado </span>
     </div>
     <div class="container-images">
-        <div class="bloqueImage" *ngFor="let image of images">
-            <input type="checkbox" class="chbx-image">
-           <img [src]="image.pathCompress" alt="" class="image-generate">
+        <div class="bloqueImage" >
+
+            <div class="container-flecha-izq" (click)="changeImage(1)">
+                <img src="./assets/flecha.png" class="icon-izq">
+            </div>
+            <div class="container-flecha-dere">
+                <img src="./assets/flecha.png" class="icon-dere" (click)="changeImage(2)">
+            </div>
+
+            <div class="container-checkbox" (dblclick)="doubleClick(position)">
+                <img src="./assets/corazon.png "   [class]="classNames[position]" oncontextmenu="return false;">
+            </div>
+           <img [src]="images[position].pathCompress | safeUrl" alt="" class="image-generate">
         </div>
-        <!-- <div class="bloqueImage">
-            <input type="checkbox" class="chbx-image">
-            <img src="./assets/imagen2.jpg" alt="" class="image-generate">
-         </div>
-         <div class="bloqueImage">
-            <input type="checkbox" class="chbx-image">
-            <img src="./assets/imagen3.jfif " alt="" class="image-generate">
-         </div>
-         <div class="bloqueImage">
-            <input type="checkbox" class="chbx-image">
-            <img src="./assets/imagen4.jpg " alt="" class="image-generate">
-         </div> -->
          <div class="margin-bottom"></div>
     </div>
 </div>
