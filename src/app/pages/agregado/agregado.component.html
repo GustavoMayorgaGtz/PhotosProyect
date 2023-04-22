@@ -8,11 +8,29 @@
         </div>
     </div>
     <div class="nav">
-     <span class="subtitle">Selecciona las imagenes de tu agrado </span>
-    </div>
-    <div class="container-images">
-        <div class="bloqueImage" >
+        <span class="subtitle">Photo Republic</span>
+        <div class="filter-container1" (click)="filter_information(2)">
+            <img src="./assets/filter.png" alt="mostrar muchos" class="filter">
+            <div class="container-tooltip">
+                <span class="tooltip">Ordenar por bloques</span>
+            </div>
 
+        </div>
+        <div class="filter-container2" (click)="filter_information(1)">
+            <img src="./assets/filter2.png" alt="mostrar muchos" class="filter">
+            <div class="container-tooltip">
+                <span class="tooltip">Ordenar por bloque</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-images" *ngIf="bodyStyle === 1">
+        <div class="informacion">
+            <p class="informacion-text">
+                Elige la informacion
+            </p>
+        </div>
+        <div class="bloqueImage">
             <div class="container-flecha-izq" (click)="changeImage(1)">
                 <img src="./assets/flecha.png" class="icon-izq">
             </div>
@@ -21,10 +39,23 @@
             </div>
 
             <div class="container-checkbox" (dblclick)="doubleClick(position)">
-                <img src="./assets/corazon.png "   [class]="classNames[position]" oncontextmenu="return false;">
+                <img src="./assets/corazon.png " [class]="classNames[position]" oncontextmenu="return false;">
             </div>
-           <img [src]="images[position].pathCompress | safeUrl" alt="" class="image-generate">
+            <img [src]="images[position].pathCompress | safeUrl" alt="" class="image-generate">
         </div>
-         <div class="margin-bottom"></div>
+        <div class="margin-bottom"></div>
+    </div>
+    <div class="container-images-block" *ngIf="bodyStyle === 2">
+        <div class="informacion">
+            <p class="informacion-text">
+                Elige la informacion
+            </p>
+        </div>
+        <div class="bloqueImage" *ngFor="let image of images; let i = index">
+            <div class="container-checkbox" (dblclick)="doubleClick(i)">
+                <img src="./assets/corazon.png " [class]="classNames[i]" oncontextmenu="return false;">
+            </div>
+            <img [src]="image.pathCompress | safeUrl" alt="" #image class="image-generate">
+        </div>
     </div>
 </div>

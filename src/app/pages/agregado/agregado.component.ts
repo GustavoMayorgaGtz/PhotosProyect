@@ -23,13 +23,18 @@ export class AgregadoComponent implements OnInit {
 
   }
 
+  public bodyStyle: number = 2
+  filter_information(option: number){
+   this.bodyStyle = option;
+  }
+
   ngOnInit(): void {
      this.getUser();
      
   }
 
   changeImage(option: number){
-    if(option == 1){
+    if(option == 1){ 
       if(this.position === 0){
         this.position = this.images.length - 1;
       }else{
@@ -53,10 +58,7 @@ export class AgregadoComponent implements OnInit {
     this.servicios.getImages({idUser: this.id}).subscribe((images) => {
       images.forEach((image) => {
         this.classNames.push("icon-corazon-desactive");
-        console.log(image.pathCompress)
         const thispath = image.pathCompress.replace("./public/","");
-        console.log(thispath)
-        console.log("Path: ",  varglobal.server+"/"+thispath);
         this.images.push({
           idImage: image.idImage,
           pathCompress:  varglobal.server+"/"+thispath,
@@ -80,6 +82,7 @@ export class AgregadoComponent implements OnInit {
         }
       }
     })
+    console.log("IMAGES: ",this.images);
   }
 
 
