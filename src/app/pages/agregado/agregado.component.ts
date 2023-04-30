@@ -20,7 +20,6 @@ export class AgregadoComponent implements OnInit {
     {
       this.id = id;
     }
-
   }
 
   public bodyStyle: number = 2
@@ -30,7 +29,6 @@ export class AgregadoComponent implements OnInit {
 
   ngOnInit(): void {
      this.getUser();
-     
   }
 
   changeImage(option: number){
@@ -53,11 +51,15 @@ export class AgregadoComponent implements OnInit {
   public images: ImagesCompress[] = [];
   public position: number = 0;
   public classNames: string[] = [];
+  public printClass: string[] = [];
+  public zoomClass: string[] = [];
   getUser(){
     if(this.id)
     this.servicios.getImages({idUser: this.id}).subscribe((images) => {
       images.forEach((image) => {
         this.classNames.push("icon-corazon-desactive");
+        this.printClass.push("");
+        this.zoomClass.push("");
         const thispath = image.pathCompress.replace("./public/","");
         this.images.push({
           idImage: image.idImage,
@@ -83,6 +85,23 @@ export class AgregadoComponent implements OnInit {
       }
     })
     console.log("IMAGES: ",this.images);
+  }
+
+  PrintZoom_Event(option: string, id: number): void{
+     if(option === 'Print'){
+      if(this.printClass[id] === 'controlSelect'){
+        this.printClass[id]= '';
+      }else{
+        this.printClass[id]= 'controlSelect';
+      }
+     }
+     if(option === 'Zoom'){
+      if(this.zoomClass[id] === 'controlSelect'){
+        this.zoomClass[id]= '';
+      }else{
+        this.zoomClass[id]= 'controlSelect';
+      }
+     }
   }
 
 

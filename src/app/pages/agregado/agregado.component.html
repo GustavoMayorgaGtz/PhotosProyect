@@ -25,11 +25,6 @@
     </div>
 
     <div class="container-images" *ngIf="bodyStyle === 1">
-        <div class="informacion">
-            <p class="informacion-text">
-                Elige la informacion
-            </p>
-        </div>
         <div class="bloqueImage">
             <div class="container-flecha-izq" (click)="changeImage(1)">
                 <img src="./assets/flecha.png" class="icon-izq">
@@ -46,16 +41,37 @@
         <div class="margin-bottom"></div>
     </div>
     <div class="container-images-block" *ngIf="bodyStyle === 2">
-        <div class="informacion">
-            <p class="informacion-text">
-                Elige la informacion
-            </p>
+        <div class="container-informacion">
+            <div class="informacion">
+                <img src="./assets/" alt="" class="informacion-icon">
+                <p class="informacion-text">
+                    
+                </p>
+            </div>
         </div>
         <div class="bloqueImage" *ngFor="let image of images; let i = index">
             <div class="container-checkbox" (dblclick)="doubleClick(i)">
                 <img src="./assets/corazon.png " [class]="classNames[i]" oncontextmenu="return false;">
             </div>
             <img [src]="image.pathCompress | safeUrl" alt="" #image class="image-generate">
+            <div class="controls">
+                <div class="control1 controlSelect" (click)="doubleClick(i)"  *ngIf="classNames[i] === 'icon-corazon-active'">
+                    <img src="./assets/heart.png" alt="" class="icon-control"> 
+                </div>
+             
+                <div class="control1" (click)="doubleClick(i)" *ngIf="classNames[i] !== 'icon-corazon-active'">
+                    <img src="./assets/love.png" alt="" class="icon-control" >
+                </div>
+                <div class="control2" (click)="PrintZoom_Event('Zoom', i)" [class]="zoomClass[i]">
+                    <img src="./assets/ampliacion.png" alt="" class="icon-control">
+                </div>
+                <div class="control3" (click)="PrintZoom_Event('Print', i)" [class]="printClass[i]">
+                    <img src="./assets/print.png" alt="" class="icon-control">
+                </div>
+                <div class="control4">
+                    <img src="./assets/zoom.png" alt="" class="icon-control">
+                </div>
+            </div>
         </div>
     </div>
 </div>
