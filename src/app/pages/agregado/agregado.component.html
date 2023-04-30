@@ -43,11 +43,29 @@
     <div class="container-images-block" *ngIf="bodyStyle === 2">
         <div class="container-informacion">
             <div class="informacion">
-                <img src="./assets/" alt="" class="informacion-icon">
-                <p class="informacion-text">
-                    
-                </p>
-            </div>
+                <div class="container-parrafo">
+                    <img src="./assets/heart.png" class="informacion-icon">
+                    <span class="line">-</span>
+                    <span class="informacion-text">
+                        Haz click para seleccionar las imagenes que te gustaron y pedir las imagenes seleccionadas.
+                    </span>
+                </div>
+                <div class="container-parrafo">
+                    <img src="./assets/print.png" class="informacion-icon" style="filter: invert(1);">
+                    <span class="line">-</span>
+                    <span class="informacion-text">
+                    Selecciona las imagenes que quieres que sean imprimidas.
+                    </span>
+                </div>
+                <div class="container-parrafo">
+                    <img src="./assets/ampliacion.png" class="informacion-icon" style="filter: invert(1);">
+                    <span class="line">-</span>
+                    <span class="informacion-text">
+                       Selecciona las imagenes que quieres que sean ampliadas. 
+                    </span>
+                </div>
+                
+            </div> 
         </div>
         <div class="bloqueImage" *ngFor="let image of images; let i = index">
             <div class="container-checkbox" (dblclick)="doubleClick(i)">

@@ -77,30 +77,51 @@
     }
 }
 
-
+//--------------------------------------------------------------------------------------
 .container-informacion{
     width: 100%;
-    height: 125px;
+    height: 180px;
     display: flex;
     padding: 10px;
     box-sizing: border-box;
+    border-bottom: 1px solid rgb(223, 223, 223);
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.129);
 }
 .informacion {
     min-width: 300px;
     width: 50%;
     margin: 10px;
-    height: 50px;
+    height: 100px;
     padding: 20px;
     background-color: rgb(47, 47, 47);
     border: 1px dotted white;
     max-width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.container-informacion > .informacion > .container-parrafo{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-informacion > .informacion > .container-parrafo > .informacion-icon{
+    width: 20px;
+    height: 20px;
+}
+
+.container-informacion > .informacion > .container-parrafo > .line{
+    margin: 0px 10px;
+    color: white;
+    font-weight: bold;
 }
 
 .informacion-text {
     font-family: 'Mukta', sans-serif;
     color: white;
 }
-
+//--------------------------------------------------------------------------------------
 .normal {
     font-size: 16px;
     color: black;
