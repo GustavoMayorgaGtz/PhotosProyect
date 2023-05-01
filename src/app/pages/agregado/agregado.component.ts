@@ -115,4 +115,10 @@ export class AgregadoComponent implements OnInit {
     }
 
   }
+
+  fullScreen_Event(id: number){
+    this.bodyStyle = 1;
+    this.position = id;
+
+  }
 }

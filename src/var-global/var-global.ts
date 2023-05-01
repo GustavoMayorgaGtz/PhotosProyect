@@ -1,3 +1,3 @@
 export const varglobal = {
-    server: "http://192.168.1.10:3000"
+    server: "http://192.168.1.7:3000"
 }

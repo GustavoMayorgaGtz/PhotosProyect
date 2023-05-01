@@ -1,4 +1,5 @@
 <div class="body">
+    <!---------------------->
     <div class="mandar">
         <div class="contianer-mandar">
             <div class="mandar-inf">
@@ -7,7 +8,8 @@
             <img src="./assets/message.png" alt="" class="mandar">
         </div>
     </div>
-    <div class="nav">
+    <!---------------------->
+    <nav class="nav">
         <span class="subtitle">Photo Republic</span>
         <div class="filter-container1" (click)="filter_information(2)">
             <img src="./assets/filter.png" alt="mostrar muchos" class="filter">
@@ -22,9 +24,9 @@
                 <span class="tooltip">Ordenar por bloque</span>
             </div>
         </div>
-    </div>
-
-    <div class="container-images" *ngIf="bodyStyle === 1">
+    </nav>
+    <!---------------------->
+    <section class="container-images" *ngIf="bodyStyle === 1">
         <div class="bloqueImage">
             <div class="container-flecha-izq" (click)="changeImage(1)">
                 <img src="./assets/flecha.png" class="icon-izq">
@@ -39,57 +41,87 @@
             <img [src]="images[position].pathCompress | safeUrl" alt="" class="image-generate">
         </div>
         <div class="margin-bottom"></div>
-    </div>
-    <div class="container-images-block" *ngIf="bodyStyle === 2">
-        <div class="container-informacion">
-            <div class="informacion">
-                <div class="container-parrafo">
-                    <img src="./assets/heart.png" class="informacion-icon">
-                    <span class="line">-</span>
-                    <span class="informacion-text">
-                        Haz click para seleccionar las imagenes que te gustaron y pedir las imagenes seleccionadas.
-                    </span>
-                </div>
-                <div class="container-parrafo">
-                    <img src="./assets/print.png" class="informacion-icon" style="filter: invert(1);">
-                    <span class="line">-</span>
-                    <span class="informacion-text">
-                    Selecciona las imagenes que quieres que sean imprimidas.
-                    </span>
-                </div>
-                <div class="container-parrafo">
-                    <img src="./assets/ampliacion.png" class="informacion-icon" style="filter: invert(1);">
-                    <span class="line">-</span>
-                    <span class="informacion-text">
-                       Selecciona las imagenes que quieres que sean ampliadas. 
-                    </span>
-                </div>
-                
-            </div> 
-        </div>
-        <div class="bloqueImage" *ngFor="let image of images; let i = index">
-            <div class="container-checkbox" (dblclick)="doubleClick(i)">
-                <img src="./assets/corazon.png " [class]="classNames[i]" oncontextmenu="return false;">
+    </section>
+    <!---------------------->
+    <div class="container-grid">
+        <div class="container-grid-left"  *ngIf="bodyStyle === 2">
+            <div class="category">
+                <img src="./assets/app.png" class="category-icon">
+                Misa
             </div>
-            <img [src]="image.pathCompress | safeUrl" alt="" #image class="image-generate">
-            <div class="controls">
-                <div class="control1 controlSelect" (click)="doubleClick(i)"  *ngIf="classNames[i] === 'icon-corazon-active'">
-                    <img src="./assets/heart.png" alt="" class="icon-control"> 
-                </div>
-             
-                <div class="control1" (click)="doubleClick(i)" *ngIf="classNames[i] !== 'icon-corazon-active'">
-                    <img src="./assets/love.png" alt="" class="icon-control" >
-                </div>
-                <div class="control2" (click)="PrintZoom_Event('Zoom', i)" [class]="zoomClass[i]">
-                    <img src="./assets/ampliacion.png" alt="" class="icon-control">
-                </div>
-                <div class="control3" (click)="PrintZoom_Event('Print', i)" [class]="printClass[i]">
-                    <img src="./assets/print.png" alt="" class="icon-control">
-                </div>
-                <div class="control4">
-                    <img src="./assets/zoom.png" alt="" class="icon-control">
-                </div>
+            <div class="category">
+                <img src="./assets/app.png" class="category-icon">
+                Civil
             </div>
+            <div class="category">
+                <img src="./assets/app.png" class="category-icon">
+                Fiesta
+            </div>
+            
+
+        </div>
+        <div class="container-grid-right">
+            <!--###-->
+            <div class="container-images-block" *ngIf="bodyStyle === 2">
+                <!--***-->
+                <div class="container-informacion">
+                    <div class="informacion">
+                        <div class="container-parrafo">
+                            <img src="./assets/heart.png" class="informacion-icon">
+                            <span class="line">-</span>
+                            <span class="informacion-text">
+                                Haz click para seleccionar las imagenes que te gustaron.
+                            </span>
+                        </div>
+                        <div class="container-parrafo">
+                            <img src="./assets/print.png" class="informacion-icon" style="filter: invert(1);">
+                            <span class="line">-</span>
+                            <span class="informacion-text">
+                                Selecciona las imagenes que quieres que sean imprimidas.
+                            </span>
+                        </div>
+                        <div class="container-parrafo">
+                            <img src="./assets/ampliacion.png" class="informacion-icon" style="filter: invert(1);">
+                            <span class="line">-</span>
+                            <span class="informacion-text">
+                                Selecciona las imagenes que quieres que sean ampliadas.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!--***-->
+                <div class="bloqueImage" *ngFor="let image of images; let i = index">
+                    <div class="container-checkbox" (dblclick)="doubleClick(i)">
+                        <img src="./assets/corazon.png " [class]="classNames[i]" oncontextmenu="return false;">
+                    </div>
+                    <img [src]="image.pathCompress | safeUrl" alt="" #image class="image-generate">
+                    <div class="controls">
+                        <div class="control1 controlSelect" (click)="doubleClick(i)"
+                            *ngIf="classNames[i] === 'icon-corazon-active'">
+                            <img src="./assets/heart.png" alt="" class="icon-control">
+                        </div>
+
+                        <div class="control1" (click)="doubleClick(i)" *ngIf="classNames[i] !== 'icon-corazon-active'">
+                            <img src="./assets/love.png" alt="" class="icon-control">
+                        </div>
+                        <div class="control2" (click)="PrintZoom_Event('Zoom', i)" [class]="zoomClass[i]">
+                            <img src="./assets/ampliacion.png" alt="" class="icon-control">
+                        </div>
+                        <div class="control3" (click)="PrintZoom_Event('Print', i)" [class]="printClass[i]">
+                            <img src="./assets/print.png" alt="" class="icon-control">
+                        </div>
+                        <div class="control4" (click)="fullScreen_Event(i)">
+                            <img src="./assets/zoom.png" alt="" class="icon-control">
+                        </div>
+                    </div>
+                </div>
+                <!--***-->
+                <br>
+                <br>
+            </div>
+            <!--###-->
         </div>
     </div>
+
+    <!---------------------->
 </div>
