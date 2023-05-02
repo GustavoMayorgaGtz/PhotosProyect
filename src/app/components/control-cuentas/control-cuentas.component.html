@@ -6,6 +6,7 @@
     <div class="btn_yes" (click)="message_click_event(true)" *ngIf="isConfirm">Si</div>
     <div class="btn_no" (click)="message_click_event(false)" *ngIf="isConfirm">Cancelar</div>
 </div>
+<!-- ############################################ -->
 <div class="body" *ngIf="isUploadImage === 1">
     <nav>
         Cargar Imagenes
@@ -69,7 +70,107 @@
      
     </div>
 </div>
+<!-- ############################################ -->
 <div class="body" *ngIf="isUploadImage === 0">
+    <nav>
+        Crear Categoria
+    </nav>
+    <div class="container-primary">
+        <div class="maceta1">
+            <img src="./assets/maceta.png" alt="" class="maceta">
+        </div>
+        <div class="maceta2">
+            <img src="./assets/maceta.png" alt="" class="maceta">
+        </div>
+        <div class="agroup">
+            <div class="informacion">
+                {{info}}
+            </div>
+            <div class="btn-crear">
+                <div class="shadow-container" (click)="createUser_Event()">{{message}}</div>
+            </div>
+        </div>
+        <div class="agroup-user-create" *ngIf="isCreateUser">
+            <div class="title-container">
+                <hr class="line">
+                <span class="name">Categoria</span>
+                <hr class="line">
+            </div>
+            <div class="container_createUser">
+                <div class="container_entrada">
+                    <div class="title">Nombre</div>
+                    <div class="center">
+                        <input type="text" class="inputTxt" #categoryName>
+                    </div>
+                </div>
+                <br>
+                <div class="container_entrada">
+                    <div class="title">Iconos</div>
+                    <div class="container-iconos">
+                        <div class="icon-option {{categroy_icon_style[0]}}" (click)="selectIcon_Event(0)">
+                            <img src="./assets/copas.png"  class="icon">
+                        </div>
+                        <div class="icon-option {{categroy_icon_style[1]}}" (click)="selectIcon_Event(1)">
+                            <img src="./assets/anillos.png"  class="icon ">
+                        </div>
+                        <div class="icon-option {{categroy_icon_style[2]}}" (click)="selectIcon_Event(2)">
+                            <img src="./assets/iglesia.png"  class="icon ">
+                        </div>
+                        <div class="icon-option {{categroy_icon_style[3]}}" (click)="selectIcon_Event(3)">
+                            <img src="./assets/app.png"  class="icon ">
+                        </div>
+                        <div class="icon-option {{categroy_icon_style[4]}}" (click)="selectIcon_Event(4)">
+                            <img src="./assets/party.png"  class="icon ">
+                        </div>
+                        <div class="icon-option {{categroy_icon_style[5]}}" (click)="selectIcon_Event(5)">
+                            <img src="./assets/party1.png"  class="icon ">
+                        </div>
+                        <div class="icon-option {{categroy_icon_style[6]}}" (click)="selectIcon_Event(6)">
+                            <img src="./assets/party2.png"  class="icon ">
+                        </div>
+                        <div class="icon-option {{categroy_icon_style[7]}}" (click)="selectIcon_Event(7)">
+                            <img src="./assets/circulo-azul.png"  class="icon ">
+                        </div>
+                        <div class="icon-option {{categroy_icon_style[8]}}" (click)="selectIcon_Event(8)">
+                            <img src="./assets/circulo-rosa.png"  class="icon ">
+                        </div>
+                        <div class="icon-option {{categroy_icon_style[9]}}" (click)="selectIcon_Event(9)">
+                            <img src="./assets/cruz.png"  class="icon ">
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-guardar" (click)="guardarCategoria(categoryName.value)">
+                    Guardar Categoria
+                </div>
+            </div>
+
+        </div>
+        <div class="agroup-user" *ngIf="!isCreateUser">
+            <div class="title-container">
+                <hr class="line">
+                <span class="name">Usuarios</span>
+                <hr class="line">
+            </div>
+            <div class="bloque-usuario" *ngFor="let user of users; let i = index">
+                <span class="nombre">{{user.name}}</span>
+                <span class="id">{{user.id}}</span>
+                <div class="container-drop">
+                    <img src="./assets/upload.png" alt="remove" class="drop-icon" (click)="uploadImages_Event(user)">
+                    <div class="message_hover">Subir imagenes</div>
+                </div>
+                <div class="container-drop">
+                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(user.id)">
+                    <div class="message_hover">Eliminar usuario</div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!-- ############################################ -->
+<div class="body" *ngIf="isUploadImage === -1">
     <nav>
         Administrar cuentas
     </nav>

@@ -97,7 +97,7 @@ export class ControlCuentasComponent implements OnInit {
       this.formdata.delete('idUser');
       this.borderType = [];
       this.imagesNames = [];
-      
+
     }
   }
 
@@ -224,5 +224,18 @@ export class ControlCuentasComponent implements OnInit {
         this.showMessage = false;
       }, 2000)
     })
+  }
+
+  public categroy_icon_style: string[] = ['', '', '', '', '', '', '', '', '', ''];
+  public idCategorySelected!: number;
+  selectIcon_Event(id: number) {
+    this. idCategorySelected = id;
+    this.categroy_icon_style = ['', '', '', '', '', '', '', '', '', ''];
+    this.categroy_icon_style[id] = "icon-option-selected";
+    console.log("Opcion marcada");
+  }
+
+  guardarCategoria(name: string){
+    console.log("Nombre del medidor: ", name)
   }
 }
