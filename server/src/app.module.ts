@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/entities/user.entity';
 import { ImagesModule } from './images/images.module';
 import { Image } from './images/entities/image.entity';
+import { Category } from './category/entities/category.entity';
 @Module({
   imports: [
     UserModule,
@@ -16,7 +17,7 @@ import { Image } from './images/entities/image.entity';
       username: 'root',
       password: '',
       database: 'photorepublic',
-      entities: [User, Image],
+      entities: [User, Image, Category],
       synchronize: true,
     }),
     ImagesModule,

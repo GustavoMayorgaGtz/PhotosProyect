@@ -236,6 +236,13 @@ export class ControlCuentasComponent implements OnInit {
   }
 
   guardarCategoria(name: string){
+    console.log("Guardando categoria");
     console.log("Nombre del medidor: ", name)
+    const option = this.categroy_icon_style.indexOf("icon-option-selected")
+    if(name && option != -1 && option ){
+      alert("categoria creada");
+    }else{
+      alert("categoria no creada");
+    }
   }
 }
