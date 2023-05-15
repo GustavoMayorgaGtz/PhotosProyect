@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { user } from 'src/interface';
 import { AllService } from 'src/servicios/all.service';
+import { Messenger } from 'src/servicios/messenger';
 
 @Component({
   selector: 'app-control-cuentas',
@@ -15,11 +16,17 @@ export class ControlCuentasComponent implements OnInit {
 
   public isCreateUser: boolean = false;
   constructor(private servicios: AllService,
-    private sanitazer: DomSanitizer) {
+    private sanitazer: DomSanitizer,
+    private messenger: Messenger) {
   }
 
   ngOnInit(): void {
     this.getUsers();
+    this.messenger.menuControl.subscribe((optionMenu) => {
+      this.menuOption = optionMenu
+      this.info ='En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.';
+    })
+
   }
 
   public users: user[] = [];
@@ -75,14 +82,15 @@ export class ControlCuentasComponent implements OnInit {
     this.showMessage = !this.showMessage;
   }
 
-  public isUploadImage: number = 0;
+  public menuOption: number = 0;
   public userSelected!: user;
   uploadImages_Event(user: user) {
     this.userSelected = user;
-    this.isUploadImage = 1;
-    this.info = "Carga las imagenes y define los atributos de como se visualizaran las imagenes.";
-
+    this.menuOption = 1;
+    this.info = "";
   }
+
+  
 
   // reset() {
   //   if (!this.editImages) {
@@ -127,12 +135,12 @@ export class ControlCuentasComponent implements OnInit {
       this.showMessage = false;
     }
   }
-  
+
   public categroy_icon_style: string[] = ['', '', '', '', '', '', '', '', '', ''];
   public idCategorySelected!: number;
   selectIcon_Event(id: number) {
     this.idCategorySelected = id;
-    this.categroy_icon_style = ['', '', '',   '', '', '', '', '', '', ''];
+    this.categroy_icon_style = ['', '', '', '', '', '', '', '', '', ''];
     this.categroy_icon_style[id] = "icon-option-selected";
     console.log("Opcion marcada");
   }

@@ -7,11 +7,11 @@
     <div class="btn_no" (click)="message_click_event(false)" *ngIf="isConfirm">Cancelar</div>
 </div>
 <!-- ############################################ -->
-<div class="body" *ngIf="isUploadImage === 1">
-    <app-subir-imagenes></app-subir-imagenes>
+<div class="body" *ngIf="menuOption === 1">
+    <app-subir-imagenes [usuario]="userSelected"></app-subir-imagenes>
 </div>
 <!-- ############################################ -->
-<div class="body" *ngIf="isUploadImage === 0">
+<div class="body" *ngIf="menuOption === 0">
     <nav>
         Crear Categoria
     </nav>
@@ -110,7 +110,7 @@
     </div>
 </div>
 <!-- ############################################ -->
-<div class="body" *ngIf="isUploadImage === -1">
+<div class="body" *ngIf="menuOption === -1">
     <nav>
         Administrar cuentas
     </nav>

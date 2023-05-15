@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl, } from '@angular/platform-browser';
+import { user } from 'src/interface';
 import { AllService } from 'src/servicios/all.service';
+import { Messenger } from 'src/servicios/messenger';
 
 @Component({
   selector: 'app-subir-imagenes',
@@ -11,11 +13,12 @@ import { AllService } from 'src/servicios/all.service';
 })
 
 export class SubirImagenesComponent implements OnInit {
-
   public isEditImages: boolean = false;
+  @Input() usuario!: user;
 
   constructor(private servicios: AllService,
-    private sanitazer: DomSanitizer) {
+    private sanitazer: DomSanitizer,
+    private messenger: Messenger) {
   }
 
   ngOnInit(): void {
@@ -51,11 +54,14 @@ export class SubirImagenesComponent implements OnInit {
     }
   }
 
-  
+
   public imagesNames: string[] = [];
   public safeUrl: SafeUrl[] = [];
+  public info: string = "Sube y administra las imagenes que vera el usuario."
   verImagenes() {
     this.isEditImages = !this.isEditImages;
+    this.info = 'Carga las imagenes y define los atributos de como se visualizaran las imagenes.';
+
     this.imagesNames = [];
     if (this.soruceImages.files) {
       const files = this.soruceImages.files;
@@ -74,7 +80,7 @@ export class SubirImagenesComponent implements OnInit {
     this.borderType[id] = type;
   }
 
-  
+
   //UPLOAD IMAGES
   subirImagenes() {
     // this.alert_message = "Subiendo Imagenes";
@@ -84,15 +90,9 @@ export class SubirImagenesComponent implements OnInit {
     this.formdata.delete('bordertype');
     this.formdata.append("bordertype", json);
     this.formdata.delete('idUser');
-    // this.formdata.append("idUser", this.userSelected.id);k
+    this.formdata.append("idUser", this.usuario.id);
     this.servicios.uploadImageUser(this.formdata).subscribe((data) => {
-    
-
-      // setTimeout(() => {
-      //   this.isConfirm = true;
-      //   this.showMessage = false;
-      // }, 2000)
-
+      console.log("Datos entrantes: ", data)
     }, (err: HttpErrorResponse) => {
       const status = err.status;
       switch (status) {
@@ -119,4 +119,11 @@ export class SubirImagenesComponent implements OnInit {
     })
   }
 
+  back(){
+    if(this.isEditImages){
+      this.isEditImages = false;
+    }else{
+      this.messenger.setMenuControl(0);
+    }
+  }
 }

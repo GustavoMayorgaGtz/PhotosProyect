@@ -10,11 +10,12 @@
             <img src="./assets/maceta.png" alt="" class="maceta">
         </div>
         <div class="agroup">
-            <div class="informacion">               
+            <div class="informacion">  
+                {{info}}             
             </div>
             <div class="container-right">
                 <div class="btn-crear">
-                    <div class="shadow-container">Regresar</div>
+                    <div class="shadow-container" (click)="back()" >Regresar</div>
                 </div>
                 <div class="usuario-select-container"><b>Configurando al usuario:</b> <span
                         class="green"></span></div>
