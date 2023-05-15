@@ -103,81 +103,10 @@
                     <div class="message_hover">Eliminar usuario</div>
                 </div>
             </div>
-
-
         </div>
-
     </div>
 </div>
 <!-- ############################################ -->
-<div class="body" *ngIf="menuOption === -1">
-    <nav>
-        Administrar cuentas
-    </nav>
-    <div class="container-primary">
-        <div class="maceta1">
-            <img src="./assets/maceta.png" alt="" class="maceta">
-        </div>
-        <div class="maceta2">
-            <img src="./assets/maceta.png" alt="" class="maceta">
-        </div>
-
-        <div class="agroup">
-            <div class="informacion">
-                {{info}}
-            </div>
-            <div class="btn-crear">
-                <div class="shadow-container" (click)="createUser_Event()">{{message}}</div>
-            </div>
-        </div>
-        <div class="agroup-user-create" *ngIf="isCreateUser">
-            <div class="title-container">
-                <hr class="line">
-                <span class="name">Crear Usuario</span>
-                <hr class="line">
-            </div>
-            <div class="container_createUser">
-                <div class="container_entrada">
-                    <div class="title">ID del usuario</div>
-                    <div class="center">
-                        <input type="text" class="inputTxt" #idInput>
-                    </div>
-                </div>
-
-                <hr class="line">
-
-                <div class="container_entrada">
-                    <div class="title">Nombre del usuario</div>
-                    <div class="center">
-                        <input type="text" class="inputTxt" #nameInput>
-                    </div>
-                </div>
-                <div class="btn-guardar" (click)="guardarUsuario_Event(idInput.value, nameInput.value)">Guardar Usuario
-                </div>
-            </div>
-
-        </div>
-        <div class="agroup-user" *ngIf="!isCreateUser">
-            <div class="title-container">
-                <hr class="line">
-                <span class="name">Usuarios</span>
-                <hr class="line">
-            </div>
-            <div class="bloque-usuario" *ngFor="let user of users; let i = index">
-                <span class="nombre">{{user.name}}</span>
-                <span class="id">{{user.id}}</span>
-                <div class="container-drop">
-                    <img src="./assets/upload.png" alt="remove" class="drop-icon" (click)="uploadImages_Event(user)">
-                    <div class="message_hover">Subir imagenes</div>
-                </div>
-                <div class="container-drop">
-                    <img src="./assets/remove.png" alt="remove" class="drop-icon" (click)="drop_user(user.id)">
-                    <div class="message_hover">Eliminar usuario</div>
-                </div>
-            </div>
-
-
-        </div>
-
-    </div>
+<div class="body" *ngIf="menuOption === 2">
+   <app-crear-usuario></app-crear-usuario>
 </div>

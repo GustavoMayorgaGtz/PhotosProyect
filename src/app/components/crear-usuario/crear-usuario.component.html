@@ -1,1 +1,50 @@
-<p>crear-usuario works!</p>
+<nav>
+    Administrar cuentas
+</nav>
+<div class="container-primary">
+    <div class="maceta1">
+        <img src="./assets/maceta.png" alt="" class="maceta">
+    </div>
+    <div class="maceta2">
+        <img src="./assets/maceta.png" alt="" class="maceta">
+    </div>
+
+    <div class="agroup">
+        <div class="informacion">
+            {{info}}
+        </div>
+        <div class="btn-crear" (click)="back()">
+
+            <div class="shadow-container">
+                Regresar
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="title-container">
+            <hr class="line">
+            <span class="name">Crear Usuario</span>
+            <hr class="line">
+        </div>
+        <div class="container_createUser">
+            <div class="container_entrada">
+                <div class="title">ID del usuario</div>
+                <div class="center">
+                    <input type="text" class="inputTxt" #idInput>
+                </div>
+            </div>
+
+            <hr class="line">
+
+            <div class="container_entrada">
+                <div class="title">Nombre del usuario</div>
+                <div class="center">
+                    <input type="text" class="inputTxt" #nameInput>
+                </div>
+            </div>
+            <div class="btn-guardar" (click)="guardarUsuario_Event(idInput.value, nameInput.value)">Guardar Usuario
+            </div>
+        </div>
+
+    </div>
+</div>

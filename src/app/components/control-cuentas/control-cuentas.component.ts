@@ -37,42 +37,24 @@ export class ControlCuentasComponent implements OnInit {
     })
   }
 
-  guardarUsuario_Event(id: string, name: string) {
-    //Crear peticion para registrar nuevo usuario
-    if (id && name) {
-      this.servicios.createUser(id, name).subscribe((user) => {
-        console.log(user)
-        alert("Usuario creado");
-        this.getUsers();
-      }, (err: HttpErrorResponse) => {
-        switch (err.status) {
-          case 0: {
-            alert("No se puede conectar al servidor, intentalo mas tarde.")
-            break;
-          }
-          case 500: {
-            alert("Error en el servidor, la operacion no se pudo realizar")
-            break;
-          }
-        }
-      })
-    }
-  }
+  
 
   public message: string = "Crear usuario";
   public info: string = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
   obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`
   createUser_Event() {
-    this.isCreateUser = !this.isCreateUser;
-    if (this.isCreateUser) {
-      this.message = "Administrar usuarios";
-      this.info = `Registra un nuevo usuario, recuerda que un ID complejo ayuda a la seguridad del usuario ( trata de evitar numero o palabras simples ).`;
+    this.menuOption = 2;
+    // if(this.menuOption = 2)
+    // this.isCreateUser = !this.isCreateUser;
+    // if (this.isCreateUser) {
+    //   this.message = "Administrar usuarios";
+    //   this.info = `Registra un nuevo usuario, recuerda que un ID complejo ayuda a la seguridad del usuario ( trata de evitar numero o palabras simples ).`;
 
-    } else {
-      this.message = "Crear usuario";
-      this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
-      obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`;
-    }
+    // } else {
+    //   this.message = "Crear usuario";
+    //   this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
+    //   obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`;
+    // }
   }
 
   public showMessage: boolean = false;
