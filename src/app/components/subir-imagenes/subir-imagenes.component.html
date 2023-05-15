@@ -1,0 +1,74 @@
+<div class="body">
+    <nav>
+        Cargar Imagenes
+    </nav>
+    <div class="container-primary">
+        <div class="maceta1">
+            <img src="./assets/maceta.png" alt="" class="maceta">
+        </div>
+        <div class="maceta2">
+            <img src="./assets/maceta.png" alt="" class="maceta">
+        </div>
+        <div class="agroup">
+            <div class="informacion">               
+            </div>
+            <div class="container-right">
+                <div class="btn-crear">
+                    <div class="shadow-container">Regresar</div>
+                </div>
+                <div class="usuario-select-container"><b>Configurando al usuario:</b> <span
+                        class="green"></span></div>
+            </div>
+        </div>
+        <div class="title-container">
+            <hr class="line">
+            <span class="name">Editar Imgs</span>
+            <hr class="line">
+        </div>
+    
+        <!--  -->
+        <div *ngIf="isEditImages === false">
+            <span class="uploadImagesTitle_shadow">
+                <span class="uploadImagesTitle">Sube las imagenes del cliente.</span>
+            </span>
+
+            <div class="subirImages-container">
+                <span>
+                    {{images_status}}
+                </span>
+                <!--  -->
+                <div class="seleccion" *ngIf="viewImages" (click)="verImagenes()">Ver seleccion</div>
+                <!-- -->
+                <input type="file" class="imagesInput" #images 
+                    accept="image/png, image/gif, image/jpeg" multiple  (change)="getLocalImages(images)">
+            </div>
+        </div>
+        <!-- * -->
+        <div class="guardar_todo" *ngIf="isEditImages === true">
+            <span>Subir😁👍</span>
+            <div class="up" >Guardar Todo</div>
+            <!--  -->
+            <div class="focus" (click)="subirImagenes()"></div>
+        </div>
+        <!--  -->
+        <div class="container_images"  *ngIf="isEditImages === true">
+            <!-- -->
+                <div class="imagen" *ngFor="let name of imagesNames; let i = index"  >
+                    <div class="prueba">
+                        <div class="prueba2">
+                            <!--  -->
+                            <img  [src]="name | safeUrl"  class="img-style">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <select name="" id=""  #borderType (change)="setBorder(borderType.value, i)">
+                        <option>Sin borde</option>
+                        <option>Doble</option>
+                        <option>Solido</option>
+                        <option>Separado</option>
+                    </select>
+                </div>
+        </div>
+     
+    </div>
+</div>

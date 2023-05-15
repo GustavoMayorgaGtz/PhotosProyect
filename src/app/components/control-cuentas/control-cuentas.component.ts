@@ -84,22 +84,22 @@ export class ControlCuentasComponent implements OnInit {
 
   }
 
-  reset() {
-    if (!this.editImages) {
-      this.isUploadImage = 0;
-      this.message = "Crear usuario";
-      this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
-        obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`;
-    } else {
-      this.editImages = !this.editImages;
-      this.formdata.delete("images");
-      this.formdata.delete('bordertype');
-      this.formdata.delete('idUser');
-      this.borderType = [];
-      this.imagesNames = [];
+  // reset() {
+  //   if (!this.editImages) {
+  //     this.isUploadImage = 0;
+  //     this.message = "Crear usuario";
+  //     this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
+  //       obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`;
+  //   } else {
+  //     this.editImages = !this.editImages;
+  //     this.formdata.delete("images");
+  //     this.formdata.delete('bordertype');
+  //     this.formdata.delete('idUser');
+  //     this.borderType = [];
+  //     this.imagesNames = [];
 
-    }
-  }
+  //   }
+  // }
 
   public isConfirm = true;
   public alert_message: string = "¿Deseas eliminar el usuario?";
@@ -127,119 +127,21 @@ export class ControlCuentasComponent implements OnInit {
       this.showMessage = false;
     }
   }
-
-
-  public images_status: string = "Haz click para subir imagenes";
-  public viewImages: boolean = false;
-  public formdata: FormData = new FormData();
-  public image!: string;
-  public soruceImages!: HTMLInputElement;
-  getLocalImages(images: HTMLInputElement) {
-    this.soruceImages = images;
-    let auxName: string = "";
-    if (this.soruceImages.files) {
-      const files = this.soruceImages.files
-      const sizefiles = files.length;
-      for (let i = 0; i < sizefiles; i++) {
-        this.borderType.push("Sin borde");
-        const thisFile = files.item(i);
-        if (thisFile) {
-          this.formdata.append('images', thisFile);
-        }
-      }
-    }
-
-    if (images.files) {
-      const files = images.files;
-      const size = files.length;
-      auxName = files[0].name;
-      this.images_status = auxName + "... y " + (size - 1) + ' imagenes mas.';
-      this.viewImages = true;
-    }
-  }
-
-  public editImages: boolean = false;
-  public imagesNames: string[] = [];
-  public safeUrl: SafeUrl[] = [];
-  verImagenes() {
-    this.editImages = !this.editImages;
-    this.imagesNames = [];
-    if (this.soruceImages.files) {
-      const files = this.soruceImages.files;
-      const size = files.length;
-      for (let i = 0; i < size; i++) {
-        const url = URL.createObjectURL(files[i])
-        this.imagesNames.push(url);
-        const newSafe = this.sanitazer.bypassSecurityTrustUrl(url);
-        this.safeUrl.push(newSafe);
-      }
-    }
-  }
-
-  public borderType: string[] = [];
-  setBorder(type: string, id: number) {
-    this.borderType[id] = type;
-  }
-
-
-  //UPLOAD IMAGES
-  subirImagenes() {
-    this.alert_message = "Subiendo Imagenes";
-    this.isConfirm = false;
-    this.showMessage = true;
-    const json = JSON.stringify(this.borderType);
-    this.formdata.delete('bordertype');
-    this.formdata.append("bordertype", json);
-    this.formdata.delete('idUser');
-    this.formdata.append("idUser", this.userSelected.id);
-    this.servicios.uploadImageUser(this.formdata).subscribe((data) => {
-      this.alert_message = "Imagenes subidas";
-
-      setTimeout(() => {
-        this.isConfirm = true;
-        this.showMessage = false;
-      }, 2000)
-
-    }, (err: HttpErrorResponse) => {
-      const status = err.status;
-      switch (status) {
-        case 0: {
-          alert("No se pudo conectar al servidor, intentalo mas tarde (0)")
-          break;
-        }
-        case 400: {
-          alert("Error al subir las imagenes, intentalo mas tarde (400)")
-          break;
-        }
-        case 500: {
-          alert("Error interno del servidor, busca soporte tecnico (500)")
-          break;
-        }
-      }
-
-      this.alert_message = "Error subiendo imagenes";
-
-      setTimeout(() => {
-        this.isConfirm = true;
-        this.showMessage = false;
-      }, 2000)
-    })
-  }
-
+  
   public categroy_icon_style: string[] = ['', '', '', '', '', '', '', '', '', ''];
   public idCategorySelected!: number;
   selectIcon_Event(id: number) {
-    this. idCategorySelected = id;
-    this.categroy_icon_style = ['', '', '', '', '', '', '', '', '', ''];
+    this.idCategorySelected = id;
+    this.categroy_icon_style = ['', '', '',   '', '', '', '', '', '', ''];
     this.categroy_icon_style[id] = "icon-option-selected";
     console.log("Opcion marcada");
   }
 
-  guardarCategoria(name: string){
+  guardarCategoria(name: string) {
     const id = sessionStorage.getItem("id");
     console.log("Id del usuario: ", id);
     const option = this.categroy_icon_style.indexOf("icon-option-selected")
-    if(name && option != -1 && option ){
+    if (name && option != -1 && option) {
       const body = {
         iconInteger: option,
         title: name,
@@ -247,11 +149,11 @@ export class ControlCuentasComponent implements OnInit {
       }
       console.log("Datos de creacion", body);
       this.servicios.createCategory(body).subscribe((data) => {
-           console.log("Creacion de categoria: ",data)
+        console.log("Creacion de categoria: ", data)
       }, (err: HttpErrorResponse) => {
-         console.log("error!") 
+        console.log("error!")
       })
-    }else{
+    } else {
       alert("categoria no creada");
     }
   }

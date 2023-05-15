@@ -1,6 +1,6 @@
 <div class="message" *ngIf="showMessage">
     <div class="text_message">
-       {{alert_message}}
+        {{alert_message}}
     </div>
     <div class="space"></div>
     <div class="btn_yes" (click)="message_click_event(true)" *ngIf="isConfirm">Si</div>
@@ -8,67 +8,7 @@
 </div>
 <!-- ############################################ -->
 <div class="body" *ngIf="isUploadImage === 1">
-    <nav>
-        Cargar Imagenes
-    </nav>
-    <div class="container-primary">
-        <div class="maceta1">
-            <img src="./assets/maceta.png" alt="" class="maceta">
-        </div>
-        <div class="maceta2">
-            <img src="./assets/maceta.png" alt="" class="maceta">
-        </div>
-        <div class="agroup">
-            <div class="informacion">                {{info}}
-            </div>
-            <div class="container-right">
-                <div class="btn-crear">
-                    <div class="shadow-container" (click)="reset()">Regresar</div>
-                </div>
-                <div class="usuario-select-container"><b>Configurando al usuario:</b> <span
-                        class="green">{{userSelected.name}}</span></div>
-            </div>
-        </div>
-        <div class="title-container">
-            <hr class="line">
-            <span class="name">Editar Imgs</span>
-            <hr class="line">
-        </div>
-    
-        <div *ngIf="editImages === false">
-            <span class="uploadImagesTitle_shadow">
-                <span class="uploadImagesTitle">Sube las imagenes del cliente.</span>
-            </span>
-
-            <div class="subirImages-container">
-                <span class="subirtxt">{{images_status}}</span>
-                <div class="seleccion" *ngIf="viewImages" (click)="verImagenes()">Ver seleccion</div>
-                <input type="file" class="imagesInput" #images (change)="getLocalImages(images)"
-                    accept="image/png, image/gif, image/jpeg" multiple>
-            </div>
-        </div>
-        <div class="guardar_todo" *ngIf="editImages === true">
-            <span>Subir😁👍</span>
-            <div class="up" >Guardar Todo</div>
-            <div class="focus" (click)="subirImagenes()"></div>
-        </div>
-        <div class="container_images" *ngIf="editImages === true">
-                <div class="imagen"  *ngFor="let name of imagesNames; let i = index">
-                    <div class="prueba">
-                        <div class="prueba2">
-                            <img  [src]="name | safeUrl" class="img-style">
-                        </div>
-                    </div>
-                    <select name="" id="" class="borde" #borderType (change)="setBorder(borderType.value, i)">
-                        <option>Sin borde</option>
-                        <option>Doble</option>
-                        <option>Solido</option>
-                        <option>Separado</option>
-                    </select>
-                </div>
-        </div>
-     
-    </div>
+    <app-subir-imagenes></app-subir-imagenes>
 </div>
 <!-- ############################################ -->
 <div class="body" *ngIf="isUploadImage === 0">
@@ -108,34 +48,34 @@
                     <div class="title">Iconos</div>
                     <div class="container-iconos">
                         <div class="icon-option {{categroy_icon_style[0]}}" (click)="selectIcon_Event(0)">
-                            <img src="./assets/copas.png"  class="icon">
+                            <img src="./assets/copas.png" class="icon">
                         </div>
                         <div class="icon-option {{categroy_icon_style[1]}}" (click)="selectIcon_Event(1)">
-                            <img src="./assets/anillos.png"  class="icon ">
+                            <img src="./assets/anillos.png" class="icon ">
                         </div>
                         <div class="icon-option {{categroy_icon_style[2]}}" (click)="selectIcon_Event(2)">
-                            <img src="./assets/iglesia.png"  class="icon ">
+                            <img src="./assets/iglesia.png" class="icon ">
                         </div>
                         <div class="icon-option {{categroy_icon_style[3]}}" (click)="selectIcon_Event(3)">
-                            <img src="./assets/app.png"  class="icon ">
+                            <img src="./assets/app.png" class="icon ">
                         </div>
                         <div class="icon-option {{categroy_icon_style[4]}}" (click)="selectIcon_Event(4)">
-                            <img src="./assets/party.png"  class="icon ">
+                            <img src="./assets/party.png" class="icon ">
                         </div>
                         <div class="icon-option {{categroy_icon_style[5]}}" (click)="selectIcon_Event(5)">
-                            <img src="./assets/party1.png"  class="icon ">
+                            <img src="./assets/party1.png" class="icon ">
                         </div>
                         <div class="icon-option {{categroy_icon_style[6]}}" (click)="selectIcon_Event(6)">
-                            <img src="./assets/party2.png"  class="icon ">
+                            <img src="./assets/party2.png" class="icon ">
                         </div>
                         <div class="icon-option {{categroy_icon_style[7]}}" (click)="selectIcon_Event(7)">
-                            <img src="./assets/circulo-azul.png"  class="icon ">
+                            <img src="./assets/circulo-azul.png" class="icon ">
                         </div>
                         <div class="icon-option {{categroy_icon_style[8]}}" (click)="selectIcon_Event(8)">
-                            <img src="./assets/circulo-rosa.png"  class="icon ">
+                            <img src="./assets/circulo-rosa.png" class="icon ">
                         </div>
                         <div class="icon-option {{categroy_icon_style[9]}}" (click)="selectIcon_Event(9)">
-                            <img src="./assets/cruz.png"  class="icon ">
+                            <img src="./assets/cruz.png" class="icon ">
                         </div>
                     </div>
                 </div>
@@ -181,7 +121,7 @@
         <div class="maceta2">
             <img src="./assets/maceta.png" alt="" class="maceta">
         </div>
-         
+
         <div class="agroup">
             <div class="informacion">
                 {{info}}
