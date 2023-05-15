@@ -236,11 +236,21 @@ export class ControlCuentasComponent implements OnInit {
   }
 
   guardarCategoria(name: string){
-    console.log("Guardando categoria");
-    console.log("Nombre del medidor: ", name)
+    const id = sessionStorage.getItem("id");
+    console.log("Id del usuario: ", id);
     const option = this.categroy_icon_style.indexOf("icon-option-selected")
     if(name && option != -1 && option ){
-      alert("categoria creada");
+      const body = {
+        iconInteger: option,
+        title: name,
+        id: id
+      }
+      console.log("Datos de creacion", body);
+      this.servicios.createCategory(body).subscribe((data) => {
+           console.log("Creacion de categoria: ",data)
+      }, (err: HttpErrorResponse) => {
+         console.log("error!") 
+      })
     }else{
       alert("categoria no creada");
     }

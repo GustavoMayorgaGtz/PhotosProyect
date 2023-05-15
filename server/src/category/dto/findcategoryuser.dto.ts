@@ -1,3 +1,3 @@
 export class findCategoryUserDto {
-    idUser: number;
+    id: string;
 }

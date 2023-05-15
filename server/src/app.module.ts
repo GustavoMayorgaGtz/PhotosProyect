@@ -7,6 +7,7 @@ import { User } from './user/entities/user.entity';
 import { ImagesModule } from './images/images.module';
 import { Image } from './images/entities/image.entity';
 import { Category } from './category/entities/category.entity';
+import { CategoryModule } from './category/category.module';
 @Module({
   imports: [
     UserModule,
@@ -21,6 +22,7 @@ import { Category } from './category/entities/category.entity';
       synchronize: true,
     }),
     ImagesModule,
+    CategoryModule
   ],
   controllers: [AppController],
   providers: [AppService],

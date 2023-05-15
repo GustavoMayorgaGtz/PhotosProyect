@@ -1,6 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
 import { User } from 'src/user/entities/user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -17,18 +16,18 @@ export class CategoryService {
   ) { }
 
   async create(createCategoryDto: CreateCategoryDto) {
-    const idUser = createCategoryDto.idUser;
+    const id = createCategoryDto.id;
     const iconInteger = createCategoryDto.iconInteger;
     const title = createCategoryDto.title;
 
     //Buscar el usuario al que se le añade la categoria
     const findUser = await this.user.findOne({
       where: {
-        idUser
+        id
       }
     })
     //Validar si el usuario existe
-    if (!idUser) throw new HttpException("User not found", 404);
+    if (!findUser) throw new HttpException("User not found", 404);
 
     //crear categoria
     const newCategory = await this.category.create({
@@ -41,11 +40,11 @@ export class CategoryService {
   }
 
  async findAllUser(findCategoryUserDto: findCategoryUserDto) {
-    const idUser = findCategoryUserDto.idUser;
+    const id = findCategoryUserDto.id;
     //Buscar categorias de usuario
     const findUser =  await this.user.findOne({
       where: {
-        idUser
+        id
       },
       relations:{
         category: true

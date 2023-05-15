@@ -1,19 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Post, Body} from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { findCategoryUserDto } from './dto/findcategoryuser.dto';
 
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Post("Create")
+  @Post("create")
   create(@Body() createCategoryDto: CreateCategoryDto) {
     return this.categoryService.create(createCategoryDto);
   }
 
-  @Post("findCategoryUser")
+  @Post("find")
   findAllUser(@Body() findCategoryUserDto: findCategoryUserDto) {
     return this.categoryService.findAllUser(findCategoryUserDto);
   }
