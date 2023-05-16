@@ -14,7 +14,7 @@ import { Messenger } from 'src/servicios/messenger';
 export class ControlCuentasComponent implements OnInit {
 
   public isCreateUser: boolean = false;
-  public message: string = "Crear usuario";
+
   public info: string = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
   obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`
 
@@ -62,7 +62,7 @@ export class ControlCuentasComponent implements OnInit {
 
 
   createUser_Event() {
-    this.menuOption = 2;
+    this.menuOption = 3;
   }
 
   public showMessage: boolean = false;
@@ -72,7 +72,7 @@ export class ControlCuentasComponent implements OnInit {
     this.showMessage = !this.showMessage;
   }
 
-  public menuOption: number = 0;
+  public menuOption: number = 2;
   public userSelected!: user;
   uploadImages_Event(user: user) {
     this.userSelected = user;

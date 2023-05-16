@@ -9,15 +9,12 @@ import { Messenger } from 'src/servicios/messenger';
   styleUrls: ['./crear-categoria.component.scss']
 })
 export class CrearCategoriaComponent implements OnInit{
-
   constructor(
     private servicios: AllService,
     private messenger: Messenger
   ){ }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {   }
 
   public categroy_icon_style: string[] = ['', '', '', '', '', '', '', '', '', ''];
   public idCategorySelected!: number;
@@ -48,5 +45,6 @@ export class CrearCategoriaComponent implements OnInit{
       alert("categoria no creada");
     }
   }
-
+  back(){
+     this.messenger.setMenuControl(0);  }
 }
