@@ -13,10 +13,12 @@ import { Messenger } from 'src/servicios/messenger';
 
 export class ControlCuentasComponent implements OnInit {
 
-
   public isCreateUser: boolean = false;
+  public message: string = "Crear usuario";
+  public info: string = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
+  obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`
+
   constructor(private servicios: AllService,
-    private sanitazer: DomSanitizer,
     private messenger: Messenger) {
   }
 
@@ -24,9 +26,8 @@ export class ControlCuentasComponent implements OnInit {
     this.getUsers();
     this.messenger.menuControl.subscribe((optionMenu) => {
       this.menuOption = optionMenu
-      this.info ='En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.';
+      this.info = 'En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.';
     })
-
   }
 
   public users: user[] = [];
@@ -37,24 +38,31 @@ export class ControlCuentasComponent implements OnInit {
     })
   }
 
-  
+  guardarUsuario_Event(id: string, name: string) {
+    //Crear peticion para registrar nuevo usuario
+    if (id && name) {
+      this.servicios.createUser(id, name).subscribe((user) => {
+        console.log(user)
+        alert("Usuario creado");
+        this.getUsers();
+      }, (err: HttpErrorResponse) => {
+        switch (err.status) {
+          case 0: {
+            alert("No se puede conectar al servidor, intentalo mas tarde.")
+            break;
+          }
+          case 500: {
+            alert("Error en el servidor, la operacion no se pudo realizar")
+            break;
+          }
+        }
+      })
+    }
+  }
 
-  public message: string = "Crear usuario";
-  public info: string = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
-  obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`
+
   createUser_Event() {
     this.menuOption = 2;
-    // if(this.menuOption = 2)
-    // this.isCreateUser = !this.isCreateUser;
-    // if (this.isCreateUser) {
-    //   this.message = "Administrar usuarios";
-    //   this.info = `Registra un nuevo usuario, recuerda que un ID complejo ayuda a la seguridad del usuario ( trata de evitar numero o palabras simples ).`;
-
-    // } else {
-    //   this.message = "Crear usuario";
-    //   this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
-    //   obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`;
-    // }
   }
 
   public showMessage: boolean = false;
@@ -69,27 +77,7 @@ export class ControlCuentasComponent implements OnInit {
   uploadImages_Event(user: user) {
     this.userSelected = user;
     this.menuOption = 1;
-    this.info = "";
   }
-
-  
-
-  // reset() {
-  //   if (!this.editImages) {
-  //     this.isUploadImage = 0;
-  //     this.message = "Crear usuario";
-  //     this.info = `En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes
-  //       obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.`;
-  //   } else {
-  //     this.editImages = !this.editImages;
-  //     this.formdata.delete("images");
-  //     this.formdata.delete('bordertype');
-  //     this.formdata.delete('idUser');
-  //     this.borderType = [];
-  //     this.imagesNames = [];
-
-  //   }
-  // }
 
   public isConfirm = true;
   public alert_message: string = "¿Deseas eliminar el usuario?";
@@ -117,8 +105,4 @@ export class ControlCuentasComponent implements OnInit {
       this.showMessage = false;
     }
   }
-
-  
-
- 
 }
