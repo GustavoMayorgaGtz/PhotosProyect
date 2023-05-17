@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { user } from 'src/interface';
 import { AllService } from 'src/servicios/all.service';
 import { Messenger } from 'src/servicios/messenger';
 
@@ -10,44 +11,28 @@ import { Messenger } from 'src/servicios/messenger';
 })
 export class VerCategoriaComponent implements OnInit {
 
-
+  @Input() user!: user;
   constructor(
     private servicios: AllService,
     private messenger: Messenger
-  ){ }
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.user);
+    this.getCategorys();
   }
 
-  public categroy_icon_style: string[] = ['', '', '', '', '', '', '', '', '', ''];
-  public idCategorySelected!: number;
-  selectIcon_Event(id: number) {
-    this.idCategorySelected = id;
-    this.categroy_icon_style = ['', '', '', '', '', '', '', '', '', ''];
-    this.categroy_icon_style[id] = "icon-option-selected";
-    console.log("Opcion marcada");
-  }
-
-  guardarCategoria(name: string) {
-    const id = sessionStorage.getItem("id");
-    console.log("Id del usuario: ", id);
-    const option = this.categroy_icon_style.indexOf("icon-option-selected")
-    if (name && option != -1 && option) {
-      const body = {
-        iconInteger: option,
-        title: name,
-        id: id
-      }
-      console.log("Datos de creacion", body);
-      this.servicios.createCategory(body).subscribe((data) => {
-        console.log("Creacion de categoria: ", data)
+  getCategorys(){
+    if(this.user.id){
+      this.servicios.findCategory({id: this.user.id}).subscribe((categorys) => {
+        console.log("Las categorias encontradas son: ",categorys);
       }, (err: HttpErrorResponse) => {
-        console.log("error!")
+        console.log("Error al buscar categorias")
       })
-    } else {
-      alert("categoria no creada");
     }
   }
-  back(){
-     this.messenger.setMenuControl(0);  }
+
+  back() {
+    this.messenger.setMenuControl(0);
+  }
 }

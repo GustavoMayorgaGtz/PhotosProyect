@@ -72,9 +72,10 @@ export class ControlCuentasComponent implements OnInit {
     this.showMessage = !this.showMessage;
   }
 
-  public menuOption: number = 2;
+  public menuOption: number = 0;
   public userSelected!: user;
   uploadImages_Event(user: user) {
+    console.log("Selecciono el usuario: ", user);
     this.userSelected = user;
     this.menuOption = 1;
   }

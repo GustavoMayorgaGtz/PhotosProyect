@@ -51,13 +51,14 @@
 </div>
 <!-- ############################################ -->
 <div class="body" *ngIf="menuOption === 1">
-    <app-subir-imagenes [usuario]="userSelected"></app-subir-imagenes>
+    <app-ver-categoria [user]="userSelected"></app-ver-categoria>
+    <!-- <app-subir-imagenes [usuario]="userSelected"></app-subir-imagenes> -->
 </div>
 <!-- ############################################ -->
 <div class="body" *ngIf="menuOption === 2">
     <!-- Creacion de una categoria -->
-    <!-- <app-crear-categoria></app-crear-categoria> -->
-    <app-ver-categoria></app-ver-categoria>
+    <app-crear-categoria></app-crear-categoria>
+
 </div>
 <!-- ############################################ -->
 <div class="body" *ngIf="menuOption === 3">
