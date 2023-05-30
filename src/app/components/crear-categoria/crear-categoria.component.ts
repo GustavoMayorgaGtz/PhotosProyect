@@ -8,13 +8,13 @@ import { Messenger } from 'src/servicios/messenger';
   templateUrl: './crear-categoria.component.html',
   styleUrls: ['./crear-categoria.component.scss']
 })
-export class CrearCategoriaComponent implements OnInit{
+export class CrearCategoriaComponent implements OnInit {
   constructor(
     private servicios: AllService,
     private messenger: Messenger
-  ){ }
+  ) { }
 
-  ngOnInit(): void {   }
+  ngOnInit(): void { }
 
   public categroy_icon_style: string[] = ['', '', '', '', '', '', '', '', '', ''];
   public idCategorySelected!: number;
@@ -29,7 +29,7 @@ export class CrearCategoriaComponent implements OnInit{
     const id = sessionStorage.getItem("id");
     console.log("Id del usuario: ", id);
     const option = this.categroy_icon_style.indexOf("icon-option-selected")
-    console.log("opcion de validacion: ",option);
+    console.log("opcion de validacion: ", option);
 
     if (name && option != -1 && option >= 0) {
       const body = {
@@ -40,7 +40,7 @@ export class CrearCategoriaComponent implements OnInit{
 
       this.servicios.createCategory(body).subscribe((data) => {
         alert("Categoria creada");
-        
+
       }, (err: HttpErrorResponse) => {
         console.log("error!")
       })
@@ -49,6 +49,7 @@ export class CrearCategoriaComponent implements OnInit{
     }
   }
 
-  back(){
-     this.messenger.setMenuControl(0);  }
+  back() {
+    this.messenger.setMenuControl(0);
+  }
 }

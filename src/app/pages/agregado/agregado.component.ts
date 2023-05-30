@@ -56,6 +56,7 @@ export class AgregadoComponent implements OnInit {
   getUser(){
     if(this.id)
     this.servicios.getImages({idUser: this.id}).subscribe((images) => {
+      console.log(images)
       images.forEach((image) => {
         this.classNames.push("icon-corazon-desactive");
         this.printClass.push("");

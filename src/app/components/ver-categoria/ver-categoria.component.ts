@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { category, user } from 'src/interface';
 import { AllService } from 'src/servicios/all.service';
 import { Messenger } from 'src/servicios/messenger';
@@ -16,59 +17,60 @@ export class VerCategoriaComponent implements OnInit {
 
   constructor(
     private servicios: AllService,
-    private messenger: Messenger
+    private messenger: Messenger,
   ) { }
 
   ngOnInit(): void {
     this.getCategorys();
   }
 
-  public images: string[] =  [];
-  getCategorys(){
-    if(this.user.id){
-      this.servicios.findCategory({id: this.user.id}).subscribe((data) => {
+
+  public images: string[] = [];
+  getCategorys() {
+    if (this.user.id) {
+      this.servicios.findCategory({ id: this.user.id }).subscribe((data) => {
         this.categorias = data.category;
         data.category.forEach((item) => {
-          switch(item.iconInteger){
-            case 0:{
+          switch (item.iconInteger) {
+            case 0: {
               this.images.push("./assets/copas.png");
               break;
             }
-            case 1:{
+            case 1: {
               this.images.push("./assets/anillos.png");
 
               break;
             }
-            case 2:{
+            case 2: {
               this.images.push("./assets/iglesia.png");
               break;
             }
-            case 3:{
+            case 3: {
               this.images.push("./assets/app.png");
               break;
             }
-            case 4:{
+            case 4: {
               this.images.push("./assets/party.png");
 
               break;
             }
-            case 5:{
+            case 5: {
               this.images.push("./assets/party1.png");
               break;
             }
-            case 6:{
+            case 6: {
               this.images.push("./assets/party2.png");
               break;
             }
-            case 7:{
+            case 7: {
               this.images.push("./assets/circulo-azul.png");
               break;
             }
-            case 8:{
+            case 8: {
               this.images.push("./assets/circulo-rosa.png");
               break;
             }
-            case 9:{
+            case 9: {
               this.images.push("./assets/cruz.png");
               break;
             }
@@ -84,11 +86,12 @@ export class VerCategoriaComponent implements OnInit {
     this.messenger.setMenuControl(0);
   }
 
-  crear_category(){
+  crear_category() {
     this.messenger.setMenuControl(2);
   }
 
-  select_category(idCategory: number){
-    
+  select_category(idCategory: number) {
+    this.messenger.setCategory(this.categorias[idCategory].idCategory);
+    this.messenger.setMenuControl(4);
   }
 }

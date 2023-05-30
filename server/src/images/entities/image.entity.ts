@@ -1,3 +1,4 @@
+import { Category } from "src/category/entities/category.entity";
 import { User } from "src/user/entities/user.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -17,6 +18,10 @@ export class Image {
 
     @Column({ nullable: true })
     comments: string
+
+    
+    @ManyToOne(() => Category, Category => Category.idCategory)
+    category: Category
 
     @ManyToOne(() => User, user => user.images)
     user: User

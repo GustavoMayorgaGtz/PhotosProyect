@@ -8,6 +8,9 @@ import { UploadImagesDto } from './dto/uploadImages.dto.';
 import { compress, createDirectoryUser, createName, saveOriginalImage } from 'src/Functions';
 import { Image } from 'src/images/entities/image.entity';
 import { Response } from 'express';
+import { ApiGatewayTimeoutResponse } from '@nestjs/swagger';
+import { Category } from 'src/category/entities/category.entity';
+import { info } from 'console';
 
 
 @Injectable()
@@ -17,6 +20,8 @@ export class UserService {
     private user: Repository<User>,
     @InjectRepository(Image)
     private image: Repository<Image>,
+    @InjectRepository(Category)
+    private category: Repository<Category>,
   ) { }
 
   async create(createUserDto: CreateUserDto) {
@@ -76,11 +81,11 @@ export class UserService {
     }catch(e){
        throw new HttpException("Server Internal Error", 500);
     }
-    
+    const findCategory = await this.category.findOneBy({idCategory: informacion.idCategory});
     const findUser = await this.user.findOneBy({ id: informacion.idUser });
     //Checamos si existe el directorio del usuario
-    if (!findUser) {
-      throw new HttpException("User not found", 404)
+    if (!findUser || !findCategory) {
+      throw new HttpException("User not found or Category not found", 404)
     }
     const id = findUser.idUser;
     const {directorio, directorioOriginal} = await createDirectoryUser(id);
@@ -98,7 +103,8 @@ export class UserService {
         pathCompress: names[id],
         pathOriginal: namesOriginal[id],
         border: thisBorder,
-        user: findUser
+        user: findUser,
+        category: findCategory
       })
       this.image.save(newImage);
     })
@@ -112,7 +118,8 @@ export class UserService {
         id:id
       },
       relations:{
-        images: true
+        images: true,
+        category: true
       }
     })
     if(!users) throw new HttpException("No User Found", 404);
@@ -127,6 +134,7 @@ export class UserService {
 
   async remove(id: string) {
     console.log('--> Peticion para eliminar usuario');
+    //TODO: aun no se elimina la ruta de las imagenes
     const deleteUserInf = await this.user.delete({ id: id });
     console.log(deleteUserInf + '| ID:' + id);
     return deleteUserInf;

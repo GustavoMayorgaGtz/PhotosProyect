@@ -22,11 +22,16 @@ export class ControlCuentasComponent implements OnInit {
     private messenger: Messenger) {
   }
 
+  public categorySelected!: number;
   ngOnInit(): void {
     this.getUsers();
     this.messenger.menuControl.subscribe((optionMenu) => {
       this.menuOption = optionMenu
       this.info = 'En esta opcion puedes gestionar y administrar los usuarios de la plataforma. Puedes obtener el ID de cada usuario para que el cliente pueda iniciar sesion y ver las imagenes que tu subas.';
+    })
+
+    this.messenger.categorySelect.subscribe((categoryId) => {
+      this.categorySelected = categoryId;
     })
   }
 
