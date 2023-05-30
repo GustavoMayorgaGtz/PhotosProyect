@@ -234,6 +234,12 @@ nav {
 }
 
 //IMPLEMENTANDO DISEÑOS DISTINTOS DESDE AQUI
+.container-category{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
 .primary-container {
     width: 100%;
     height: 100%;
@@ -294,8 +300,6 @@ nav {
             }
         }
     }
-
-
 }
 
 @keyframes planta {

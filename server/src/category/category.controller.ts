@@ -14,8 +14,8 @@ export class CategoryController {
   }
 
   @Post("find")
-  findAllUser(@Body() findCategoryUserDto: findCategoryUserDto) {
-    return this.categoryService.findAllUser(findCategoryUserDto);
+  findAll(@Body() findCategoryUserDto: findCategoryUserDto) {
+    return this.categoryService.findAll(findCategoryUserDto);
   }
 
   // @Get(':id')

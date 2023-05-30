@@ -14,9 +14,9 @@ import { CategoryModule } from './category/category.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 8080,
+      port: 3306,
       username: 'root',
-      password: '',
+      password: 'root',
       database: 'photorepublic',
       entities: [User, Image, Category],
       synchronize: true,

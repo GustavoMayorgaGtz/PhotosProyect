@@ -10,3 +10,17 @@ export interface ImagesCompress{
     pathCompress: string,
     border: string
 }
+
+export interface category{
+     idCategory: number,
+     iconInteger: number,
+     title: string
+}
+
+export interface userCategory{
+    id:string,
+    category: category[],
+    idUser:number,
+    name:string,
+    type:number
+}

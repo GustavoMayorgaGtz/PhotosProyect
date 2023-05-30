@@ -29,15 +29,18 @@ export class CrearCategoriaComponent implements OnInit{
     const id = sessionStorage.getItem("id");
     console.log("Id del usuario: ", id);
     const option = this.categroy_icon_style.indexOf("icon-option-selected")
-    if (name && option != -1 && option) {
+    console.log("opcion de validacion: ",option);
+
+    if (name && option != -1 && option >= 0) {
       const body = {
         iconInteger: option,
         title: name,
         id: id
       }
-      console.log("Datos de creacion", body);
+
       this.servicios.createCategory(body).subscribe((data) => {
-        console.log("Creacion de categoria: ", data)
+        alert("Categoria creada");
+        
       }, (err: HttpErrorResponse) => {
         console.log("error!")
       })
@@ -45,6 +48,7 @@ export class CrearCategoriaComponent implements OnInit{
       alert("categoria no creada");
     }
   }
+
   back(){
      this.messenger.setMenuControl(0);  }
 }

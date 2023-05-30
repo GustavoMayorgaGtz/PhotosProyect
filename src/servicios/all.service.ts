@@ -1,7 +1,7 @@
 import { EnvironmentInjector, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { varglobal } from 'src/var-global/var-global';
-import { ImagesCompress, user } from 'src/interface';
+import { ImagesCompress, user, userCategory } from 'src/interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -57,6 +57,6 @@ export class AllService {
 
   //Conexion para buscar las categorias
   findCategory(body: object) {
-    return this.http.post(varglobal.server + "/category/find", body);
+    return this.http.post<userCategory>(varglobal.server + "/category/find", body);
   }
 }

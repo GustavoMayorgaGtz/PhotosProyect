@@ -39,7 +39,7 @@ export class CategoryService {
     return this.category.save(newCategory);
   }
 
- async findAllUser(findCategoryUserDto: findCategoryUserDto) {
+ async findAll(findCategoryUserDto: findCategoryUserDto) {
     const id = findCategoryUserDto.id;
     //Buscar categorias de usuario
     const findUser =  await this.user.findOne({
