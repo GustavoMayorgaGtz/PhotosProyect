@@ -23,8 +23,8 @@ export class SubirImagenesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Id de la categoria seleccionada: ",this.categoryId);
-    console.log("usuario: ", this.usuario);
+    // console.log("Id de la categoria seleccionada: ",this.categoryId);
+    // console.log("usuario: ", this.usuario);
   }
 
   public images_status: string = "Haz click para subir imagenes";
@@ -96,7 +96,7 @@ export class SubirImagenesComponent implements OnInit {
     this.formdata.delete('idCategory');
     this.formdata.append("idCategory", this.categoryId.toString());
     this.servicios.uploadImageUser(this.formdata).subscribe((data) => {
-      console.log("Datos entrantes: ", data)
+      // console.log("Datos entrantes: ", data)
     }, (err: HttpErrorResponse) => {
       const status = err.status;
       switch (status) {

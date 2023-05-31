@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { user } from 'src/interface';
 import { AllService } from 'src/servicios/all.service';
 import { Messenger } from 'src/servicios/messenger';
 
@@ -9,6 +10,7 @@ import { Messenger } from 'src/servicios/messenger';
   styleUrls: ['./crear-categoria.component.scss']
 })
 export class CrearCategoriaComponent implements OnInit {
+  @Input('user') user!: user;
   constructor(
     private servicios: AllService,
     private messenger: Messenger
@@ -22,28 +24,30 @@ export class CrearCategoriaComponent implements OnInit {
     this.idCategorySelected = id;
     this.categroy_icon_style = ['', '', '', '', '', '', '', '', '', ''];
     this.categroy_icon_style[id] = "icon-option-selected";
-    console.log("Opcion marcada");
+    // console.log("Opcion marcada");
   }
 
   guardarCategoria(name: string) {
-    const id = sessionStorage.getItem("id");
-    console.log("Id del usuario: ", id);
-    const option = this.categroy_icon_style.indexOf("icon-option-selected")
-    console.log("opcion de validacion: ", option);
+    if (this.user.id) {
+      const option = this.categroy_icon_style.indexOf("icon-option-selected")
+      // console.log("opcion de validacion: ", option);
 
-    if (name && option != -1 && option >= 0) {
-      const body = {
-        iconInteger: option,
-        title: name,
-        id: id
+      if (name && option != -1 && option >= 0) {
+        const body = {
+          iconInteger: option,
+          title: name,
+          id: this.user.id
+        }
+
+        this.servicios.createCategory(body).subscribe((data) => {
+          alert("Categoria creada");
+
+        }, (err: HttpErrorResponse) => {
+          console.error("error!", err.message);
+        })
+      } else {
+        alert("categoria no creada");
       }
-
-      this.servicios.createCategory(body).subscribe((data) => {
-        alert("Categoria creada");
-
-      }, (err: HttpErrorResponse) => {
-        console.log("error!")
-      })
     } else {
       alert("categoria no creada");
     }

@@ -46,7 +46,7 @@ export class AllService {
 
   //Peticion para subir imagenes
   uploadImageUser(Files: FormData) {
-    console.log(Files)
+    // console.log(Files)
     return this.http.post(varglobal.server + "/user/uploadFiles", Files);
   }
 

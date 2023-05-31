@@ -321,29 +321,37 @@
     border-right: 1px double rgb(156, 156, 156);
 }
 
-.container-grid > .container-grid-left > .category{
-  display: flex;
-  width: 100%;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
-  cursor: pointer;
-  transition: all 0.5s;
-  &:hover{
-    background-color: rgb(54, 54, 54);
-    color: white;
+.container-grid>.container-grid-left>.category {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    color: black;
+    cursor: pointer;
     transition: all 0.5s;
-  }
+
+    .focus_category {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover {
+        background-color: rgb(54, 54, 54);
+        color: white;
+        transition: all 0.5s;
+    }
 }
 
-.container-grid > .container-grid-left > .category > .category-icon{
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-  }
+.container-grid>.container-grid-left>.category>.category-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
 
 .container-grid>.container-grid-right {
     width: 100%;
@@ -501,6 +509,7 @@
     right: 20px;
     cursor: pointer;
     z-index: 1;
+
     &:hover {
         .mandar-inf {
             position: absolute;

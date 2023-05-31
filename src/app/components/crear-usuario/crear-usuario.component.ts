@@ -32,7 +32,7 @@ export class CrearUsuarioComponent implements OnInit{
     //Crear peticion para registrar nuevo usuario
     if (id && name) {
       this.servicios.createUser(id, name).subscribe((user) => {
-        console.log(user)
+        // console.log(user)
         //TODO: alert
         alert("Usuario creado");
         this.getUsers();

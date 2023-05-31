@@ -9,6 +9,7 @@ export interface ImagesCompress {
     idImage: number,
     pathCompress: string,
     border: string,
+    category: category
 }
 
 export interface category {

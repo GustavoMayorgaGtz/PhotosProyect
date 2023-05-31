@@ -15,6 +15,8 @@ export class InicioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    sessionStorage.removeItem("id");
+    sessionStorage.clear();
   }
 
   logIn(value: string) {
@@ -37,7 +39,7 @@ export class InicioComponent implements OnInit {
       }
     }, (err: HttpErrorResponse) => {
       alert("Hubo un problema para iniciar sesion");
-      console.log("Error de entrada: ", err);
+      // console.log("Error de entrada: ", err);
     });
 
 

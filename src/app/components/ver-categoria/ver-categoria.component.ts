@@ -18,9 +18,11 @@ export class VerCategoriaComponent implements OnInit {
   constructor(
     private servicios: AllService,
     private messenger: Messenger,
-  ) { }
-
+  ) { 
+  }
+  
   ngOnInit(): void {
+    // console.log("Ver categoria, usuario: ", this.user);
     this.getCategorys();
   }
 
@@ -77,7 +79,7 @@ export class VerCategoriaComponent implements OnInit {
           }
         })
       }, (err: HttpErrorResponse) => {
-        console.log("Error al buscar categorias")
+        // console.log("Error al buscar categorias")
       })
     }
   }

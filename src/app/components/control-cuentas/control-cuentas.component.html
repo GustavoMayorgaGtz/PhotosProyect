@@ -57,7 +57,7 @@
 <!-- ############################################ -->
 <div class="body" *ngIf="menuOption === 2">
     <!-- Creacion de una categoria -->
-    <app-crear-categoria></app-crear-categoria>
+    <app-crear-categoria [user]="userSelected"></app-crear-categoria>
 </div>
 <!-- ############################################ -->
 <div class="body" *ngIf="menuOption === 3">
