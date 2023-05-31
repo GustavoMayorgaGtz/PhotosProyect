@@ -1,7 +1,5 @@
 import * as fs from 'fs';
-import { HttpException } from '@nestjs/common';
 import * as Jimp from 'jimp';
-import * as sharp from 'sharp';
 
 
 export const createName = (size, directorio) => {
