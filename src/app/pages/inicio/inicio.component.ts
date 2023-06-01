@@ -9,6 +9,8 @@ import { AllService } from 'src/servicios/all.service';
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
+
+  public isLogin: boolean = false;
   constructor(
     private router: Router,
     private servicios: AllService,
@@ -41,7 +43,9 @@ export class InicioComponent implements OnInit {
       alert("Hubo un problema para iniciar sesion");
       // console.log("Error de entrada: ", err);
     });
+  }
 
-
+  enable_Login(){
+    this.isLogin = !this.isLogin;
   }
 }

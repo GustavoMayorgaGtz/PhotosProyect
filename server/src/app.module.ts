@@ -16,7 +16,7 @@ import { CategoryModule } from './category/category.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'root',
+      password: '1502',
       database: 'photorepublic',
       entities: [User, Image, Category],
       synchronize: true,

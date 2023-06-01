@@ -1,24 +1,103 @@
 <div class="body">
-  <div class="nav">
+
+  <main class="primary-container" *ngIf="!isLogin">
+    <section class="banner1">
+      <div class="left">
+        Photorepublic busca capturar momentos inolvidables y convertirlos en recuerdos
+        duraderos. Nuestro enfoque principal es brindar servicios fotográficos profesionales para una amplia variedad de
+        ocasiones, desde bodas y eventos especiales hasta sesiones familiares y retratos individuales.</div>
+      <div class="right">
+        Photo Republic
+      </div>
+    </section>
+    <div class="container-title">
+      <div class="left">
+        <div class="big-circle"></div>
+        <div class="circle"></div>
+        <div class="little-circle"></div>
+      </div>
+      <div class="center">Explora y Prueba</div>
+      <div class="right">
+        <div class="little-circle"></div>
+        <div class="circle"></div>
+        <div class="big-circle"></div>
+      </div>
+    </div>
+    <section class="banner2">
+      <div class="left">
+        <!-- Instagram Card -->
+        <div class="card">
+          <div class="title">
+            <div class="icon"></div>
+            Gustavo Mayorga
+          </div>
+          <div class="photo">
+
+          </div>
+          <div class="controls">
+            <div class="icon">
+              <img src="./assets/corazon.png">
+            </div>
+            <div class="icon">
+              <img src="./assets/charla.png">
+            </div>
+            <div class="icon">
+              <img src="./assets/enviar.png">
+            </div>
+            <div></div>
+            <div class="icon">
+              <img src="./assets/guardar.png">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center">
+        <div class="card">
+          <img src="./assets/image1.png" alt="">
+          <div class="marco"></div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="informacion">
+
+          ¡Accede a tu cuenta personalizada y descubre un mundo de imágenes únicas! En Photorepublic, valoramos tu
+          experiencia y queremos brindarte un servicio excepcional. Al iniciar sesión en tu cuenta, tendrás acceso
+          exclusivo a todas tus fotografías, donde podrás revivir los momentos especiales capturados por nuestros
+          talentosos fotógrafos.
+
+        </div>
+        <div class="card" (click)="enable_Login()">
+          Inciar sesion
+          <div class="icon">
+            <img src="./assets/flecha.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <main *ngIf="isLogin">
+      <nav class="nav">
     <div class="container-icon">
       Photo Republic
     </div>
-    <span class="subtitle">Ingresa tus credenciales</span>
-  </div>
-  <div class="container-informacion">
-    <div class="container-info">
-      <img src="./assets/informacion.png" alt="informacion" class="informacion">
+    <span class="subtitle"></span>
+  </nav> 
+     <div class="container-informacion">
+      <div class="container-info">
+        <img src="./assets/informacion.png" alt="informacion" class="informacion">
+      </div>
+      <span class="normal">Ingresa tu id para acceder a las imagenes😍</span>
     </div>
-    <span class="normal">Ingresa tu id para acceder a las imagenes😍</span>
-  </div>
-  <div class="container-entradas">
-    <div class="container-agroup">
-      <span class="normal">
-        ID de usuario
-      </span>
-      <input type="text" class="inputText" #idInput placeholder="4567-2344-2345">
-    </div>
+    <div class="container-entradas">
+      <div class="container-agroup">
+        <span class="normal">
+          ID de usuario
+        </span>
+        <input type="text" class="inputText" #idInput placeholder="4567-2344-2345">
+      </div>
 
-    <div class="btn-entrar" (click)="logIn(idInput.value)">Entrar</div>
-  </div>
+      <div class="btn-entrar" (click)="logIn(idInput.value)">Entrar</div>
+    </div>
+  </main>
 </div>
