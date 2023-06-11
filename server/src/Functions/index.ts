@@ -34,16 +34,18 @@ export function createDirectoryUser(id) {
 }
 
 export function saveOriginalImage(file, name){
-    fs.writeFile(name, file, 'binary', (err) => {
-        if (err) throw err;
-        console.log('Imagen original guardada');
-      });
+    return new Promise((resolve, reject) => {
+        fs.writeFile(name, file, 'binary', (err) => {
+            if (err) reject(false);
+            console.log('Imagen original guardada');
+            resolve(true)
+          });
+    })  
 }
 
 export function compress(file, name) {
     fs.writeFile(name, file.buffer, (err) => {
        if(err){
-
        }else{
         waterMark(name);
        }
@@ -66,6 +68,7 @@ export function waterMark(name) {
         .then(async (image) => {
                 const w = image.getWidth()
                 const h =  image.getHeight()
+                
                 let compressWidth;
                 let compressHeight;
                 if(h > w){
@@ -74,6 +77,10 @@ export function waterMark(name) {
                 }
                 if(w > h){
                     compressWidth = 800;
+                    compressHeight = 500;
+                }
+                if(w == h){
+                    compressWidth = 500;
                     compressHeight = 500;
                 }
                 image

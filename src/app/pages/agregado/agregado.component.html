@@ -69,7 +69,7 @@
                             <img src="./assets/print.png" class="informacion-icon" style="filter: invert(1);">
                             <span class="line">-</span>
                             <span class="informacion-text">
-                                Selecciona las imagenes que quieres que sean imprimidas.
+                                Selecciona las imagenes que quieres que sean impresas.
                             </span>
                         </div>
                         <div class="container-parrafo">
@@ -82,12 +82,13 @@
                     </div>
                 </div>
                 <!--***-->
-                <div class="bloqueImage" *ngFor="let image of images; let i = index">
-                    <div class="container-checkbox" (dblclick)="doubleClick(i)">
-                        <img src="./assets/corazon.png " [class]="classNames[i]" oncontextmenu="return false;">
+                <!-- *************************************************** -->
+                <!-- Estilos nuevos para cada caso de orientacion -->
+                <div *ngFor="let image of images; let i = index" class="bloqueImage {{image.orientation}}">
+                    <div class="container-image" (dblclick)="doubleClick(i)">
+                        <img [src]="image.pathCompress | safeUrl" alt="" #image class="image-generate">
                     </div>
-                    <img [src]="image.pathCompress | safeUrl" alt="" #image class="image-generate">
-                    <div class="controls">
+                    <div class="container-controls">
                         <div class="control1 controlSelect" (click)="doubleClick(i)"
                             *ngIf="classNames[i] === 'icon-corazon-active'">
                             <img src="./assets/heart.png" alt="" class="icon-control">
@@ -107,6 +108,37 @@
                         </div>
                     </div>
                 </div>
+                <br>
+                <br>
+                <br>
+                <!-- Estilos nuevos para cada caso de orientacion -->
+                <!-- *************************************************** -->
+
+                <!-- <div class="bloqueImage" *ngFor="let image of images; let i = index">
+                    <div class="container-checkbox" (dblclick)="doubleClick(i)">
+                        <img src="./assets/corazon.png " [class]="classNames[i]" oncontextmenu="return false;">
+                    </div>
+                    
+                    <div class="controls">
+                        <div class="control1 controlSelect" (click)="doubleClick(i)"
+                            *ngIf="classNames[i] === 'icon-corazon-active'">
+                            <img src="./assets/heart.png" alt="" class="icon-control">
+                        </div>
+
+                        <div class="control1" (click)="doubleClick(i)" *ngIf="classNames[i] !== 'icon-corazon-active'">
+                            <img src="./assets/love.png" alt="" class="icon-control">
+                        </div>
+                        <div class="control2" (click)="PrintZoom_Event('Zoom', i)" [class]="zoomClass[i]">
+                            <img src="./assets/ampliacion.png" alt="" class="icon-control">
+                        </div>
+                        <div class="control3" (click)="PrintZoom_Event('Print', i)" [class]="printClass[i]">
+                            <img src="./assets/print.png" alt="" class="icon-control">
+                        </div>
+                        <div class="control4" (click)="fullScreen_Event(i)">
+                            <img src="./assets/zoom.png" alt="" class="icon-control">
+                        </div>
+                    </div>
+                </div> -->
                 <!--***-->
                 <br>
                 <br>

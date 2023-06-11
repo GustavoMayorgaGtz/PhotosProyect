@@ -14,7 +14,7 @@ const routes: Routes = [
         loadChildren: () => import('./inicio/inicio-module.module').then(m => m.InicioModuleModule)
       },
       {
-        path: 'agregar',
+        path: 'fotos',
         loadChildren: () => import('./agregado/agregado-module.module').then(m => m.AgregadoModule)
       },
       {

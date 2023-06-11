@@ -35,10 +35,14 @@ export class ImagesService {
         idImage: true,
         pathCompress: true,
         pathOriginal:false,
-        border: true
+        border: true,
+        orientation: true 
       },
       relations:{
         category: true
+      },
+      order:{
+        orientation: 'ASC'
       }
     })
 

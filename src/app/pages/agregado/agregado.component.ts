@@ -61,7 +61,8 @@ export class AgregadoComponent implements OnInit {
           idImage: image.idImage,
           pathCompress: varglobal.server + "/" + thispath,
           border: image.border,
-          category: image.category
+          category: image.category,
+          orientation: image.orientation,
         })
       }
     });
@@ -80,8 +81,9 @@ export class AgregadoComponent implements OnInit {
       this.servicios.getImages({ idUser: this.id }).subscribe((images) => {
         let categorynames: string[] = [];
         let idCategory: number[] = [];
-        ////
         this.allImages = images;
+
+        //Guardar las imagenes por ordern
         images.forEach((image) => {
           if (!categorynames.includes(image.category.title)) {
             this.categorys.push(image.category);
@@ -89,10 +91,12 @@ export class AgregadoComponent implements OnInit {
             idCategory.push(image.category.iconInteger);
           }
         })
+
         if (this.categorys) {
           const idFirstCategory = this.categorys[0].idCategory;
           this.select_category(idFirstCategory);
         }
+
         this.categoryImages = setCategoryImage(idCategory);
         ////
 
@@ -115,8 +119,6 @@ export class AgregadoComponent implements OnInit {
       })
   }
 
-
-
   PrintZoom_Event(option: string, id: number): void {
     if (option === 'Print') {
       if (this.printClass[id] === 'controlSelect') {
@@ -134,17 +136,12 @@ export class AgregadoComponent implements OnInit {
     }
   }
 
-
-
-
   doubleClick(position: number) {
     if (this.classNames[position].match('icon-corazon-active')) {
       this.classNames[position] = "icon-corazon-hide";
-
     } else {
       this.classNames[position] = "icon-corazon-active";
     }
-
   }
 
   fullScreen_Event(id: number) {

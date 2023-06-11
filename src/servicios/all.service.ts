@@ -47,7 +47,10 @@ export class AllService {
   //Peticion para subir imagenes
   uploadImageUser(Files: FormData) {
     // console.log(Files)
-    return this.http.post(varglobal.server + "/user/uploadFiles", Files);
+    return this.http.post(varglobal.server + "/user/uploadFiles", Files, {
+      reportProgress: true, // Habilita el seguimiento del progreso
+      observe: 'events', // Observa los eventos de progreso
+    });
   }
 
   //Conexion para crear una categoria

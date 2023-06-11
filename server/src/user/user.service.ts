@@ -1,16 +1,15 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { LoginUserDto } from './dto/login-user.dto';
 import { UploadImagesDto } from './dto/uploadImages.dto.';
 import { compress, createDirectoryUser, createName, saveOriginalImage } from 'src/Functions';
 import { Image } from 'src/images/entities/image.entity';
 import { Response } from 'express';
-import { ApiGatewayTimeoutResponse } from '@nestjs/swagger';
 import { Category } from 'src/category/entities/category.entity';
-import { info } from 'console';
+import { Repository } from 'typeorm';
+import * as sharp from 'sharp';
 
 
 @Injectable()
@@ -74,55 +73,75 @@ export class UserService {
     informacion: UploadImagesDto,
     res: Response
   ) {
-    let borderType = []; 
-    try{
+    let borderType = [];
+    try {
       borderType = JSON.parse(informacion.bordertype);
       console.log(borderType);
-    }catch(e){
-       throw new HttpException("Server Internal Error", 500);
+    } catch (e) {
+      throw new HttpException("Server Internal Error", 500);
     }
-    const findCategory = await this.category.findOneBy({idCategory: informacion.idCategory});
+    const findCategory = await this.category.findOneBy({ idCategory: informacion.idCategory });
     const findUser = await this.user.findOneBy({ id: informacion.idUser });
     //Checamos si existe el directorio del usuario
     if (!findUser || !findCategory) {
       throw new HttpException("User not found or Category not found", 404)
     }
     const id = findUser.idUser;
-    const {directorio, directorioOriginal} = await createDirectoryUser(id);
-  
+    const { directorio, directorioOriginal } = await createDirectoryUser(id);
+
     let names = [];
     let namesOriginal = [];
     const size = files.length;
     names = createName(size, directorio);
     namesOriginal = createName(size, directorioOriginal);
-    files.forEach(async (data,id) => {
-      saveOriginalImage(data.buffer, namesOriginal[id]);
-      compress(data, names[id]);
-      const thisBorder = borderType[id];
-      const newImage = await this.image.create({
-        pathCompress: names[id],
-        pathOriginal: namesOriginal[id],
-        border: thisBorder,
-        user: findUser,
-        category: findCategory
+    files.forEach(async (data, id) => {
+      saveOriginalImage(data.buffer, namesOriginal[id]).then(async () => {
+        try {
+          const metadata = await sharp(namesOriginal[id]).metadata();
+          const { width, height } = metadata;
+          let orientation;
+          if (width > height) {
+            orientation = "landscape";
+          } else if (height > width) {
+            orientation = "portrait";
+          } else if (width == height) {
+            orientation = "equal";
+          }
+          const thisBorder = borderType[id];
+          const newImage = await this.image.create({
+            pathCompress: names[id],
+            pathOriginal: namesOriginal[id],
+            border: thisBorder,
+            user: findUser,
+            category: findCategory,
+            orientation
+          })
+          this.image.save(newImage);
+        } catch (e) {
+          console.log("error guardando imagen: ", e);
+        }
+      }).catch(() => {
+        console.log("Error al guardar el archivo")
       })
-      this.image.save(newImage);
+      compress(data, names[id]);
+     
     })
-    res.status(HttpStatus.OK).send({upload:true})
+
+    //res.status(HttpStatus.OK).send({upload:true})
   }
 
 
   async findOne(id: string) {
     const users = await this.user.find({
-      where:{
-        id:id
+      where: {
+        id: id
       },
-      relations:{
+      relations: {
         images: true,
         category: true
       }
     })
-    if(!users) throw new HttpException("No User Found", 404);
+    if (!users) throw new HttpException("No User Found", 404);
     console.log(users);
     return users[0];
   }

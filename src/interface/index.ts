@@ -9,7 +9,8 @@ export interface ImagesCompress {
     idImage: number,
     pathCompress: string,
     border: string,
-    category: category
+    category: category,
+    orientation: 'landscape'|'portrait'|'equal'
 }
 
 export interface category {

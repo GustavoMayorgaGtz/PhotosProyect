@@ -8,7 +8,6 @@ import {
   UseInterceptors,
   UploadedFiles,
   Res,
-
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -16,7 +15,6 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { UploadImagesDto } from './dto/uploadImages.dto.';
 import { Response } from 'express';
-import { info } from 'console';
 
 @Controller('user')
 export class UserController {
@@ -38,9 +36,6 @@ export class UserController {
     @Body() informacion: UploadImagesDto,
     @Res() res : Response
   ) {
-    console.log("Informacion para guardar imagenes: ");
-    console.log(informacion);
-
     this.userService.uploadFiles( images, informacion,res);
   }
 

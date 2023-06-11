@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl, } from '@angular/platform-browser';
@@ -33,6 +33,8 @@ export class SubirImagenesComponent implements OnInit {
   public image!: string;
   public soruceImages!: HTMLInputElement;
   getLocalImages(images: HTMLInputElement) {
+    this.borderType = [];
+    this.formdata.delete('images');
     this.soruceImages = images;
     let auxName: string = "";
     if (this.soruceImages.files) {
@@ -83,7 +85,10 @@ export class SubirImagenesComponent implements OnInit {
   }
 
 
-  //UPLOAD IMAGES
+  //UPLOAD IMAGES]
+
+ public uploadProgress!: number;
+
   subirImagenes() {
     // this.alert_message = "Subiendo Imagenes";
     // this.isConfirm = false;
@@ -95,8 +100,18 @@ export class SubirImagenesComponent implements OnInit {
     this.formdata.append("idUser", this.usuario.id);
     this.formdata.delete('idCategory');
     this.formdata.append("idCategory", this.categoryId.toString());
-    this.servicios.uploadImageUser(this.formdata).subscribe((data) => {
-      // console.log("Datos entrantes: ", data)
+    this.servicios.uploadImageUser(this.formdata).subscribe(  (event) => {
+      if (event.type === HttpEventType.UploadProgress) {
+        // Calcula y actualiza el progreso de carga
+        if(event.total){
+          this.uploadProgress = Math.round((100 * event.loaded) / event.total);
+        }else{
+          console.log("Event Total undefined")
+        }
+      } else if (event.type === HttpEventType.Response) {
+        // El archivo se ha cargado correctamente
+        alert("Archivos cargados");
+      }
     }, (err: HttpErrorResponse) => {
       const status = err.status;
       switch (status) {

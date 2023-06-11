@@ -48,6 +48,9 @@
         <div class="guardar_todo" *ngIf="isEditImages === true">
             <span>Subir😁👍</span>
             <div class="up" >Guardar Todo</div>
+            <div *ngIf="uploadProgress > 0">
+                <p>Progreso de carga: {{ uploadProgress }}%</p>
+              </div>
             <!--  -->
             <div class="focus" (click)="subirImagenes()"></div>
         </div>

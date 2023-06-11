@@ -29,7 +29,7 @@ export class InicioComponent implements OnInit {
         {
           //Usuario normal
           sessionStorage.setItem("id", user.id)
-          this.router.navigate(['/agregar'])
+          this.router.navigate(['/fotos'])
         }else{
           //Usuario administrador
           sessionStorage.setItem("id", user.id)

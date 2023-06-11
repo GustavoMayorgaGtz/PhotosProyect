@@ -19,6 +19,8 @@ export class Image {
     @Column({ nullable: true })
     comments: string
 
+    @Column({ nullable: true})
+    orientation: string
     
     @ManyToOne(() => Category, Category => Category.idCategory)
     category: Category
