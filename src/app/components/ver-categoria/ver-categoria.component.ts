@@ -31,56 +31,9 @@ export class VerCategoriaComponent implements OnInit {
   getCategorys() {
     if (this.user.id) {
       this.servicios.findCategory({ id: this.user.id }).subscribe((data) => {
-        this.categorias = data.category;
-        data.category.forEach((item) => {
-          switch (item.iconInteger) {
-            case 0: {
-              this.images.push("./assets/copas.png");
-              break;
-            }
-            case 1: {
-              this.images.push("./assets/anillos.png");
-
-              break;
-            }
-            case 2: {
-              this.images.push("./assets/iglesia.png");
-              break;
-            }
-            case 3: {
-              this.images.push("./assets/app.png");
-              break;
-            }
-            case 4: {
-              this.images.push("./assets/party.png");
-
-              break;
-            }
-            case 5: {
-              this.images.push("./assets/party1.png");
-              break;
-            }
-            case 6: {
-              this.images.push("./assets/party2.png");
-              break;
-            }
-            case 7: {
-              this.images.push("./assets/circulo-azul.png");
-              break;
-            }
-            case 8: {
-              this.images.push("./assets/circulo-rosa.png");
-              break;
-            }
-            case 9: {
-              this.images.push("./assets/cruz.png");
-              break;
-            }
-          }
-        })
       }, (err: HttpErrorResponse) => {
-        // console.log("Error al buscar categorias")
-      })
+        
+      })           
     }
   }
 

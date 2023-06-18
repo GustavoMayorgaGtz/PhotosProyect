@@ -12,6 +12,9 @@ export class User {
   @Column({ nullable: false, unique: true })
   id: string;
 
+  @Column({ nullable: false })
+  typeEvent: string;
+
   @Column({ nullable: true, default: 1 })
   type: number;
 

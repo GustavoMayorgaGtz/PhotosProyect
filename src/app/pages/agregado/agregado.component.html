@@ -26,8 +26,9 @@
         </div>
     </nav>
     <!---------------------->
+    <!-- Imagen full screen -->
     <section class="container-images" *ngIf="bodyStyle === 1">
-        <div class="bloqueImage">
+        <div class="bloqueImageFull">
             <div class="container-flecha-izq" (click)="changeImage(1)">
                 <img src="./assets/flecha.png" class="icon-izq">
             </div>
@@ -40,11 +41,11 @@
             </div>
             <img [src]="images[position].pathCompress | safeUrl" alt="" class="image-generate">
         </div>
-        <div class="margin-bottom"></div>
     </section>
     <!---------------------->
-    <div class="container-grid">
-        <div class="container-grid-left" *ngIf="bodyStyle === 2">
+    <!-- Categorias -->
+    <div class="container-grid"  *ngIf="bodyStyle === 2">
+        <div class="container-grid-left">
             <div class="category" *ngFor="let category of categorys; let i = index"
                 (click)="select_category(category.idCategory)">
                 <img [src]=categoryImages[i] class="category-icon">
@@ -52,10 +53,10 @@
                 <div class="focus_category"></div>
             </div>
         </div>
+        <!----------------------> 
+        <!-- Estilos para imagenes en bloque -->
         <div class="container-grid-right">
-            <!--###-->
             <div class="container-images-block" *ngIf="bodyStyle === 2">
-                <!--***-->
                 <div class="container-informacion">
                     <div class="informacion">
                         <div class="container-parrafo">
@@ -81,7 +82,6 @@
                         </div>
                     </div>
                 </div>
-                <!--***-->
                 <!-- *************************************************** -->
                 <!-- Estilos nuevos para cada caso de orientacion -->
                 <div *ngFor="let image of images; let i = index" class="bloqueImage {{image.orientation}}">
@@ -108,44 +108,9 @@
                         </div>
                     </div>
                 </div>
-                <br>
-                <br>
-                <br>
-                <!-- Estilos nuevos para cada caso de orientacion -->
-                <!-- *************************************************** -->
-
-                <!-- <div class="bloqueImage" *ngFor="let image of images; let i = index">
-                    <div class="container-checkbox" (dblclick)="doubleClick(i)">
-                        <img src="./assets/corazon.png " [class]="classNames[i]" oncontextmenu="return false;">
-                    </div>
-                    
-                    <div class="controls">
-                        <div class="control1 controlSelect" (click)="doubleClick(i)"
-                            *ngIf="classNames[i] === 'icon-corazon-active'">
-                            <img src="./assets/heart.png" alt="" class="icon-control">
-                        </div>
-
-                        <div class="control1" (click)="doubleClick(i)" *ngIf="classNames[i] !== 'icon-corazon-active'">
-                            <img src="./assets/love.png" alt="" class="icon-control">
-                        </div>
-                        <div class="control2" (click)="PrintZoom_Event('Zoom', i)" [class]="zoomClass[i]">
-                            <img src="./assets/ampliacion.png" alt="" class="icon-control">
-                        </div>
-                        <div class="control3" (click)="PrintZoom_Event('Print', i)" [class]="printClass[i]">
-                            <img src="./assets/print.png" alt="" class="icon-control">
-                        </div>
-                        <div class="control4" (click)="fullScreen_Event(i)">
-                            <img src="./assets/zoom.png" alt="" class="icon-control">
-                        </div>
-                    </div>
-                </div> -->
-                <!--***-->
-                <br>
-                <br>
             </div>
-            <!--###-->
         </div>
+        <!--###-->
     </div>
-
     <!---------------------->
 </div>

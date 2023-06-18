@@ -28,11 +28,15 @@ export class CrearUsuarioComponent implements OnInit{
     })
   }
 
-  guardarUsuario_Event(id: string, name: string) {
+  guardarUsuario_Event(id: string, name: string, typeEvent: string) {
     //Crear peticion para registrar nuevo usuario
-    if (id && name) {
-      this.servicios.createUser(id, name).subscribe((user) => {
-        // console.log(user)
+    if (id && name && typeEvent) {
+      const body = {
+        id,
+        name,
+        typeEvent
+      }
+      this.servicios.createUser(body).subscribe(() => {
         //TODO: alert
         alert("Usuario creado");
         this.getUsers();

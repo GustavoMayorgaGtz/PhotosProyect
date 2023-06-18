@@ -32,6 +32,7 @@ export class AgregadoComponent implements OnInit {
   }
 
   changeImage(option: number) {
+    alert("Switch image")
     if (option == 1) {
       if (this.position === 0) {
         this.position = this.images.length - 1;

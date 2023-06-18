@@ -40,8 +40,8 @@ export class AllService {
   }
 
   //Peticion para crear un usuario
-  createUser(id: string, name: string) {
-    return this.http.post(varglobal.server + "/user/create", { id, name })
+  createUser(body: object) {
+    return this.http.post(varglobal.server + "/user/create", body)
   }
 
   //Peticion para subir imagenes

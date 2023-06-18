@@ -34,6 +34,7 @@ export class UserService {
     const newUser = await this.user.create({
       name: createUserDto.name,
       id: createUserDto.id,
+      typeEvent: createUserDto.typeEvent,
       type: createUserDto.type ? createUserDto.type : 1,
     });
     return this.user.save(newUser);

@@ -23,26 +23,30 @@
     <div>
         <div class="title-container">
             <hr class="line">
-            <span class="name">Categoria</span>
+            <span class="name">Evento</span>
             <hr class="line">
         </div>
-        <div class="container-category">
-            <div class="primary-container">
-                <div class="bloque-category">
-                    <div class="icon">
-                        <img src="./assets/add.png" alt="icono" class="source_image">
-                    </div>
-                    <div class="name">Crear categoria</div>
-                    <div class="btn-seleccionar" (click)="crear_category()">Crear</div>
-                </div>
-            </div>
-     
+        <div class="container-category">    
             <div class="primary-container" *ngFor="let category of categorias; let i = index">
                 <div class="bloque-category">
                     <div class="icon">
-                        <img [src]="images[i]" alt="icono" class="source_image">
+                        <img src="./assets/anillos.png" alt="icono" class="source_image">
                     </div>
-                    <div class="name">{{category.title}}</div>
+                    <div class="name">Boda</div>
+                    <div class="btn-seleccionar" (click)="select_category(i)">Seleccionar</div>
+                </div>
+                <div class="bloque-category">
+                    <div class="icon">
+                        <img src="./assets/party1.png" alt="icono" class="source_image">
+                    </div>
+                    <div class="name">XV</div>
+                    <div class="btn-seleccionar" (click)="select_category(i)">Seleccionar</div>
+                </div>
+                <div class="bloque-category">
+                    <div class="icon">
+                        <img src="./assets/circulo-azul.png" alt="icono" class="source_image">
+                    </div>
+                    <div class="name">Sesion Casual</div>
                     <div class="btn-seleccionar" (click)="select_category(i)">Seleccionar</div>
                 </div>
             </div>

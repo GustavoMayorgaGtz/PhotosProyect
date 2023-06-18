@@ -43,29 +43,6 @@ export class ControlCuentasComponent implements OnInit {
     })
   }
 
-  guardarUsuario_Event(id: string, name: string) {
-    //Crear peticion para registrar nuevo usuario
-    if (id && name) {
-      this.servicios.createUser(id, name).subscribe((user) => {
-        console.log(user)
-        alert("Usuario creado");
-        this.getUsers();
-      }, (err: HttpErrorResponse) => {
-        switch (err.status) {
-          case 0: {
-            alert("No se puede conectar al servidor, intentalo mas tarde.")
-            break;
-          }
-          case 500: {
-            alert("Error en el servidor, la operacion no se pudo realizar")
-            break;
-          }
-        }
-      })
-    }
-  }
-
-
   createUser_Event() {
     this.menuOption = 3;
   }
