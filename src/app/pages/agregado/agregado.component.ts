@@ -83,15 +83,17 @@ export class AgregadoComponent implements OnInit {
         let categorynames: string[] = [];
         let idCategory: number[] = [];
         this.allImages = images;
+        console.log("Imagenes del usuario");
+         console.log(images)
 
         //Guardar las imagenes por ordern
-        images.forEach((image) => {
-          if (!categorynames.includes(image.category.title)) {
-            this.categorys.push(image.category);
-            categorynames.push(image.category.title);
-            idCategory.push(image.category.iconInteger);
-          }
-        })
+        // images.forEach((image) => {
+        //   if (!categorynames.includes(image.category.title)) {
+        //     this.categorys.push(image.category);
+        //     categorynames.push(image.category.title);
+        //     idCategory.push(image.category.iconInteger);
+        //   }
+        // })
 
         if (this.categorys) {
           const idFirstCategory = this.categorys[0].idCategory;

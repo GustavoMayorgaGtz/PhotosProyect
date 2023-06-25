@@ -36,7 +36,7 @@
             </div>
             <div class="bloque-usuario" *ngFor="let user of users; let i = index">
                 <span class="nombre">{{user.name}}</span>
-                <span class="id">{{user.id}}</span>
+                <!-- <span class="id">{{user.id}}</span> -->
                 <div class="container-drop">
                     <img src="./assets/upload.png" alt="remove" class="drop-icon" (click)="uploadImages_Event(user)">
                     <div class="message_hover">Subir imagenes</div>

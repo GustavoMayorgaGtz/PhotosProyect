@@ -48,3 +48,48 @@ export function setCategoryImage(IdArray: number[]): string[] {
     })
     return images;
 }
+
+export function createCategorys(typeEvent: string) {
+    let response: string[] = [];
+    switch (typeEvent) {
+        case 'Boda': {
+            response = [
+                "Sesion casual",
+                "Getting ready",
+                "Sesion formal",
+                "Civil",
+                "Ceremonia religiosa",
+                "Fiesta",
+                "Cabina 360"
+            ]
+            break;
+        }
+        case 'XV': {
+            response = [
+                "Sesion casual",
+                "Getting ready",
+                "Sesion formal",
+                "Ceremonia religiosa",
+                "Fiesta",
+                "Cabina 360"
+            ]
+            break;
+        }
+        case 'Bautizo': {
+            response = [
+                "Sesion casual",
+                "Ceremonia religiosa",
+                "Fiesta"
+            ]
+            break;
+        }
+        case 'Sesion Casual': {
+            response = [
+                "Fotos"
+            ]
+            break;
+        }
+    }
+    return response;
+
+}

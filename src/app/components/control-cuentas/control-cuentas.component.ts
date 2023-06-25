@@ -1,3 +1,4 @@
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -22,7 +23,7 @@ export class ControlCuentasComponent implements OnInit {
     private messenger: Messenger) {
   }
 
-  public categorySelected!: number;
+  public categorySelected!: string;
   ngOnInit(): void {
     this.getUsers();
     this.messenger.menuControl.subscribe((optionMenu) => {

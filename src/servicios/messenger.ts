@@ -8,7 +8,7 @@ import { ImagesCompress, user } from 'src/interface';
 export class Messenger {
 
   public menuControl: EventEmitter<number> = new EventEmitter();
-  public categorySelect: EventEmitter<number> = new EventEmitter();
+  public categorySelect: EventEmitter<string> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class Messenger {
   }
 
   //Establecer categoria en control cuentas
-  setCategory(option: number) {
+  setCategory(option: string) {
     this.categorySelect.emit(option);
   }
 }

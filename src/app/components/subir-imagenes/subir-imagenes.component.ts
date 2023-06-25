@@ -15,7 +15,7 @@ import { Messenger } from 'src/servicios/messenger';
 export class SubirImagenesComponent implements OnInit {
   public isEditImages: boolean = false;
   @Input() usuario!: user;
-  @Input() categoryId!: number;
+  @Input() categoryId!: string;
 
   constructor(private servicios: AllService,
     private sanitazer: DomSanitizer,

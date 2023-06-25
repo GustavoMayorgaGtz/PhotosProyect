@@ -22,9 +22,11 @@ export class Image {
     @Column({ nullable: true})
     orientation: string
     
-    @ManyToOne(() => Category, Category => Category.idCategory)
-    category: Category
-
+    // @ManyToOne(() => Category, Category => Category.idCategory)
+    // category: Category
+    @Column({ nullable: true})
+    category: string
+    
     @ManyToOne(() => User, user => user.images)
     user: User
 }  

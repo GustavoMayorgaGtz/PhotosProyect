@@ -81,10 +81,10 @@ export class UserService {
     } catch (e) {
       throw new HttpException("Server Internal Error", 500);
     }
-    const findCategory = await this.category.findOneBy({ idCategory: informacion.idCategory });
+    // const findCategory = await this.category.findOneBy({ idCategory: informacion.idCategory });
     const findUser = await this.user.findOneBy({ id: informacion.idUser });
     //Checamos si existe el directorio del usuario
-    if (!findUser || !findCategory) {
+    if (!findUser ) {//|| !findCategory
       throw new HttpException("User not found or Category not found", 404)
     }
     const id = findUser.idUser;
@@ -114,7 +114,7 @@ export class UserService {
             pathOriginal: namesOriginal[id],
             border: thisBorder,
             user: findUser,
-            category: findCategory,
+            category: informacion.idCategory,
             orientation
           })
           this.image.save(newImage);
