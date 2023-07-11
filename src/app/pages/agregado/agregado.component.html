@@ -46,9 +46,10 @@
     <!-- Categorias -->
     <div class="container-grid"  *ngIf="bodyStyle === 2">
         <div class="container-grid-left">
-            <div class="category" *ngFor="let category of categorys; let i = index"
-                (click)="select_category(category.idCategory)">
-                <img [src]=categoryImages[i] class="category-icon">
+            <div class="category" *ngFor="let category of categorys; let i = index">
+                <!-- (click)="select_category(category.idCategory)" -->
+                
+                <img [src]=category.iconsrc class="category-icon">
                 {{category.title}}
                 <div class="focus_category"></div>
             </div>

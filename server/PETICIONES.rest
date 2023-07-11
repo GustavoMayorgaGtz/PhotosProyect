@@ -1,8 +1,17 @@
+//Type = Rol
+//1 = Usuario normal
+//2 = Administrador
 POST http://localhost:3000/User/create
 Content-Type:  application/json
 
 {
     "id": "Gustavo_Mayorga",
     "name": "Gustavo Mayorga",
-    "type": 1
+    "type": 2,
+    "typeEvent": "Boda"
 }
+
+    #   Boda
+    #   XV
+    #   Bautizo
+    #   Sesion Casual

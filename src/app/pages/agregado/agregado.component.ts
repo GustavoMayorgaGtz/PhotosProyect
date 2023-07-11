@@ -50,23 +50,7 @@ export class AgregadoComponent implements OnInit {
   }
 
   select_category(id: number) {
-    this.images = [];
-    //Obtener las imagenes que pertenecen a esa categoria;
-    this.allImages.forEach((image) => {
-      if (image.category.idCategory == id) {
-        const thispath = image.pathCompress.replace("./public/", "");
-        this.classNames.push("icon-corazon-desactive");
-        this.printClass.push("");
-        this.zoomClass.push("");
-        this.images.push({
-          idImage: image.idImage,
-          pathCompress: varglobal.server + "/" + thispath,
-          border: image.border,
-          category: image.category,
-          orientation: image.orientation,
-        })
-      }
-    });
+
   }
 
   public images: ImagesCompress[] = [];
@@ -75,51 +59,168 @@ export class AgregadoComponent implements OnInit {
   public printClass: string[] = [];
   public zoomClass: string[] = [];
   public categorys: category[] = [];
-  public categoryImages!: string[];
-  public allImages: ImagesCompress[] = [];
+  public categoryNames: string[] = []
   getUser() {
     if (this.id)
-      this.servicios.getImages({ idUser: this.id }).subscribe((images) => {
-        let categorynames: string[] = [];
-        let idCategory: number[] = [];
-        this.allImages = images;
-        console.log("Imagenes del usuario");
-         console.log(images)
-
-        //Guardar las imagenes por ordern
-        // images.forEach((image) => {
-        //   if (!categorynames.includes(image.category.title)) {
-        //     this.categorys.push(image.category);
-        //     categorynames.push(image.category.title);
-        //     idCategory.push(image.category.iconInteger);
-        //   }
-        // })
-
-        if (this.categorys) {
-          const idFirstCategory = this.categorys[0].idCategory;
-          this.select_category(idFirstCategory);
+      this.servicios.getUser(this.id).subscribe((user) => {
+        const typeEvent = user.typeEvent;
+        switch (typeEvent) {
+          case 'Boda': {
+            this.categoryNames = ["Sesion casual",
+              "Getting ready",
+              "Sesion formal",
+              "Civil",
+              "Ceremonia religiosa",
+              "Fiesta",
+              "Cabina 360°"
+            ];
+            this.categorys = [
+              {
+                iconsrc: "./assets/circulo-azul.png"
+                , title: "Sesion casual"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/running.png",
+                title: "Getting ready"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/circulo-rosa.png",
+                title: "Sesion formal"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/couple.png",
+                title: "Civil"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/iglesia.png",
+                title: "Ceremonia religiosa"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/party1.png",
+                title: "Fiesta"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/party2.png",
+                title: "Cabina 360°"
+                , images: []
+              },
+            ];
+            break;
+          }
+          case 'XV': {
+            this.categoryNames = [
+              "Sesion casual",
+              "Getting ready",
+              "Sesion formal",
+              "Ceremonia religiosa",
+              "Fiesta",
+              "Cabina 360°"
+            ];
+            this.categorys = [
+              {
+                iconsrc: "./assets/circulo-azul.png",
+                title: "Sesion casual"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/running.png",
+                title: "Getting ready"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/circulo-rosa.png",
+                title: "Sesion formal"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/iglesia.png",
+                title: "Ceremonia religiosa"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/party1.png",
+                title: "Fiesta"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/party2.png",
+                title: "Cabina 360°"
+                , images: []
+              },
+            ];
+            break;
+          }
+          case 'Bautizo': {
+            this.categoryNames = [
+              "Sesion casual",
+              "Ceremonia religiosa",
+              "Fiesta",
+            ];
+            this.categorys = [
+              {
+                iconsrc: "./assets/circulo-azul.png",
+                title: "Sesion casual"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/iglesia.png",
+                title: "Ceremonia religiosa"
+                , images: []
+              },
+              {
+                iconsrc: "./assets/party1.png",
+                title: "Fiesta"
+                , images: []
+              }
+            ];
+            break;
+          }
+          case 'Sesion Casual': {
+            this.categoryNames = ["Sesion casual"];
+            this.categorys = [{
+              iconsrc: "./assets/circulo-azul.png",
+              title: "Sesion casual"
+              , images: []
+            }];
+            break;
+          }
         }
-
-        this.categoryImages = setCategoryImage(idCategory);
-        ////
-
+        this.servicios.getImages({ idUser: this.id }).subscribe((images) => {
+          images.forEach((image) => {
+            const indexCategory = this.categoryNames.indexOf(image.category);
+            this.categorys[indexCategory].images?.push(image);
+            console.log(`Agregando imagen de categoria ${image.category} id:`, indexCategory);
+          })
+          this.images = this.categorys[0].images?this.categorys[0].images: [];
+          console.log("-------------------")
+          console.log(this.categorys);
+        }, (err: HttpErrorResponse) => {
+          const status = err.status;
+          switch (status) {
+            case 0: {
+              alert("No se pudo conectar al servidor, intentalo mas tarde (0)")
+              break;
+            }
+            case 400: {
+              alert("Error al subir las imagenes, intentalo mas tarde (400)")
+              break;
+            }
+            case 500: {
+              alert("Error interno del servidor, busca soporte tecnico (500)")
+              break;
+            }
+          }
+        })
       }, (err: HttpErrorResponse) => {
-        const status = err.status;
-        switch (status) {
-          case 0: {
-            alert("No se pudo conectar al servidor, intentalo mas tarde (0)")
-            break;
-          }
-          case 400: {
-            alert("Error al subir las imagenes, intentalo mas tarde (400)")
-            break;
-          }
-          case 500: {
-            alert("Error interno del servidor, busca soporte tecnico (500)")
-            break;
-          }
-        }
+        console.log("Error al buscar usuario: ", err);
       })
+
   }
 
   PrintZoom_Event(option: string, id: number): void {

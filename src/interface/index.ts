@@ -10,14 +10,14 @@ export interface ImagesCompress {
     idImage: number,
     pathCompress: string,
     border: string,
-    category: category,
+    category: string,
     orientation: 'landscape'|'portrait'|'equal'
 }
 
 export interface category {
-    idCategory: number,
-    iconInteger: number,
-    title: string
+    iconsrc: string,
+    title: string,
+    images?: ImagesCompress[]
 }
 
 export interface userCategory {
