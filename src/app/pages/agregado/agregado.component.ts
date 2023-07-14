@@ -1,3 +1,4 @@
+import { ImageConfig } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { setCategoryImage } from 'src/Functions';
@@ -49,8 +50,22 @@ export class AgregadoComponent implements OnInit {
     }
   }
 
+  public categroy_selected: number = 0;
   select_category(id: number) {
+    this.images = this.categorys[id].images
+    this.categroy_selected = id;
+  }
 
+  select_liked() {
+    const likedImages: ImagesCompress[] = [];
+    this.categorys.forEach((category) => {
+      category.images.forEach((image) => {
+        if (image.liked) {
+          likedImages.push(image);
+        }
+      })
+    })
+    this.images = likedImages;
   }
 
   public images: ImagesCompress[] = [];
@@ -192,14 +207,24 @@ export class AgregadoComponent implements OnInit {
           }
         }
         this.servicios.getImages({ idUser: this.id }).subscribe((images) => {
-          images.forEach((image) => {
+          images.forEach((image, idx) => {
+            // console.log(idx);
             const indexCategory = this.categoryNames.indexOf(image.category);
-            this.categorys[indexCategory].images?.push(image);
-            console.log(`Agregando imagen de categoria ${image.category} id:`, indexCategory);
+            const imagePush: ImagesCompress = {
+              idImage: image.idImage,
+              idx,
+              category: image.category,
+              pathCompress: varglobal.server + "/" + image.pathCompress.split("/")[2] + "/" + image.pathCompress.split("/")[3],
+              border: image.border,
+              orientation: image.orientation,
+              liked: false,
+              amplied: false,
+              print: false
+            }
+            this.categorys[indexCategory].images?.push(imagePush);
+            // console.log(`Agregando imagen de categoria ${image.category} id:`, indexCategory);
           })
-          this.images = this.categorys[0].images?this.categorys[0].images: [];
-          console.log("-------------------")
-          console.log(this.categorys);
+          this.images = this.categorys[0].images ? this.categorys[0].images : [];
         }, (err: HttpErrorResponse) => {
           const status = err.status;
           switch (status) {
@@ -218,38 +243,65 @@ export class AgregadoComponent implements OnInit {
           }
         })
       }, (err: HttpErrorResponse) => {
+        //TODO: Capturar los eventos de error en peticion
         console.log("Error al buscar usuario: ", err);
       })
-
   }
 
-  PrintZoom_Event(option: string, id: number): void {
-    if (option === 'Print') {
-      if (this.printClass[id] === 'controlSelect') {
-        this.printClass[id] = '';
-      } else {
-        this.printClass[id] = 'controlSelect';
-      }
-    }
-    if (option === 'Zoom') {
-      if (this.zoomClass[id] === 'controlSelect') {
-        this.zoomClass[id] = '';
-      } else {
-        this.zoomClass[id] = 'controlSelect';
-      }
-    }
-  }
-
-  doubleClick(position: number) {
-    if (this.classNames[position].match('icon-corazon-active')) {
-      this.classNames[position] = "icon-corazon-hide";
+  printClick_Event(id: number) {
+    console.log("->(Print) id image in images array", id)
+    this.categorys[this.categroy_selected].images[id].print = !this.categorys[this.categroy_selected].images[id].print;
+    if (this.printClass[id] === 'controlSelect') {
+      this.printClass[id] = '';
     } else {
-      this.classNames[position] = "icon-corazon-active";
+      this.printClass[id] = 'controlSelect';
     }
+  }
+
+  zoomClick_Event(id: number) {
+    
+    console.log("->(Zoom) id image in images array: ",id)
+    console.log(this.zoomClass);
+    this.categorys[this.categroy_selected].images[id].amplied = !this.categorys[this.categroy_selected].images[id].amplied;
+    if (this.zoomClass[id] === 'controlSelect') {
+      this.zoomClass[id] = '';
+    } else {
+      this.zoomClass[id] = 'controlSelect';
+    }
+  }
+
+  //Establecer like en imagenes
+  doubleClick(position: number) {
+    this.categorys[this.categroy_selected].images[position].liked = !this.categorys[this.categroy_selected].images[position].liked;
   }
 
   fullScreen_Event(id: number) {
     this.bodyStyle = 1;
     this.position = id;
+  }
+
+  MandarImagenes() {
+    //liked
+    const likedImages: ImagesCompress[] = [];
+    const zoomImages: ImagesCompress[] = [];
+    const printImages: ImagesCompress[] = [];
+    this.categorys.forEach((category) => {
+      category.images.forEach((image) => {
+        if (image.liked) {
+          likedImages.push(image);
+        }
+        if (image.amplied) {
+          zoomImages.push(image);
+        }
+        if (image.print) {
+          printImages.push(image);
+        }
+      })
+    })
+    console.log("-------")
+    console.log("Estas son las imagenes que gustaron: ", likedImages);
+    console.log("Estas son las imagenes de ampliacion: ", zoomImages);
+    console.log("Estas son las imagenes de impresion: ", printImages);
+    console.log("-------")
   }
 }

@@ -1,7 +1,7 @@
 <div class="body">
     <!---------------------->
     <div class="mandar">
-        <div class="contianer-mandar">
+        <div class="contianer-mandar" (click)="MandarImagenes()">
             <div class="mandar-inf">
                 <span class="mini">Mandar imagenes</span>
             </div>
@@ -44,17 +44,20 @@
     </section>
     <!---------------------->
     <!-- Categorias -->
-    <div class="container-grid"  *ngIf="bodyStyle === 2">
+    <div class="container-grid" *ngIf="bodyStyle === 2">
         <div class="container-grid-left">
-            <div class="category" *ngFor="let category of categorys; let i = index">
-                <!-- (click)="select_category(category.idCategory)" -->
-                
+            <div class="category" *ngFor="let category of categorys; let i = index" (click)="select_category(i)">
                 <img [src]=category.iconsrc class="category-icon">
                 {{category.title}}
                 <div class="focus_category"></div>
             </div>
+            <div class="category" (click)="select_liked()">
+                <img src="./assets/corazon.png" class="category-icon">
+                Liked
+                <div class="focus_category"></div>
+            </div>
         </div>
-        <!----------------------> 
+        <!---------------------->
         <!-- Estilos para imagenes en bloque -->
         <div class="container-grid-right">
             <div class="container-images-block" *ngIf="bodyStyle === 2">
@@ -90,23 +93,32 @@
                         <img [src]="image.pathCompress | safeUrl" alt="" #image class="image-generate">
                     </div>
                     <div class="container-controls">
-                        <div class="control1 controlSelect" (click)="doubleClick(i)"
-                            *ngIf="classNames[i] === 'icon-corazon-active'">
+                        <!-- LIKE BUTTON -->
+                        <div class="control1 controlSelect" (click)="doubleClick(i)" *ngIf="image.liked">
                             <img src="./assets/heart.png" alt="" class="icon-control">
                         </div>
-
-                        <div class="control1" (click)="doubleClick(i)" *ngIf="classNames[i] !== 'icon-corazon-active'">
+                        <div class="control1" (click)="doubleClick(i)" *ngIf="!image.liked">
                             <img src="./assets/love.png" alt="" class="icon-control">
                         </div>
-                        <div class="control2" (click)="PrintZoom_Event('Zoom', i)" [class]="zoomClass[i]">
+                        <!-- AMPLIED BUTTON -->
+                        <div class="control2 controlSelect" (click)="zoomClick_Event(i)" *ngIf="image.amplied">
                             <img src="./assets/ampliacion.png" alt="" class="icon-control">
                         </div>
-                        <div class="control3" (click)="PrintZoom_Event('Print', i)" [class]="printClass[i]">
+                        <div class="control2" (click)="zoomClick_Event(i)"  *ngIf="!image.amplied">
+                            <img src="./assets/ampliacion.png" alt="" class="icon-control">
+                        </div>
+                        <!-- PRINT BUTTON -->
+                        <div class="control3 controlSelect" (click)="printClick_Event(i)" *ngIf="image.print">
                             <img src="./assets/print.png" alt="" class="icon-control">
                         </div>
+                        <div class="control3" (click)="printClick_Event(i)" *ngIf="!image.print">
+                            <img src="./assets/print.png" alt="" class="icon-control">
+                        </div>
+                        <!-- FULL SCREEN BUTTON -->
                         <div class="control4" (click)="fullScreen_Event(i)">
                             <img src="./assets/zoom.png" alt="" class="icon-control">
                         </div>
+                        <!-- ### -->
                     </div>
                 </div>
             </div>

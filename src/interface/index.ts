@@ -11,13 +11,17 @@ export interface ImagesCompress {
     pathCompress: string,
     border: string,
     category: string,
+    liked: boolean,
+    amplied: boolean,
+    print: boolean,
+    idx: number,
     orientation: 'landscape'|'portrait'|'equal'
 }
 
 export interface category {
     iconsrc: string,
     title: string,
-    images?: ImagesCompress[]
+    images: ImagesCompress[]
 }
 
 export interface userCategory {
