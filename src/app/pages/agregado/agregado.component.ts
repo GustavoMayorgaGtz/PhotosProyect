@@ -259,7 +259,6 @@ export class AgregadoComponent implements OnInit {
   }
 
   zoomClick_Event(id: number) {
-    
     console.log("->(Zoom) id image in images array: ",id)
     console.log(this.zoomClass);
     this.categorys[this.categroy_selected].images[id].amplied = !this.categorys[this.categroy_selected].images[id].amplied;
@@ -303,5 +302,6 @@ export class AgregadoComponent implements OnInit {
     console.log("Estas son las imagenes de ampliacion: ", zoomImages);
     console.log("Estas son las imagenes de impresion: ", printImages);
     console.log("-------")
+    
   }
 }

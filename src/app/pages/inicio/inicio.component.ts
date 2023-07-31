@@ -19,8 +19,18 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     sessionStorage.removeItem("id");
     sessionStorage.clear();
+    this.change_image_interval();
   }
 
+  public noImg = 0;
+  change_image_interval(){
+    setInterval(()=> {
+       this.noImg++;
+       if(this.noImg == 3){
+        this.noImg = 0;
+       }
+    }, 5000);
+  }
   logIn(value: string) {
     this.servicios.login(value).subscribe((user) => {
       if (user.status) {
