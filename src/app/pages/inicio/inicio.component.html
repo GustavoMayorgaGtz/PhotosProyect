@@ -6,8 +6,11 @@
     <div class="container-controls">
       <div class="normal_option">Nosotros</div>
       <div class="normal_option">Portafolio</div>
-      <div class="dorado">Contacto</div>
+      <div class="normal_option">Contacto</div>
+      <div class="dorado">Iniciar sesion</div>
     </div>
+    <div class="facebook">Pagina<img src="./assets/facebook.png" alt="Facebook"></div>
+    <div class="whatsapp">Mensaje<img src="./assets/whatsapp.png" alt="Whatsapp"></div>
   </nav>
   <main class="primary-container" *ngIf="!isLogin">
     <section class="banner3">
@@ -19,127 +22,27 @@
         </div>
         <div class="left">
           En nuestras fotografías, la belleza de los momentos se convierte en un regalo para siempre.</div>
-          
-      
       </section>
     </section>
 
-    
     <div class="container-title">
       <div class="left">
         <div class="big-circle"></div>
         <div class="circle"></div>
         <div class="little-circle"></div>
       </div>
-      <div class="center">Conócenos</div>
+      <div class="center">Capturamos tu estilo</div>
       <div class="right">
         <div class="little-circle"></div>
         <div class="circle"></div>
         <div class="big-circle"></div>
       </div>
     </div>
-    
-    <!--  -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <section class="banner4" *ngIf="noImg===0" style="background: rgb(231, 231, 231);
-    background: linear-gradient(180deg, rgba(246,246,246,1) 0%, rgb(220, 221, 222) 100%);">
-      <div class="content-banner4">
-        <div class="subcontent-banner4">
-          <img src="./assets/Diamante.png" alt="icon" class="icon-banner-4">
-          Photorepublic busca capturar momentos inolvidables y convertirlos en recuerdos
-          duraderos. Nuestro enfoque principal es brindar servicios fotográficos profesionales para una amplia variedad de
-          ocasiones, desde bodas y eventos especiales hasta sesiones familiares, retratos individuales y fotos para tu emprendimiento.
-        </div>
-      </div>
-      <div class="container-recurso_002">
-        <img src="./assets/Recursos/recurso_006.jpg" alt="Mujer" class="recurso_002">
-      </div>
-      <!-- <div class="content-banner4">Estamos para lo que tu necesites</div> -->
-    </section>
-
-    <section class="banner4" *ngIf="noImg===1" style="background: rgb(215,216,218);
-    background: linear-gradient(180deg, rgba(215,216,218,1) 0%, rgba(215,216,218,1) 62%, rgba(222,222,222,1) 75%, rgba(229,229,229,1) 83%, rgba(215,216,218,1) 90%, rgba(215,216,218,1) 100%);">
-    <div class="content-banner4">
-      <div class="subcontent-banner4">
-        <img src="./assets/Diamante.png" alt="icon" class="icon-banner-4">
-        Photorepublic busca capturar momentos inolvidables y convertirlos en recuerdos
-        duraderos. Nuestro enfoque principal es brindar servicios fotográficos profesionales para una amplia variedad de
-        ocasiones, desde bodas y eventos especiales hasta sesiones familiares, retratos individuales y fotos para tu emprendimiento.
-      </div>
-    </div>
-      <div class="container-recurso_002">
-        <img src="./assets/Recursos/recurso_004.jpg" alt="Mujer" class="recurso_002">
-      </div>
-      <!-- <div class="content-banner4">Estamos para lo que tu necesites</div> -->
-    </section>
-    <section class="banner4" *ngIf="noImg===2" style="background: rgb(227,228,230);
-    background: linear-gradient(180deg, rgba(227,228,230,1) 0%, rgba(228,229,231,1) 100%);">
-    <div class="content-banner4">
-      <div class="subcontent-banner4">
-        <img src="./assets/Diamante.png" alt="icon" class="icon-banner-4">
-        Photorepublic busca capturar momentos inolvidables y convertirlos en recuerdos
-        duraderos. Nuestro enfoque principal es brindar servicios fotográficos profesionales para una amplia variedad de
-        ocasiones, desde bodas y eventos especiales hasta sesiones familiares, retratos individuales y fotos para tu emprendimiento.
-      </div>
-    </div>
-      <div class="container-recurso_002">
-        <img src="./assets/Recursos/recurso_005.jpg" alt="Mujer" class="recurso_002">
-      </div>
-      <!-- <div class="content-banner4">Estamos para lo que tu necesites</div> -->
-    </section>
-    <!-- <section class="banner4" style="background: rgb(215,216,218);
-    background: linear-gradient(180deg, rgba(215,216,218,1) 0%, rgba(215,216,218,1) 49%, rgba(229,229,229,1) 64%, rgba(229,229,229,1) 83%, rgba(215,216,218,1) 90%, rgba(215,216,218,1) 100%);">
-      <div class="container-recurso_002">
-        <img src="./assets/Recursos/recurso_006.jpg" alt="Mujer" class="recurso_002">
-      </div>
-      <div class="content-banner4">Estamos para lo que tu necesites</div>
-    </section> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="container-title">
-      <div class="left">
-        <div class="big-circle"></div>
-        <div class="circle"></div>
-        <div class="little-circle"></div>
-      </div>
-      <div class="center">Explora y Prueba</div>
-      <div class="right">
-        <div class="little-circle"></div>
-        <div class="circle"></div>
-        <div class="big-circle"></div>
-      </div>
-    </div>
-    
     <section class="banner5">
+      <div class="content-banner5">
+
+      </div>
       <div class="container_image1">
         <img src="./assets/Recursos/recurso_007.jpg" alt="imagen 7" class="recurso_007">
       </div>
@@ -149,6 +52,7 @@
       <div class="container_image3">
         <img src="./assets/Recursos/recurso_009.jpg" alt="imagen 9" class="recurso_009">
       </div>
+
     </section>
 
     <div class="container-title">
@@ -168,12 +72,13 @@
     <section class="banner2">
       <div class="left">
         <!-- Instagram Card -->
-         <img src="./assets/Recursos/recurso_010.jpg" alt="Imagen 10" class="recurso_010">
+        <img src="./assets/Recursos/recurso_010.jpg" alt="Imagen 10" class="recurso_010">
       </div>
       <div class="right">
         <div class="informacion">
 
-          ¡Te ofrecemos una plataforma digital para visualizar y descargar tus imágenes favoritas!. Al iniciar sesión en tu cuenta, tendrás acceso
+          ¡Te ofrecemos una plataforma digital para visualizar y descargar tus imágenes favoritas!. Al iniciar sesión en
+          tu cuenta, tendrás acceso
           exclusivo a todas tus fotografías, donde podrás revivir los momentos especiales capturados por nuestro
           talentoso equipo.
         </div>
@@ -186,15 +91,89 @@
       </div>
     </section>
 
-  </main>
-  <main *ngIf="isLogin" >
-      <nav class="nav">
-    <div class="container-icon">
-      Photo Republic
+
+
+    <!-- ------------- -->
+    <div class="container-title">
+      <div class="left">
+        <div class="big-circle"></div>
+        <div class="circle"></div>
+        <div class="little-circle"></div>
+      </div>
+      <div class="center">Conócenos</div>
+      <div class="right">
+        <div class="little-circle"></div>
+        <div class="circle"></div>
+        <div class="big-circle"></div>
+      </div>
     </div>
-    <span class="subtitle"></span>
-  </nav> 
-     <div class="container-informacion" style="margin: 20px auto;" >
+
+    <section class="banner4" *ngIf="noImg===0" style="background: rgb(231, 231, 231);
+    background: linear-gradient(180deg, rgba(246,246,246,1) 0%, rgb(220, 221, 222) 100%);">
+      <div class="content-banner4">
+        <div class="subcontent-banner4">
+          <img src="./assets/Diamante.png" alt="icon" class="icon-banner-4">
+          Photorepublic busca capturar momentos inolvidables y convertirlos en recuerdos
+          duraderos. Nuestro enfoque principal es brindar servicios fotográficos profesionales para una amplia variedad
+          de
+          ocasiones, desde bodas y eventos especiales hasta sesiones familiares, retratos individuales y fotos para tu
+          emprendimiento.
+        </div>
+      </div>
+      <div class="container-recurso_002">
+        <img src="./assets/Recursos/recurso_006.jpg" alt="Mujer" class="recurso_002">
+      </div>
+      <!-- <div class="content-banner4">Estamos para lo que tu necesites</div> -->
+    </section>
+
+    <section class="banner4" *ngIf="noImg===1"
+      style="background: rgb(215,216,218);
+    background: linear-gradient(180deg, rgba(215,216,218,1) 0%, rgba(215,216,218,1) 62%, rgba(222,222,222,1) 75%, rgba(229,229,229,1) 83%, rgba(215,216,218,1) 90%, rgba(215,216,218,1) 100%);">
+      <div class="content-banner4">
+        <div class="subcontent-banner4">
+          <img src="./assets/Diamante.png" alt="icon" class="icon-banner-4">
+          Photorepublic busca capturar momentos inolvidables y convertirlos en recuerdos
+          duraderos. Nuestro enfoque principal es brindar servicios fotográficos profesionales para una amplia variedad
+          de
+          ocasiones, desde bodas y eventos especiales hasta sesiones familiares, retratos individuales y fotos para tu
+          emprendimiento.
+        </div>
+      </div>
+      <div class="container-recurso_002">
+        <img src="./assets/Recursos/recurso_004.jpg" alt="Mujer" class="recurso_002">
+      </div>
+      <!-- <div class="content-banner4">Estamos para lo que tu necesites</div> -->
+    </section>
+    <section class="banner4" *ngIf="noImg===2" style="background: rgb(227,228,230);
+    background: linear-gradient(180deg, rgba(227,228,230,1) 0%, rgba(228,229,231,1) 100%);">
+      <div class="content-banner4">
+        <div class="subcontent-banner4">
+          <img src="./assets/Diamante.png" alt="icon" class="icon-banner-4">
+          Photorepublic busca capturar momentos inolvidables y convertirlos en recuerdos
+          duraderos. Nuestro enfoque principal es brindar servicios fotográficos profesionales para una amplia variedad
+          de
+          ocasiones, desde bodas y eventos especiales hasta sesiones familiares, retratos individuales y fotos para tu
+          emprendimiento.
+        </div>
+      </div>
+      <div class="container-recurso_002">
+        <img src="./assets/Recursos/recurso_005.jpg" alt="Mujer" class="recurso_002">
+      </div>
+      <!-- <div class="content-banner4">Estamos para lo que tu necesites</div> -->
+    </section>
+
+
+    <!-- ------------- -->
+
+  </main>
+  <main *ngIf="isLogin">
+    <nav class="nav">
+      <div class="container-icon">
+        Photo Republic
+      </div>
+      <span class="subtitle"></span>
+    </nav>
+    <div class="container-informacion" style="margin: 20px auto;">
       <div class="container-info">
         <img src="./assets/informacion.png" alt="informacion" class="informacion">
       </div>
