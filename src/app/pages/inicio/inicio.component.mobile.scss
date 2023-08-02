@@ -267,7 +267,6 @@
                 text-align: center;
                 font-weight: bold;
                 letter-spacing: 0.03cm;
-                // background-color: red;
                 color: white;
                 font-size: 20px;
                 max-height: 100px;
@@ -362,27 +361,17 @@
             }
 
             .circle {
-                // borders
-                border-radius: 50%;
-                // size
-                width: 35px;
-                height: 35px;
-                // styles
-                background-color: rgb(49, 49, 49);
-                //margin
-                margin: 0px 5px;
+               display: none;
+               width: 0px;
+               height: 0px;
+               opacity: 0;
             }
 
             .big-circle {
-                // borders
-                border-radius: 50%;
-                // size
-                width: 50px;
-                height: 50px;
-                // styles
-                background-color: rgb(49, 49, 49);
-                //margin
-                margin: 0px 5px;
+                display: none;
+                width: 0px;
+                height: 0px;
+                opacity: 0;
             }
         }
 
@@ -398,9 +387,9 @@
             // border
             border-bottom: 1px solid #403600;
             //displays and positions
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr;
+            display: flex;
+            flex-direction:row-reverse;
+            flex-wrap: wrap;
 
             .left {
                 //displays and positions
@@ -421,7 +410,7 @@
                 .recurso_010 {
                     //size  
                     width: auto;
-                    height: 80%;
+                    height: 20%;
                     //borders AND MARGINS
                     margin: auto;
                     border-radius: 20px;
@@ -441,7 +430,7 @@
                 align-items: center;
                 position: relative;
                 //padding
-                padding: 10px;
+                padding: 30px;
                 box-sizing: border-box;
                 //size
                 width: 100%;
@@ -507,8 +496,6 @@
         /* BANNER2 (CLOSE) */
         /* BANNER3 (OPEN) */
         .banner3 {
-            //borders
-            border:1px solid red;
             //positions
             position: relative;
             //size
@@ -567,8 +554,8 @@
 
             .content-banner4 {
                 //size
-                width: 60%;
-                min-width: 500px;
+                width: 90%;
+                min-width: 90%;
                 height: 300px;
                 box-sizing: border-box;
                 //style
@@ -582,9 +569,12 @@
                 font-size: calc(1vw + 14px);
                 //positions
                 position: absolute;
-                right: 50px;
-                top: 50%;
-                transform: translateY(-50%);
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+                transform: translateX(0%);
 
                 .subcontent-banner4 {
                     //size
@@ -595,7 +585,11 @@
                     //margin
                     padding: 50px;
                     //fonts
-                    font-size: 0.7em;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    font-size: 15px;
                     letter-spacing: 0.05cm;
                     //border
                     border-radius: 10px;
@@ -652,8 +646,8 @@
                 height: 450px;
                 grid-row: 2;
                 //margin, positions ands borders
-                margin: 20px auto;
-                border-radius: 10px;
+                margin: 0px auto auto 20px;
+                border-radius: 0px;
                 //display
                 display: flex;
                 justify-content: center;
@@ -666,6 +660,12 @@
                 }
             }
 
+            .container_image1,
+            .container_image3{
+                img{
+                    filter: blur(5px);
+                }
+            }
             .content-banner5 {
                 grid-column: 1/4;
                 grid-row: 1;
@@ -769,7 +769,6 @@
     .informacion {
         width: 25px;
         height: 25px;
-        // filter: invert(0.4)
     }
 
     .container-agroup {
