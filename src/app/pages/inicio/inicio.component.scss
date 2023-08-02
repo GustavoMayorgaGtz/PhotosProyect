@@ -54,9 +54,9 @@ nav {
         position: absolute;
         bottom: -60px;
         width: 45px;
-        height: 40px;
+        height: 50px;
         left: 0px;
-        background-color:#24345E;
+        background-color:#2f406e;
         border-radius: 0px 5px 5px 0px;
         z-index: 2;
         display: flex;
@@ -88,9 +88,44 @@ nav {
         position: absolute;
         bottom: -120px;
         width: 45px;
-        height: 40px;
+        height: 50px;
         left: 0px;
         background-color: #2D8737;
+        border-radius: 0px 5px 5px 0px;
+        z-index: 2;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        padding-right: 3px;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 0.03cm;
+        font-size: 14px;
+        transition: all .2s;
+
+        img{
+            padding: 2px;
+            box-sizing: border-box;
+            width: 40px;
+            height: 40px;
+            margin-left: 20px;
+        } 
+
+        &:hover{
+            transition: all .2s;
+            width: 130px;
+        }
+    }
+
+    
+    .instagram{
+        position: absolute;
+        bottom: -180px;
+        width: 45px;
+        height: 50px;
+        left: 0px;
+        background-color: #ab1563;
         border-radius: 0px 5px 5px 0px;
         z-index: 2;
         display: flex;

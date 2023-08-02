@@ -9,8 +9,9 @@
       <div class="normal_option">Contacto</div>
       <div class="dorado">Iniciar sesion</div>
     </div>
-    <div class="facebook">Pagina<img src="./assets/facebook.png" alt="Facebook"></div>
-    <div class="whatsapp">Mensaje<img src="./assets/whatsapp.png" alt="Whatsapp"></div>
+    <div class="facebook" (click)="facebook()">Facebook<img src="./assets/facebook.png" alt="Facebook"></div>
+    <div class="whatsapp" (click)="whatsapp()">Whatsapp<img src="./assets/whatsapp.png" alt="Whatsapp"></div>
+    <div class="instagram" (click)="instagram()">Instagram<img src="./assets/instagram.svg" alt="Instagram"></div>
   </nav>
   <main class="primary-container" *ngIf="!isLogin">
     <section class="banner3">

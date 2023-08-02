@@ -6,7 +6,7 @@ import { AllService } from 'src/servicios/all.service';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss']
+  styleUrls: ['./inicio.component.scss','./inicio.component.mobile.scss']
 })
 export class InicioComponent implements OnInit {
 
@@ -57,5 +57,17 @@ export class InicioComponent implements OnInit {
 
   enable_Login(){
     this.isLogin = !this.isLogin;
+  }
+
+  facebook(){
+    window.open("https://www.facebook.com/Photo-Republic-367008857203792");
+  }
+
+  whatsapp(){
+    window.open("https://wa.link/cpkj0g");
+  }
+
+  instagram(){
+    window.open("https://www.instagram.com/photorepublicmx/");
   }
 }
