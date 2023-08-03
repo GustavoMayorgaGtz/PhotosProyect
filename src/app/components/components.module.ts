@@ -6,22 +6,23 @@ import { CrearUsuarioComponent } from './crear-usuario/crear-usuario.component';
 import { SubirImagenesComponent } from './subir-imagenes/subir-imagenes.component';
 import { CrearCategoriaComponent } from './crear-categoria/crear-categoria.component';
 import { VerCategoriaComponent } from './ver-categoria/ver-categoria.component';
+import { NavComponent } from './nav/nav.component';
 
+const components = [
+  ControlCuentasComponent,
+  SafeUrlPipe,
+  CrearUsuarioComponent,
+  SubirImagenesComponent,
+  CrearCategoriaComponent,
+  VerCategoriaComponent,
+  NavComponent
+]
 
 @NgModule({
-  declarations: [
-    ControlCuentasComponent,
-    SafeUrlPipe,
-    CrearUsuarioComponent,
-    SubirImagenesComponent,
-    CrearCategoriaComponent,
-    VerCategoriaComponent
-  ],
+  declarations: components,
   imports: [
     CommonModule
   ],
-  exports:[
-    ControlCuentasComponent
-  ]
+  exports: components
 })
 export class ComponentsModuleModule { }

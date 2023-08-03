@@ -1,235 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
-/*font-family: 'PT Sans', sans-serif;*/
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap');
-/*font-family: 'Mukta', sans-serif;*/
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
-/*font-family: 'Satisfy', cursive;*/
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
-// font-family: 'Quicksand', sans-serif;
+@import '../../app.component.scss';
 
-//Fuente de texto normal 16px 
-//Subtitulos 18px
-//Titulos 20px
-//Entradas 16px bold de preferencia
-//miniInformacion 14px
-
-* {
-    font-family: 'Mukta', sans-serif;
-    font-size: 14px;
-
-}
-
-@mixin center() {
-    // display and positions
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // size
-    width: 100%;
-    height: 100%;
-}
-
-@mixin centerH() {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-// ESTILOS DE NAV
-nav {
-    //size
-    width: 100%;
-    height: 60px;
-    //Styles
-    background-color: rgb(31, 31, 31);
-    //borders and paddings
-    border-bottom: 1px solid #806C00;
-    box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.044);
-    //display
-    display: flex;
-    //positions
-    position: relative;
-
-    .facebook{
-        position: absolute;
-        bottom: -60px;
-        width: 45px;
-        height: 50px;
-        left: 0px;
-        background-color:#2f406e;
-        border-radius: 0px 5px 5px 0px;
-        z-index: 2;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-        padding-right: 3px;
-        cursor: pointer;
-        transition: all .2s;
-        font-weight: bold;
-        color: white;
-        letter-spacing: 0.03cm;
-        font-size: 14px;
-        
-        img{
-            padding: 5px;
-            box-sizing: border-box;
-            width: 40px;
-            height: 40px;
-            margin-left: 20px;
-        }
-
-        &:hover{
-            transition: all .2s;
-            width: 130px;
-        }
-    }
-
-    .whatsapp{
-        position: absolute;
-        bottom: -120px;
-        width: 45px;
-        height: 50px;
-        left: 0px;
-        background-color: #2D8737;
-        border-radius: 0px 5px 5px 0px;
-        z-index: 2;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-        padding-right: 3px;
-        cursor: pointer;
-        font-weight: bold;
-        color: white;
-        letter-spacing: 0.03cm;
-        font-size: 14px;
-        transition: all .2s;
-
-        img{
-            padding: 2px;
-            box-sizing: border-box;
-            width: 40px;
-            height: 40px;
-            margin-left: 20px;
-        } 
-
-        &:hover{
-            transition: all .2s;
-            width: 130px;
-        }
-    }
-
-    
-    .instagram{
-        position: absolute;
-        bottom: -180px;
-        width: 45px;
-        height: 50px;
-        left: 0px;
-        background-color: #ab1563;
-        border-radius: 0px 5px 5px 0px;
-        z-index: 2;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-        padding-right: 3px;
-        cursor: pointer;
-        font-weight: bold;
-        color: white;
-        letter-spacing: 0.03cm;
-        font-size: 14px;
-        transition: all .2s;
-
-        img{
-            padding: 2px;
-            box-sizing: border-box;
-            width: 40px;
-            height: 40px;
-            margin-left: 20px;
-        } 
-
-        &:hover{
-            transition: all .2s;
-            width: 130px;
-        }
-    }
-
-    .container-controls {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: right;
-        align-items: center;
-
-        .option {
-            //borders
-            box-sizing: border-box;
-            margin-right: 10px;
-            //size
-            width: 120px;
-            height: 80%;
-            //display
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            //cursor
-            cursor: pointer;
-            //font
-            font-weight: bold;
-            letter-spacing: 0.03cm;
-            transition: all 0.5s;
-        }
-
-        .normal_option {
-            @extend .option;
-
-            &:hover {
-                border-radius: 10px;
-                transition: all 0.5s;
-                text-decoration: underline;
-                background-color: rgba(255, 255, 255, 0.053);
-            }
-        }
-
-        .dorado {
-            @extend .option;
-            color: #FFD700;
-            padding: 10px 5px;
-            border: 2px solid #FFD700;
-
-            &:hover {
-                transition: all 0.5s;
-                text-decoration: underline;
-                background-color: rgba(255, 255, 255, 0.053);
-            }
-        }
-    }
-
-
-    .diamon-icon {
-        width: 60px;
-        height: 60px;
-        overflow: hidden;
-
-        @include centerH();
-
-        .diamond {
-            margin-left: 20px;
-            width: 50%;
-            height: 50%;
-            filter: invert(1);
-        }
-
-    }
+footer{
+  //fonts
+  font-size: 24px;
+  //display
+  @include center();
+  //size
+  width: 100%;
+  min-height: 100px;
+  //styles
+  color: white;
+  background-color: black;
 }
 
 
 .primary-container {
     width: 100%;
     height: 100vh;
-
     overflow-y: scroll;
+    overflow-x:hidden;
 
     /* BANNER1 (OPEN) */
     .banner1 {
@@ -712,7 +501,7 @@ nav {
 
 .body {
     width: 100vw;
-    height: 100vh;
+    height: max-content;
     background-color: rgb(248, 248, 248);
     display: flex;
     flex-direction: column;

@@ -1,0 +1,164 @@
+@import '../../app.component.scss';
+
+// ESTILOS DE NAV
+nav {
+    //size
+    width: 100%;
+    height: 60px;
+    //Styles
+    background-color: rgb(31, 31, 31);
+    //borders and paddings
+    border-bottom: 1px solid #806C00;
+    box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.044);
+    //display
+    display: flex;
+    //positions
+    position: relative;
+
+
+    .container-controls-mobile,
+    .menu-slider,
+    .menu-slider-inverse{
+      display: none;
+      width: 0px;
+      height: 0px;
+      visibility: hidden;
+    }
+
+    .red_social {
+        //positions
+        position: absolute;
+        left: 0px;
+        z-index: 2;
+        //size
+        width: 45px;
+        height: 50px;
+        //borders margins paddings
+        border-radius: 0px 5px 5px 0px;
+        padding-right: 3px;
+        //display
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        //cursor
+        cursor: pointer;
+        //transition
+        transition: all .2s;
+        //fonts
+        font-weight: bold;
+        font-size: 14px;
+        color: white;
+        letter-spacing: 0.03cm;
+
+        img {
+            //borders margins paddings
+            padding: 5px;
+            box-sizing: border-box;
+            margin-left: 20px;
+            //size
+            width: 40px;
+            height: 40px;
+        }
+
+        &:hover {
+            //transitions
+            transition: all .2s;
+            //size
+            width: 130px;
+        }
+    }
+
+    .facebook {
+        @extend .red_social;
+        //styles
+        background-color: #2f406e;
+        //borders margins paddings
+        bottom: -60px;
+    }
+
+    .whatsapp {
+        @extend .red_social;
+        //borders margins paddings
+        bottom: -120px;
+        //styles
+        background-color: #2D8737;
+    }
+
+    .instagram {
+        @extend .red_social;
+        //borders margins paddings
+        bottom: -180px;
+        //styles
+        background-color: #ab1563;
+    }
+
+    .container-controls {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+
+        .option {
+            //borders
+            box-sizing: border-box;
+            margin-right: 10px;
+            //size
+            width: 120px;
+            height: 80%;
+            //display
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            //cursor
+            cursor: pointer;
+            //font
+            font-weight: bold;
+            letter-spacing: 0.03cm;
+            transition: all 0.5s;
+        }
+
+        .normal_option {
+            @extend .option;
+
+            &:hover {
+                border-radius: 10px;
+                transition: all 0.5s;
+                text-decoration: underline;
+                background-color: rgba(255, 255, 255, 0.053);
+            }
+        }
+
+        .dorado {
+            @extend .option;
+            color: #FFD700;
+            padding: 10px 5px;
+            border: 2px solid #FFD700;
+
+            &:hover {
+                transition: all 0.5s;
+                text-decoration: underline;
+                background-color: rgba(255, 255, 255, 0.053);
+            }
+        }
+    }
+
+
+    .diamon-icon {
+        width: 60px;
+        height: 60px;
+        overflow: hidden;
+
+        @include centerH();
+
+        .diamond {
+            margin-left: 20px;
+            width: 50%;
+            height: 50%;
+            filter: invert(1);
+        }
+
+    }
+}

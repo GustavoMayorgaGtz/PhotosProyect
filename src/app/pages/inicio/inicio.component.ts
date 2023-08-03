@@ -16,6 +16,8 @@ export class InicioComponent implements OnInit {
     private servicios: AllService,
   ) { }
 
+
+
   ngOnInit(): void {
     sessionStorage.removeItem("id");
     sessionStorage.clear();
@@ -59,15 +61,5 @@ export class InicioComponent implements OnInit {
     this.isLogin = !this.isLogin;
   }
 
-  facebook(){
-    window.open("https://www.facebook.com/Photo-Republic-367008857203792");
-  }
 
-  whatsapp(){
-    window.open("https://wa.link/cpkj0g");
-  }
-
-  instagram(){
-    window.open("https://www.instagram.com/photorepublicmx/");
-  }
 }

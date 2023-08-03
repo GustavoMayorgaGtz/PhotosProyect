@@ -1,0 +1,266 @@
+@import '../../app.component.scss';
+
+//DISEÑOS DE MOBILE
+@media screen and (max-width: 700px) {
+
+    // ESTILOS DE NAV
+    nav {
+        //size
+        width: 100%;
+        height: 60px;
+        //Styles
+        background-color: rgb(31, 31, 31);
+        //borders and paddings
+        border-bottom: 1px solid #806C00;
+        box-shadow: -5px -5px 5px rgba(0, 0, 0, 0.115);
+        //display
+        display: flex;
+        //positions
+        position: relative;
+
+        .menu-slider {
+            //styles
+            background-color: rgba(0, 0, 0, 0.876);
+            //index
+            z-index: 6;
+            //positions
+            position: absolute;
+            top: 0px;
+            right: -100vw;
+            //size
+            width: 100vw;
+            height: 100vh;
+            //animations
+            animation-iteration-count: 1;
+            animation: 0.4s slide_menu;
+            animation-fill-mode: forwards;
+
+
+            .primary-control-relative {
+                //size
+                width: 100%;
+                height: 100%;
+                //positions
+                position: relative;
+                //display
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .option {
+                    width: 100%;
+                    height: 50px;
+                    margin: 5px;
+                    text-align: center;
+                    color: white;
+                    font-size: 18px;
+                }
+
+                .close {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                }
+
+            }
+        }
+
+        .menu-slider-inverse {
+            @extend .menu-slider;
+            //animations
+            animation-iteration-count: 1;
+            animation: 0.2s slide_menu reverse;
+            animation-fill-mode: forwards;
+        }
+
+        .container-controls-mobile,
+        .menu-slider,
+        .menu-slider-inverse{
+        //display
+        display: inline-block;
+         //visible
+         visibility: visible;
+        }
+
+        .container-controls-mobile {
+            //size
+            width: 60px;
+            height: 60px;
+            //display
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            //positions
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+         
+
+            menu {
+                //positions
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                //size
+                width: 70%;
+                width: 70%;
+            }
+        }
+
+        .red_social {
+            //positions
+            position: absolute;
+            left: 0px;
+            z-index: 2;
+            //size
+            width: 45px;
+            height: 50px;
+            //borders margins paddings
+            border-radius: 0px 5px 5px 0px;
+            padding-right: 3px;
+            //display
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            //cursor
+            cursor: pointer;
+            //transition
+            transition: all .2s;
+            //fonts
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            letter-spacing: 0.03cm;
+
+            img {
+                //borders margins paddings
+                padding: 5px;
+                box-sizing: border-box;
+                margin-left: 20px;
+                //size
+                width: 40px;
+                height: 40px;
+            }
+
+            &:hover {
+                //transitions
+                transition: all .2s;
+                //size
+                width: 130px;
+            }
+        }
+
+        .facebook {
+            @extend .red_social;
+            //styles
+            background-color: #2f406e;
+            //borders margins paddings
+            bottom: -60px;
+        }
+
+        .whatsapp {
+            @extend .red_social;
+            //borders margins paddings
+            bottom: -120px;
+            //styles
+            background-color: #2D8737;
+        }
+
+        .instagram {
+            @extend .red_social;
+            //borders margins paddings
+            bottom: -180px;
+            //styles
+            background-color: #ab1563;
+        }
+
+        .container-controls {
+            //size
+            width: 0%;
+            height: 0%;
+            //display
+            display: none;
+            justify-content: right;
+            align-items: center;
+            //others
+            opacity: 0;
+            overflow: hidden;
+
+            .option {
+                //borders
+                box-sizing: border-box;
+                margin-right: 10px;
+                //size
+                width: 120px;
+                height: 80%;
+                //display
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: white;
+                //cursor
+                cursor: pointer;
+                //font
+                font-weight: bold;
+                letter-spacing: 0.03cm;
+                transition: all 0.5s;
+            }
+
+            .normal_option {
+                @extend .option;
+
+                &:hover {
+                    //borders
+                    border-radius: 10px;
+                    //transitions
+                    transition: all 0.5s;
+                    //fonts
+                    text-decoration: underline;
+                    //styles
+                    background-color: rgba(255, 255, 255, 0.053);
+                }
+            }
+
+            .dorado {
+                @extend .option;
+                //styles
+                color: #FFD700;
+                //borders paddings margins
+                padding: 10px 5px;
+                border: 2px solid #FFD700;
+
+                &:hover {
+                    //transitions
+                    transition: all 0.5s;
+                    //fonts
+                    text-decoration: underline;
+                    //styles
+                    background-color: rgba(255, 255, 255, 0.053);
+                }
+            }
+        }
+
+        .diamon-icon {
+            //styles
+            width: 60px;
+            height: 60px;
+            //overflow
+            overflow: hidden;
+            //display
+            @include centerH();
+
+            .diamond {
+                //margins
+                margin-left: 20px;
+                //size
+                width: 50%;
+                height: 50%;
+                //filter
+                filter: invert(1);
+            }
+        }
+    }
+}

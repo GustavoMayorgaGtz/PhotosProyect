@@ -1,0 +1,35 @@
+<nav>
+    <div class="diamon-icon">
+        <img src="./assets/Diamante.png" alt="icono" class="diamond">
+    </div>
+    <div class="container-controls">
+        <div class="normal_option">Nosotros</div>
+        <div class="normal_option">Portafolio</div>
+        <div class="normal_option">Contacto</div>
+        <div class="dorado">Iniciar sesion</div>
+    </div>
+    <div class="container-controls-mobile" (click)="menu_slide_change()">
+        <img src="./assets/menu.svg" alt="menu" class="menu">
+    </div>
+    <div class="facebook" (click)="facebook()">Facebook<img src="./assets/facebook.png" alt="Facebook"></div>
+    <div class="whatsapp" (click)="whatsapp()">Whatsapp<img src="./assets/whatsapp.png" alt="Whatsapp"></div>
+    <div class="instagram" (click)="instagram()">Instagram<img src="./assets/instagram.svg" alt="Instagram"></div>
+    <div class="menu-slider" *ngIf="change_menu">
+        <div class="primary-control-relative" (click)="menu_slide_change()">
+            <img src="./assets/close.svg" alt="close" class="close">
+            <div class="option">Inicio</div>
+            <div class="option">Nosotros</div>
+            <div class="option">Contacto</div>
+            <div class="option">Iniciar sesion</div>
+        </div>
+    </div>
+    <div class="menu-slider-inverse" *ngIf="!change_menu">
+        <div class="primary-control-relative" (click)="menu_slide_change()">
+            <img src="./assets/close.svg" alt="close" class="close">
+        </div>
+        <div class="option">Inicio</div>
+        <div class="option">Nosotros</div>
+        <div class="option">Contacto</div>
+        <div class="option">Iniciar sesion</div>
+    </div>
+</nav>
