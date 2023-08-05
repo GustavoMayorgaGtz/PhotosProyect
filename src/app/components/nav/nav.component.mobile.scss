@@ -16,7 +16,12 @@
         //display
         display: flex;
         //positions
-        position: relative;
+        position: fixed;
+        //index
+        z-index:3;
+        //overflow
+        // overflow-x: hidden;
+        // overflow-y: visible;
 
         .menu-slider {
             //styles
@@ -76,11 +81,11 @@
 
         .container-controls-mobile,
         .menu-slider,
-        .menu-slider-inverse{
-        //display
-        display: inline-block;
-         //visible
-         visibility: visible;
+        .menu-slider-inverse {
+            //display
+            display: inline-block;
+            //visible
+            visibility: visible;
         }
 
         .container-controls-mobile {
@@ -96,7 +101,7 @@
             top: 50%;
             right: 20px;
             transform: translateY(-50%);
-         
+
 
             menu {
                 //positions

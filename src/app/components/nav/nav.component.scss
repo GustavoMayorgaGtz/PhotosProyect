@@ -13,7 +13,12 @@ nav {
     //display
     display: flex;
     //positions
-    position: relative;
+    position: fixed;
+    //z-index
+    z-index: 2;
+    //overflow
+    // overflow-x: hidden;
+    // overflow-y: visible;
 
 
     .container-controls-mobile,

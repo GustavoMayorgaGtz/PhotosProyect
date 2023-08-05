@@ -1,24 +1,25 @@
 @import '../../app.component.scss';
 
-footer{
-  //fonts
-  font-size: 24px;
-  //display
-  @include center();
-  //size
-  width: 100%;
-  min-height: 100px;
-  //styles
-  color: white;
-  background-color: black;
+footer {
+    //fonts
+    font-size: 24px;
+    //display
+    @include center();
+    //size
+    width: 100%;
+    min-height: 100px;
+    //styles
+    color: white;
+    background-color: black;
 }
 
 
 .primary-container {
-    width: 100%;
-    height: 100vh;
-    overflow-y: scroll;
-    overflow-x:hidden;
+    width: 100vw;
+    overflow: hidden;
+    height: min-content;
+    //margin
+    padding-top: 60px;
 
     /* BANNER1 (OPEN) */
     .banner1 {
@@ -131,7 +132,7 @@ footer{
             //displays and positions
             display: flex;
             align-items: center;
-            justify-content: end;
+            justify-content: flex-end;
         }
 
         .little-circle {
@@ -202,19 +203,19 @@ footer{
             height: 100%;
 
 
-        
-            .recurso_010{
+
+            .recurso_010 {
                 //size  
                 width: auto;
                 height: 80%;
                 //borders AND MARGINS
-                margin: auto;   
+                margin: auto;
                 border-radius: 20px;
                 overflow: hidden;
             }
         }
 
-     
+
 
         .right {
             //displays and positions
@@ -297,7 +298,7 @@ footer{
         //size
         width: auto;
         height: 100%;
-        max-height: 500px;
+        min-height: 500px;
         //display
         display: flex;
         flex-direction: column;
@@ -416,7 +417,7 @@ footer{
     /* BANNER4 (CLOSE) */
     /* BANNER5 (OPEN) */
     .banner5 {
-       //size 
+        //size 
         width: 100%;
         height: min-content;
         //display
@@ -424,10 +425,10 @@ footer{
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr min-content;
         justify-content: center;
-        
+
         .container_image1,
         .container_image2,
-        .container_image3{
+        .container_image3 {
             overflow: hidden;
             //size
             width: 300px;
@@ -441,24 +442,24 @@ footer{
             justify-content: center;
             align-items: center;
 
-            img{
+            img {
                 //size
                 height: 100%;
                 width: auto;
             }
         }
 
-        .content-banner5{
+        .content-banner5 {
             grid-column: 1/4;
             grid-row: 1;
             padding: 0px 20%;
             font-size: calc(1vw + 8px);
-            color:black;
+            color: black;
             font-weight: bold;
             text-align: center;
             margin-top: 30px;
         }
-     
+
     }
 
     /* BANNER5 (CLOSE) */
@@ -507,16 +508,6 @@ footer{
     flex-direction: column;
     align-items: center;
 }
-
-.nav {
-    display: flex;
-    width: 100vw;
-    height: 60px;
-    background-color: white;
-    border-bottom: 1px solid rgb(185, 185, 185);
-    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.068);
-}
-
 
 .container-informacion {
     width: 60%;

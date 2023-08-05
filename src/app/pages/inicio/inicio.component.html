@@ -3,13 +3,13 @@
 <main class="primary-container" *ngIf="!isLogin">
     <section class="banner3">
       <img src="./assets/Recursos/recurso_002.jpg" alt="logo" class="recurso_001">
-      <!-- <div class="text-overflow-01">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore consequuntur, maxime perspiciatis ipsa consectetur nulla incidunt minus voluptatibus obcaecati vel autem ut dignissimos nemo vero minima? Nam, autem? Magni, aut.</div>  -->
       <section class="banner1">
         <div class="right">
           Photo Republic
         </div>
         <div class="left">
-          En nuestras fotografías, la belleza de los momentos se convierte en un regalo para siempre.</div>
+          En nuestras fotografías, la belleza de los momentos se convierte en un regalo para siempre.
+        </div>
       </section>
     </section>
 
@@ -168,5 +168,5 @@
     </div>
 </main>
 <!-------------------------------------------------->
-<footer>Photorepublic</footer>
+<footer *ngIf="!isLogin">Photorepublic®️</footer>
 
